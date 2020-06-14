@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Станислав Михайлов](https://up.htmlacademy.ru/react/4/user/139638).
-* Наставник: `Неизвестно`.
+* Наставник: [Дмитрий Авдеев](https://htmlacademy.ru/profile/id1261683).
 
 ---
 
