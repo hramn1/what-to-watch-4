@@ -1,9 +1,9 @@
 import React from "react";
 import propTypes from "prop-types";
-import MovieCard from './movie-card.jsx';
+import MovieCard from '../movie-card/movie-card.jsx';
 
 const Main = (props) => {
-  const {nameFilm, genreFilm, yearFilm} = props;
+  const {nameFilm, genreFilm, yearFilm, onTitleClick} = props;
   return (
     <React.Fragment>
       <div className="visually-hidden">
@@ -43,7 +43,7 @@ const Main = (props) => {
 
         <header className="page-header movie-card__head">
           <div className="logo">
-            <a className="logo__link">
+            <a onClick={onTitleClick} href="#" className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
@@ -159,8 +159,9 @@ const Main = (props) => {
   );
 };
 Main.propTypes = {
-  genreFilm: propTypes.object.isRequired,
-  yearFilm: propTypes.object.isRequired,
-  nameFilm: propTypes.arrayOf(propTypes.string).isRequired
+  genreFilm: propTypes.string.isRequired,
+  yearFilm: propTypes.string.isRequired,
+  nameFilm: propTypes.arrayOf(propTypes.string).isRequired,
+  onTitleClick: propTypes.func.isRequired,
 };
 export default Main;
