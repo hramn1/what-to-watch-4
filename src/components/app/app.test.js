@@ -7,6 +7,7 @@ const Settings = {
   GENRE: `Drama`,
   YEAR: `2014`,
 };
+const onTitleClick = () => {};
 
 it(`Render App`, () => {
   const tree = renderer
@@ -14,6 +15,7 @@ it(`Render App`, () => {
     nameFilm = {Settings.NAME_FILM}
     genreFilm = {Settings.GENRE}
     yearFilm = {Settings.YEAR}
+    onTitleClick={onTitleClick}
   />).toJSON();
 
   expect(tree).toMatchSnapshot();

@@ -20,7 +20,63 @@ exports[`MovieCard rendering 1`] = `
     <a
       className="small-movie-card__link"
       href="movie-page.html"
+    >
+      Fantastic Beasts
+    </a>
+  </h3>
+</article>
+`;
+
+exports[`MovieCard rendering 2`] = `
+<article
+  className="small-movie-card catalog__movies-card"
+>
+  <div
+    className="small-movie-card__image"
+  >
+    <img
+      alt="{title}"
+      height="175"
+      src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+      width="280"
     />
+  </div>
+  <h3
+    className="small-movie-card__title"
+  >
+    <a
+      className="small-movie-card__link"
+      href="movie-page.html"
+    >
+      Bohemian Rhapsody
+    </a>
+  </h3>
+</article>
+`;
+
+exports[`MovieCard rendering 3`] = `
+<article
+  className="small-movie-card catalog__movies-card"
+>
+  <div
+    className="small-movie-card__image"
+  >
+    <img
+      alt="{title}"
+      height="175"
+      src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+      width="280"
+    />
+  </div>
+  <h3
+    className="small-movie-card__title"
+  >
+    <a
+      className="small-movie-card__link"
+      href="movie-page.html"
+    >
+      Macbeth
+    </a>
   </h3>
 </article>
 `;
