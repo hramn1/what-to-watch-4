@@ -3,9 +3,9 @@ import propTypes from "prop-types";
 import Main from "../main/main.jsx";
 
 const App = (props) => {
-  const {nameFilm, genreFilm, yearFilm, onTitleClick} = props;
+  const {nameFilm, genreFilm, yearFilm, films, onTitleClick} = props;
   return (
-    <Main nameFilm={nameFilm} genreFilm={genreFilm} yearFilm={yearFilm} onTitleClick={onTitleClick} />
+    <Main nameFilm={nameFilm} genreFilm={genreFilm} yearFilm={yearFilm} films={films} onTitleClick={onTitleClick} />
   );
 };
 
