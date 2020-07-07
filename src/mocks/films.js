@@ -1,8 +1,4 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import MovieCard from './movie-card.jsx';
-
-const films = [
+export default [
   {
     id: `1`,
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -44,15 +40,3 @@ const films = [
     poster: `img/johnny-english.jpg`,
   },
 ];
-for (let item of films) {
-  it(`MovieCard rendering`, () => {
-    const tree = renderer
-  .create(<MovieCard
-    title = {item.title}
-    img = {item.poster}
-    onCardClick = {() =>{}}
-  />)
-    .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-}

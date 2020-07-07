@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main";
+import MovieList from "./movie-list.jsx";
 const films = [
   {
     id: `1`,
@@ -18,14 +18,14 @@ const cardFilms = {
   genre: `Drame`,
   year: `2014`,
 };
-const onTitleClick = () => {};
+const onCardClick = () => {};
 
-it(`Main rendering`, () => {
+it(`MoviesList rendering`, () => {
   const tree = renderer
-.create(<Main
+.create(<MovieList
   films = {films}
   cardFilms = {cardFilms}
-  onTitleClick={onTitleClick}
+  onCardClick={onCardClick}
 />)
     .toJSON();
   expect(tree).toMatchSnapshot();
