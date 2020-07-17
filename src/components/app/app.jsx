@@ -5,7 +5,9 @@ import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx"
 
 const onTitleClick = () => {};
-
+const onMovieCardClick = (film) => {
+  console.log(film)
+};
 const App = (props) => {
   const {films, cardFilms} = props;
   return (
@@ -16,6 +18,7 @@ const App = (props) => {
             films={films}
             cardFilms={cardFilms}
             onTitleClick = {onTitleClick}
+            onMovieCardClick = {onMovieCardClick}
           />
         </Route>
         <Route exact path="/movie-page">
