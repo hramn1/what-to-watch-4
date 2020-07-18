@@ -48,9 +48,11 @@ for (let item of films) {
   it(`MovieCard rendering`, () => {
     const tree = renderer
   .create(<MovieCard
+    film = {item}
     title = {item.title}
     img = {item.poster}
-    onCardClick = {() =>{}}
+    onMouseHover = {() =>{}}
+    onMovieCardClick = {()=>{}}
   />)
     .toJSON();
     expect(tree).toMatchSnapshot();

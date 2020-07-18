@@ -19,13 +19,13 @@ const cardFilms = {
   year: `2014`,
 };
 const onTitleClick = () => {};
-
 it(`Main rendering`, () => {
   const tree = renderer
 .create(<Main
   films = {films}
   cardFilms = {cardFilms}
   onTitleClick={onTitleClick}
+  onMovieCardClick = {()=>{}}
 />)
     .toJSON();
   expect(tree).toMatchSnapshot();

@@ -15,6 +15,7 @@ class MovieList extends PureComponent {
         {films.map((it) => {
           return (
             <MovieCard
+              film = {it}
               title={it.title}
               img={it.poster}
               onMouseHover = {(currentFilm) =>{
@@ -33,5 +34,6 @@ class MovieList extends PureComponent {
 }
 MovieList.propTypes = {
   films: propTypes.arrayOf(propTypes.object).isRequired,
+  onMovieCardClick: propTypes.func.isRequired,
 };
 export default MovieList;

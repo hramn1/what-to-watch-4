@@ -157,5 +157,6 @@ Main.propTypes = {
   films: propTypes.arrayOf(propTypes.object).isRequired,
   cardFilms: propTypes.object.isRequired,
   onTitleClick: propTypes.func.isRequired,
+  onMovieCardClick: propTypes.func.isRequired,
 };
 export default Main;
