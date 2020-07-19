@@ -18,14 +18,14 @@ const cardFilms = {
   genre: `Drame`,
   year: `2014`,
 };
-const onCardClick = () => {};
+const onMovieCardClick = () => {};
 
 it(`MoviesList rendering`, () => {
   const tree = renderer
 .create(<MovieList
   films = {films}
   cardFilms = {cardFilms}
-  onCardClick={onCardClick}
+  onMovieCardClick={onMovieCardClick}
 />)
     .toJSON();
   expect(tree).toMatchSnapshot();

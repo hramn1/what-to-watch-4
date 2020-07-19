@@ -1,9 +1,8 @@
 import React from 'react';
-import Enzyme, {shallow} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import MovieCard from './movie-card.jsx';
+import renderer from 'react-test-renderer';
+import MoviePage from './movie-page.jsx';
 
-const film = {
+const cardFilm = {
   id: 1,
   bg: `img/bg-the-grand-budapest-hotel.jpg`,
   poster: `img/the-grand-budapest-hotel-poster.jpg`,
@@ -18,26 +17,13 @@ const film = {
   starring: [`Ralph Fiennes`, `F. Murray Abraham`, `Mathieu Amalric`],
 };
 
-Enzyme.configure({
-  adapter: new Adapter(),
-});
-
-describe(`MovieCard`, () => {
-  it(`Should MovieCard hovered`, () => {
-    const onMouseHover = jest.fn();
-
-    const main = shallow(
-        <MovieCard
-          film = {film}
-          title = {film.title}
-          img = {film.poster}
-          onMouseHover = {onMouseHover}
-          onMovieCardClick = {()=>{}}
+describe(`MoviePage`, () => {
+  it(`Render MoviePage`, () => {
+    const tree = renderer.create(
+        <MoviePage
+          cardFilms = {cardFilm}
         />
-    );
-
-    const movieCard = main.find(`.small-movie-card`);
-    movieCard.simulate(`mouseover`, film);
-    expect(onMouseHover).toHaveBeenCalledWith(film.title);
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
   });
 });

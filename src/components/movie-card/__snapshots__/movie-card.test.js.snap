@@ -3,6 +3,7 @@
 exports[`MovieCard rendering 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
+  onClick={[Function]}
   onMouseOver={[Function]}
 >
   <div
@@ -21,6 +22,7 @@ exports[`MovieCard rendering 1`] = `
     <a
       className="small-movie-card__link"
       href="movie-page.html"
+      onClick={[Function]}
     >
       Fantastic Beasts: The Crimes of Grindelwald
     </a>
@@ -31,6 +33,7 @@ exports[`MovieCard rendering 1`] = `
 exports[`MovieCard rendering 2`] = `
 <article
   className="small-movie-card catalog__movies-card"
+  onClick={[Function]}
   onMouseOver={[Function]}
 >
   <div
@@ -49,6 +52,7 @@ exports[`MovieCard rendering 2`] = `
     <a
       className="small-movie-card__link"
       href="movie-page.html"
+      onClick={[Function]}
     >
       Bohemian Rhapsody
     </a>
@@ -59,6 +63,7 @@ exports[`MovieCard rendering 2`] = `
 exports[`MovieCard rendering 3`] = `
 <article
   className="small-movie-card catalog__movies-card"
+  onClick={[Function]}
   onMouseOver={[Function]}
 >
   <div
@@ -77,6 +82,7 @@ exports[`MovieCard rendering 3`] = `
     <a
       className="small-movie-card__link"
       href="movie-page.html"
+      onClick={[Function]}
     >
       Macbeth
     </a>
@@ -87,6 +93,7 @@ exports[`MovieCard rendering 3`] = `
 exports[`MovieCard rendering 4`] = `
 <article
   className="small-movie-card catalog__movies-card"
+  onClick={[Function]}
   onMouseOver={[Function]}
 >
   <div
@@ -105,6 +112,7 @@ exports[`MovieCard rendering 4`] = `
     <a
       className="small-movie-card__link"
       href="movie-page.html"
+      onClick={[Function]}
     >
       Aviator
     </a>
@@ -115,6 +123,7 @@ exports[`MovieCard rendering 4`] = `
 exports[`MovieCard rendering 5`] = `
 <article
   className="small-movie-card catalog__movies-card"
+  onClick={[Function]}
   onMouseOver={[Function]}
 >
   <div
@@ -133,6 +142,7 @@ exports[`MovieCard rendering 5`] = `
     <a
       className="small-movie-card__link"
       href="movie-page.html"
+      onClick={[Function]}
     >
       We need to talk about Kevin
     </a>
@@ -143,6 +153,7 @@ exports[`MovieCard rendering 5`] = `
 exports[`MovieCard rendering 6`] = `
 <article
   className="small-movie-card catalog__movies-card"
+  onClick={[Function]}
   onMouseOver={[Function]}
 >
   <div
@@ -161,6 +172,7 @@ exports[`MovieCard rendering 6`] = `
     <a
       className="small-movie-card__link"
       href="movie-page.html"
+      onClick={[Function]}
     >
       Snatch
     </a>
@@ -171,6 +183,7 @@ exports[`MovieCard rendering 6`] = `
 exports[`MovieCard rendering 7`] = `
 <article
   className="small-movie-card catalog__movies-card"
+  onClick={[Function]}
   onMouseOver={[Function]}
 >
   <div
@@ -189,6 +202,7 @@ exports[`MovieCard rendering 7`] = `
     <a
       className="small-movie-card__link"
       href="movie-page.html"
+      onClick={[Function]}
     >
       Revenant
     </a>
@@ -199,6 +213,7 @@ exports[`MovieCard rendering 7`] = `
 exports[`MovieCard rendering 8`] = `
 <article
   className="small-movie-card catalog__movies-card"
+  onClick={[Function]}
   onMouseOver={[Function]}
 >
   <div
@@ -217,6 +232,7 @@ exports[`MovieCard rendering 8`] = `
     <a
       className="small-movie-card__link"
       href="movie-page.html"
+      onClick={[Function]}
     >
       Johnny English
     </a>

@@ -6,6 +6,7 @@ exports[`MoviesList rendering 1`] = `
 >
   <article
     className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
     onMouseOver={[Function]}
   >
     <div
@@ -24,6 +25,7 @@ exports[`MoviesList rendering 1`] = `
       <a
         className="small-movie-card__link"
         href="movie-page.html"
+        onClick={[Function]}
       >
         Fantastic Beasts: The Crimes of Grindelwald
       </a>
@@ -31,6 +33,7 @@ exports[`MoviesList rendering 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
     onMouseOver={[Function]}
   >
     <div
@@ -49,6 +52,7 @@ exports[`MoviesList rendering 1`] = `
       <a
         className="small-movie-card__link"
         href="movie-page.html"
+        onClick={[Function]}
       >
         Bohemian Rhapsody
       </a>

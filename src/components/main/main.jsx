@@ -4,7 +4,7 @@ import MovieList from "../movie-list/movie-list.jsx";
 
 
 const Main = (props) => {
-  const {films, cardFilms, onTitleClick} = props;
+  const {films, cardFilms, onTitleClick, onMovieCardClick} = props;
   return (
     <React.Fragment>
       <div className="visually-hidden">
@@ -128,6 +128,7 @@ const Main = (props) => {
 
           <MovieList
             films = {films}
+            onMovieCardClick = {onMovieCardClick}
           />
 
           <div className="catalog__more">
@@ -156,5 +157,6 @@ Main.propTypes = {
   films: propTypes.arrayOf(propTypes.object).isRequired,
   cardFilms: propTypes.object.isRequired,
   onTitleClick: propTypes.func.isRequired,
+  onMovieCardClick: propTypes.func.isRequired,
 };
 export default Main;
