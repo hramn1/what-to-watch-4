@@ -370,17 +370,22 @@ Array [
         <article
           className="small-movie-card catalog__movies-card"
           onClick={[Function]}
-          onMouseOver={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
-            <img
-              alt="Fantastic Beasts: The Crimes of Grindelwald"
+            <video
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              muted={true}
+              poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
-            />
+            >
+              <source
+                type="video/webm; codecs=\\"vp8, vorbis\\""
+              />
+            </video>
           </div>
           <h3
             className="small-movie-card__title"
@@ -397,17 +402,22 @@ Array [
         <article
           className="small-movie-card catalog__movies-card"
           onClick={[Function]}
-          onMouseOver={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
-            <img
-              alt="Bohemian Rhapsody"
+            <video
               height="175"
-              src="img/bohemian-rhapsody.jpg"
+              muted={true}
+              poster="img/bohemian-rhapsody.jpg"
               width="280"
-            />
+            >
+              <source
+                type="video/webm; codecs=\\"vp8, vorbis\\""
+              />
+            </video>
           </div>
           <h3
             className="small-movie-card__title"

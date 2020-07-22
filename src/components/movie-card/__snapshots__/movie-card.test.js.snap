@@ -4,17 +4,22 @@ exports[`MovieCard rendering 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onClick={[Function]}
-  onMouseOver={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
 >
   <div
     className="small-movie-card__image"
   >
-    <img
-      alt="Fantastic Beasts: The Crimes of Grindelwald"
+    <video
       height="175"
-      src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+      muted={true}
+      poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
       width="280"
-    />
+    >
+      <source
+        type="video/webm; codecs=\\"vp8, vorbis\\""
+      />
+    </video>
   </div>
   <h3
     className="small-movie-card__title"
@@ -34,17 +39,22 @@ exports[`MovieCard rendering 2`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onClick={[Function]}
-  onMouseOver={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
 >
   <div
     className="small-movie-card__image"
   >
-    <img
-      alt="Bohemian Rhapsody"
+    <video
       height="175"
-      src="img/bohemian-rhapsody.jpg"
+      muted={true}
+      poster="img/bohemian-rhapsody.jpg"
       width="280"
-    />
+    >
+      <source
+        type="video/webm; codecs=\\"vp8, vorbis\\""
+      />
+    </video>
   </div>
   <h3
     className="small-movie-card__title"
@@ -64,17 +74,22 @@ exports[`MovieCard rendering 3`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onClick={[Function]}
-  onMouseOver={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
 >
   <div
     className="small-movie-card__image"
   >
-    <img
-      alt="Macbeth"
+    <video
       height="175"
-      src="img/macbeth.jpg"
+      muted={true}
+      poster="img/macbeth.jpg"
       width="280"
-    />
+    >
+      <source
+        type="video/webm; codecs=\\"vp8, vorbis\\""
+      />
+    </video>
   </div>
   <h3
     className="small-movie-card__title"
@@ -94,17 +109,22 @@ exports[`MovieCard rendering 4`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onClick={[Function]}
-  onMouseOver={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
 >
   <div
     className="small-movie-card__image"
   >
-    <img
-      alt="Aviator"
+    <video
       height="175"
-      src="img/aviator.jpg"
+      muted={true}
+      poster="img/aviator.jpg"
       width="280"
-    />
+    >
+      <source
+        type="video/webm; codecs=\\"vp8, vorbis\\""
+      />
+    </video>
   </div>
   <h3
     className="small-movie-card__title"
@@ -124,17 +144,22 @@ exports[`MovieCard rendering 5`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onClick={[Function]}
-  onMouseOver={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
 >
   <div
     className="small-movie-card__image"
   >
-    <img
-      alt="We need to talk about Kevin"
+    <video
       height="175"
-      src="img/we-need-to-talk-about-kevin.jpg"
+      muted={true}
+      poster="img/we-need-to-talk-about-kevin.jpg"
       width="280"
-    />
+    >
+      <source
+        type="video/webm; codecs=\\"vp8, vorbis\\""
+      />
+    </video>
   </div>
   <h3
     className="small-movie-card__title"
@@ -154,17 +179,22 @@ exports[`MovieCard rendering 6`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onClick={[Function]}
-  onMouseOver={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
 >
   <div
     className="small-movie-card__image"
   >
-    <img
-      alt="Snatch"
+    <video
       height="175"
-      src="img/snatch.jpg"
+      muted={true}
+      poster="img/snatch.jpg"
       width="280"
-    />
+    >
+      <source
+        type="video/webm; codecs=\\"vp8, vorbis\\""
+      />
+    </video>
   </div>
   <h3
     className="small-movie-card__title"
@@ -184,17 +214,22 @@ exports[`MovieCard rendering 7`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onClick={[Function]}
-  onMouseOver={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
 >
   <div
     className="small-movie-card__image"
   >
-    <img
-      alt="Revenant"
+    <video
       height="175"
-      src="img/revenant.jpg"
+      muted={true}
+      poster="img/revenant.jpg"
       width="280"
-    />
+    >
+      <source
+        type="video/webm; codecs=\\"vp8, vorbis\\""
+      />
+    </video>
   </div>
   <h3
     className="small-movie-card__title"
@@ -214,17 +249,22 @@ exports[`MovieCard rendering 8`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onClick={[Function]}
-  onMouseOver={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
 >
   <div
     className="small-movie-card__image"
   >
-    <img
-      alt="Johnny English"
+    <video
       height="175"
-      src="img/johnny-english.jpg"
+      muted={true}
+      poster="img/johnny-english.jpg"
       width="280"
-    />
+    >
+      <source
+        type="video/webm; codecs=\\"vp8, vorbis\\""
+      />
+    </video>
   </div>
   <h3
     className="small-movie-card__title"

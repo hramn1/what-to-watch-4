@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VideoPlayer Render VideoPlayer 1`] = `
+<video
+  height="175"
+  muted={true}
+  poster="img/the-grand-budapest-hotel-poster.jpg"
+  width="280"
+>
+  <source
+    src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+    type="video/webm; codecs=\\"vp8, vorbis\\""
+  />
+</video>
+`;
