@@ -6,7 +6,8 @@ import MovieList from "../movie-list/movie-list.jsx";
 const MovieNavList = [`Overview`,`Details`,`Reviews`]
 
 const MoviePage = (props) => {
-  const {films, cardFilms, onMovieCardClick} = props;
+  const {cardFilms, films, onMovieCardClick} = props;
+  console.log(props)
 
   const getRating = (rating) => {
     if (rating < 3) {
@@ -108,7 +109,10 @@ const MoviePage = (props) => {
     <div className="page-content">
       <section className="catalog catalog--like-this">
         <h2 className="catalog__title">More like this</h2>
-
+        <MovieList
+          films = {films}
+          onMovieCardClick = {onMovieCardClick}
+        />
       </section>
 
       <footer className="page-footer">

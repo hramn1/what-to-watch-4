@@ -53,7 +53,8 @@ class App extends PureComponent {
     );
   }
   _renderMovie() {
-    const {films, selectedMovie} = this.state;
+    const {selectedMovie} = this.state;
+    const {films} = this.props;
     return (
       <MoviePage
         cardFilms={selectedMovie}
