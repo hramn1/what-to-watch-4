@@ -5,6 +5,7 @@ import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 
 const onTitleClick = () => {};
+const COUNT_FILMS = 4;
 class App extends PureComponent {
   constructor(props) {
     super(props);
@@ -55,10 +56,15 @@ class App extends PureComponent {
   _renderMovie() {
     const {selectedMovie} = this.state;
     const {films} = this.props;
+
+    const likeFilms = films.filter((film) => film.genre === selectedMovie.genre && film.title !== selectedMovie.title)
+      .slice(0, COUNT_FILMS);
+
     return (
       <MoviePage
         cardFilms={selectedMovie}
         films={films}
+        likeFilms={likeFilms}
         onMovieCardClick={this._handleMovieCardClick }
       />
     );
