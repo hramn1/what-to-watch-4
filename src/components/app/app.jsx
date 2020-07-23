@@ -53,10 +53,12 @@ class App extends PureComponent {
     );
   }
   _renderMovie() {
-    const {selectedMovie} = this.state;
+    const {films, selectedMovie} = this.state;
     return (
       <MoviePage
         cardFilms={selectedMovie}
+        films={films}
+        onMovieCardClick={this._handleMovieCardClick }
       />
     );
   }
