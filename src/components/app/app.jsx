@@ -26,6 +26,8 @@ class App extends PureComponent {
           <Route exact path='/movie-page'>
             <MoviePage
               cardFilms={cardFilms}
+              likeFilms={this.props.films}
+              onMovieCardClick={this._handleMovieCardClick}
             />
           </Route>
         </Switch>
@@ -79,6 +81,6 @@ class App extends PureComponent {
 export default App;
 App.propTypes = {
   films: propTypes.arrayOf(propTypes.object).isRequired,
-  cardFilms: propTypes.object.isRequired
+  cardFilms: propTypes.object.isRequired,
 };
 

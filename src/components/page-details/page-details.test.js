@@ -1,6 +1,6 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import MoviePage from './movie-page.jsx';
+import React from "react";
+import renderer from "react-test-renderer";
+import PageDetails from './page-details.jsx';
 
 const cardFilm = {
   id: 1,
@@ -17,10 +17,10 @@ const cardFilm = {
   starring: [`Ralph Fiennes`, `F. Murray Abraham`, `Mathieu Amalric`],
 };
 
-describe(`MoviePage`, () => {
-  it(`Render MoviePage`, () => {
+describe(`PageDetails`, () => {
+  it(`Render PageDetails`, () => {
     const tree = renderer.create(
-        <MoviePage
+        <PageDetails
           cardFilms = {cardFilm}
         />
     ).toJSON();

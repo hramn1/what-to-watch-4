@@ -9,12 +9,11 @@ const MovieTabs = (prop) => {
       <ul className="movie-nav__list">
         {tabs.map((tab) => (
           <li key={tab}
-              className={currentTab === tab ?`movie-nav__item movie-nav__item--active` : 'movie-nav__item'}
-              onClick={(evt) => {
-                evt.preventDefault();
-                onTabClick(tab);
-              }}
-          >
+            className={currentTab === tab ? `movie-nav__item movie-nav__item--active` : `movie-nav__item`}
+            onClick={(evt) => {
+              evt.preventDefault();
+              onTabClick(tab);
+            }}>
             <a href="#" className="movie-nav__link">{tab}</a>
           </li>
         ))}

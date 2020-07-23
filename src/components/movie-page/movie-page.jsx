@@ -6,7 +6,7 @@ import PageOverview from "../page-overview/page-overview.jsx";
 import PageDetails from "../page-details/page-details.jsx";
 import PageReviews from "../page-reviews/page-reviews.jsx";
 
-const MovieNavList = [`Overview`,`Details`,`Reviews`]
+const MovieNavList = [`Overview`, `Details`, `Reviews`];
 
 class MoviePage extends PureComponent {
   constructor(props) {
@@ -47,7 +47,7 @@ class MoviePage extends PureComponent {
     }
   }
   render() {
-    const {films, cardFilms, likeFilms, onMovieCardClick} = this.props;
+    const {cardFilms, likeFilms, onMovieCardClick} = this.props;
     const {currentTab} = this.state;
     return (<React.Fragment>
       <section className="movie-card movie-card--full">
@@ -113,8 +113,6 @@ class MoviePage extends PureComponent {
                 currentTab={currentTab}
                 onTabClick = {this._handleTabClick}
               />
-
-
               {this._renderCurrentTab(currentTab)}
             </div>
           </div>
@@ -152,4 +150,6 @@ export default MoviePage;
 
 MoviePage.propTypes = {
   cardFilms: propTypes.object.isRequired,
+  likeFilms: propTypes.arrayOf(propTypes.object).isRequired,
+  onMovieCardClick: propTypes.func.isRequired,
 };

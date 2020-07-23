@@ -6,6 +6,7 @@ exports[`MovieCard rendering 1`] = `
   onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
+  onMouseOver={[Function]}
 >
   <div
     className="small-movie-card__image"
@@ -41,6 +42,7 @@ exports[`MovieCard rendering 2`] = `
   onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
+  onMouseOver={[Function]}
 >
   <div
     className="small-movie-card__image"
@@ -76,6 +78,7 @@ exports[`MovieCard rendering 3`] = `
   onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
+  onMouseOver={[Function]}
 >
   <div
     className="small-movie-card__image"
@@ -111,6 +114,7 @@ exports[`MovieCard rendering 4`] = `
   onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
+  onMouseOver={[Function]}
 >
   <div
     className="small-movie-card__image"
@@ -146,6 +150,7 @@ exports[`MovieCard rendering 5`] = `
   onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
+  onMouseOver={[Function]}
 >
   <div
     className="small-movie-card__image"
@@ -181,6 +186,7 @@ exports[`MovieCard rendering 6`] = `
   onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
+  onMouseOver={[Function]}
 >
   <div
     className="small-movie-card__image"
@@ -216,6 +222,7 @@ exports[`MovieCard rendering 7`] = `
   onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
+  onMouseOver={[Function]}
 >
   <div
     className="small-movie-card__image"
@@ -251,6 +258,7 @@ exports[`MovieCard rendering 8`] = `
   onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
+  onMouseOver={[Function]}
 >
   <div
     className="small-movie-card__image"
