@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import MovieCard from './movie-card.jsx';
+import FilmCard from './movie-card.jsx';
 
 const films = [
   {
@@ -45,14 +45,14 @@ const films = [
   },
 ];
 for (let item of films) {
-  it(`MovieCard rendering`, () => {
+  it(`FilmCard rendering`, () => {
     const tree = renderer
-  .create(<MovieCard
+  .create(<FilmCard
     film = {item}
     title = {item.title}
     img = {item.poster}
     onMouseHover = {() =>{}}
-    onMovieCardClick = {()=>{}}
+    onFilmCardClick = {()=>{}}
   />)
     .toJSON();
     expect(tree).toMatchSnapshot();

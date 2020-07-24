@@ -1,15 +1,15 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MovieTabs from './movie-tab.jsx';
+import FilmsTabs from './movie-tab.jsx';
 
-const MovieNavList = [`Overview`, `Details`, `Reviews`];
+const FilmsNavList = [`Overview`, `Details`, `Reviews`];
 
-describe(`MovieTabs`, () => {
-  it(`Render MovieTabs`, () => {
+describe(`FilmsTabs`, () => {
+  it(`Render FilmsTabs`, () => {
     const tree = renderer.create(
-        <MovieTabs
-          tabs={MovieNavList}
-          currentTab={MovieNavList[0]}
+        <FilmsTabs
+          tabs={FilmsNavList}
+          currentTab={FilmsNavList[0]}
           onTabClick={() => {}}
         />
     ).toJSON();

@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import MovieCard from './movie-card.jsx';
+import FilmCard from './movie-card.jsx';
 
 const film = {
   id: 1,
@@ -22,22 +22,22 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-describe(`MovieCard`, () => {
-  it(`Should MovieCard hovered`, () => {
+describe(`FilmCard`, () => {
+  it(`Should FilmCard hovered`, () => {
     const onMouseHover = jest.fn();
 
     const main = shallow(
-        <MovieCard
+        <FilmCard
           film = {film}
           title = {film.title}
           img = {film.poster}
           onMouseHover = {onMouseHover}
-          onMovieCardClick = {()=>{}}
+          onFilmCardClick = {()=>{}}
         />
     );
 
-    const movieCard = main.find(`.small-movie-card`);
-    movieCard.simulate(`mouseover`, film);
+    const filmCard = main.find(`.small-movie-card`);
+    filmCard.simulate(`mouseover`, film);
     expect(onMouseHover).toHaveBeenCalledWith(film.title);
   });
 });

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MovieCard rendering 1`] = `
+exports[`FilmCard rendering 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onClick={[Function]}
@@ -36,7 +36,7 @@ exports[`MovieCard rendering 1`] = `
 </article>
 `;
 
-exports[`MovieCard rendering 2`] = `
+exports[`FilmCard rendering 2`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onClick={[Function]}
@@ -72,7 +72,7 @@ exports[`MovieCard rendering 2`] = `
 </article>
 `;
 
-exports[`MovieCard rendering 3`] = `
+exports[`FilmCard rendering 3`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onClick={[Function]}
@@ -108,7 +108,7 @@ exports[`MovieCard rendering 3`] = `
 </article>
 `;
 
-exports[`MovieCard rendering 4`] = `
+exports[`FilmCard rendering 4`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onClick={[Function]}
@@ -144,7 +144,7 @@ exports[`MovieCard rendering 4`] = `
 </article>
 `;
 
-exports[`MovieCard rendering 5`] = `
+exports[`FilmCard rendering 5`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onClick={[Function]}
@@ -180,7 +180,7 @@ exports[`MovieCard rendering 5`] = `
 </article>
 `;
 
-exports[`MovieCard rendering 6`] = `
+exports[`FilmCard rendering 6`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onClick={[Function]}
@@ -216,7 +216,7 @@ exports[`MovieCard rendering 6`] = `
 </article>
 `;
 
-exports[`MovieCard rendering 7`] = `
+exports[`FilmCard rendering 7`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onClick={[Function]}
@@ -252,7 +252,7 @@ exports[`MovieCard rendering 7`] = `
 </article>
 `;
 
-exports[`MovieCard rendering 8`] = `
+exports[`FilmCard rendering 8`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onClick={[Function]}

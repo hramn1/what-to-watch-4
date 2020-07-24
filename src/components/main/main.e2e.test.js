@@ -31,7 +31,7 @@ it(`Should list items be clicked on genre`, () => {
         films = {films}
         cardFilms = {cardFilms}
         onTitleClick={onTitleClick}
-        onMovieCardClick = {()=>{}}
+        onFilmCardClick = {()=>{}}
       />);
 
   const welcomeButton = main.find(`.logo__link`).first();

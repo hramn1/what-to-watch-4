@@ -28,7 +28,7 @@ exports[`PageReviews Render PageReviews 1`] = `
           </cite>
           <time
             className="review__date"
-            dateTime="2016-12-24"
+            dateTime="December 24, 2016"
           >
             December 24, 2016
           </time>
@@ -61,7 +61,7 @@ exports[`PageReviews Render PageReviews 1`] = `
           </cite>
           <time
             className="review__date"
-            dateTime="2015-11-18"
+            dateTime="November 18, 2015"
           >
             November 18, 2015
           </time>
@@ -94,7 +94,7 @@ exports[`PageReviews Render PageReviews 1`] = `
           </cite>
           <time
             className="review__date"
-            dateTime="2015-11-18"
+            dateTime="November 18, 2015"
           >
             November 18, 2015
           </time>
@@ -120,7 +120,6 @@ exports[`PageReviews Render PageReviews 1`] = `
           className="review__text"
         >
           The mannered, madcap proceedings are often delightful, occasionally silly, and here and there, gruesome and/or heartbreaking.
-          .
         </p>
         <footer
           className="review__details"
@@ -132,7 +131,7 @@ exports[`PageReviews Render PageReviews 1`] = `
           </cite>
           <time
             className="review__date"
-            dateTime="2016-12-20"
+            dateTime="December 20, 2016"
           >
             December 20, 2016
           </time>
@@ -165,7 +164,7 @@ exports[`PageReviews Render PageReviews 1`] = `
           </cite>
           <time
             className="review__date"
-            dateTime="2016-12-20"
+            dateTime="December 20, 2016"
           >
             December 20, 2016
           </time>

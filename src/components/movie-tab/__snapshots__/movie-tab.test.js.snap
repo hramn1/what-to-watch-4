@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MovieTabs Render MovieTabs 1`] = `
+exports[`FilmsTabs Render FilmsTabs 1`] = `
 <nav
   className="movie-nav movie-card__nav"
 >

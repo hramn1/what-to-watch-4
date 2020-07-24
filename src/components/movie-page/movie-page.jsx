@@ -1,19 +1,19 @@
 import React, {PureComponent} from 'react';
 import propTypes from "prop-types";
-import MovieTabs from "../movie-tab/movie-tab.jsx";
-import MovieList from "../movie-list/movie-list.jsx";
+import FilmsTabs from "../movie-tab/movie-tab.jsx";
 import PageOverview from "../page-overview/page-overview.jsx";
 import PageDetails from "../page-details/page-details.jsx";
 import PageReviews from "../page-reviews/page-reviews.jsx";
+import FilmList from "../movie-list/movie-list.jsx";
 
-const MovieNavList = [`Overview`, `Details`, `Reviews`];
+const filmNavList = [`Overview`, `Details`, `Reviews`];
 
-class MoviePage extends PureComponent {
+class FilmPage extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentTab: MovieNavList[0],
+      currentTab: filmNavList[0],
     };
     this._handleTabClick = this._handleTabClick.bind(this);
   }
@@ -25,29 +25,29 @@ class MoviePage extends PureComponent {
   _renderCurrentTab(currentTab) {
     const {cardFilms} = this.props;
     switch (currentTab) {
-      case MovieNavList[0]:
+      case filmNavList[0]:
         return (
           <PageOverview
             cardFilms={cardFilms}
           />
         );
-      case MovieNavList[1]:
+      case filmNavList[1]:
         return (
           <PageDetails
             cardFilms={cardFilms}
           />
         );
-      case MovieNavList[2]:
+      case filmNavList[2]:
         return (
           <PageReviews
             reviews={cardFilms.reviews}
           />
         );
-      default: return ``;
+      default: throw new Error(`Can't handle tab type ` + currentTab);
     }
   }
   render() {
-    const {cardFilms, likeFilms, onMovieCardClick} = this.props;
+    const {cardFilms, likeFilms, onFilmCardClick} = this.props;
     const {currentTab} = this.state;
     return (<React.Fragment>
       <section className="movie-card movie-card--full">
@@ -108,8 +108,8 @@ class MoviePage extends PureComponent {
             </div>
 
             <div className="movie-card__desc">
-              <MovieTabs
-                tabs={MovieNavList}
+              <FilmsTabs
+                tabs={filmNavList}
                 currentTab={currentTab}
                 onTabClick = {this._handleTabClick}
               />
@@ -122,9 +122,9 @@ class MoviePage extends PureComponent {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <MovieList
+          <FilmList
             films={likeFilms}
-            onMovieCardClick={onMovieCardClick}
+            onFilmCardClick={onFilmCardClick}
           />
         </section>
 
@@ -146,10 +146,10 @@ class MoviePage extends PureComponent {
   }
 }
 
-export default MoviePage;
+export default FilmPage;
 
-MoviePage.propTypes = {
+FilmPage.propTypes = {
   cardFilms: propTypes.object.isRequired,
   likeFilms: propTypes.arrayOf(propTypes.object).isRequired,
-  onMovieCardClick: propTypes.func.isRequired,
+  onFilmCardClick: propTypes.func.isRequired,
 };

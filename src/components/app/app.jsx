@@ -2,7 +2,7 @@ import React, {PureComponent} from "react";
 import propTypes from "prop-types";
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from "../main/main.jsx";
-import MoviePage from "../movie-page/movie-page.jsx";
+import FilmPage from "../movie-page/movie-page.jsx";
 
 const onTitleClick = () => {};
 const COUNT_FILMS = 4;
@@ -11,9 +11,9 @@ class App extends PureComponent {
     super(props);
     this.state = {
       currentPage: `/`,
-      selectedMovie: null,
+      selectedFilm: null,
     };
-    this._handleMovieCardClick = this._handleMovieCardClick.bind(this);
+    this._handleFilmCardClick = this._handleFilmCardClick.bind(this);
   }
   render() {
     const {cardFilms} = this.props;
@@ -24,10 +24,10 @@ class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path='/movie-page'>
-            <MoviePage
+            <FilmPage
               cardFilms={cardFilms}
               likeFilms={this.props.films}
-              onMovieCardClick={this._handleMovieCardClick}
+              onFilmCardClick={this._handleFilmCardClick}
             />
           </Route>
         </Switch>
@@ -40,7 +40,7 @@ class App extends PureComponent {
       case `/`:
         return this._renderMain();
       case `/movie-page`:
-        return this._renderMovie();
+        return this._renderFilm();
     }
     return null;
   }
@@ -51,30 +51,30 @@ class App extends PureComponent {
         films={films}
         cardFilms={cardFilms}
         onTitleClick={onTitleClick}
-        onMovieCardClick={this._handleMovieCardClick }
+        onFilmCardClick={this._handleFilmCardClick}
       />
     );
   }
-  _renderMovie() {
-    const {selectedMovie} = this.state;
+  _renderFilm() {
+    const {selectedFilm} = this.state;
     const {films} = this.props;
 
-    const likeFilms = films.filter((film) => film.genre === selectedMovie.genre && film.title !== selectedMovie.title)
+    const likeFilms = films.filter((film) => film.genre === selectedFilm.genre && film.title !== selectedFilm.title)
       .slice(0, COUNT_FILMS);
 
     return (
-      <MoviePage
-        cardFilms={selectedMovie}
+      <FilmPage
+        cardFilms={selectedFilm}
         films={films}
         likeFilms={likeFilms}
-        onMovieCardClick={this._handleMovieCardClick }
+        onFilmCardClick={this._handleFilmCardClick}
       />
     );
   }
-  _handleMovieCardClick(film) {
+  _handleFilmCardClick(film) {
     this.setState({
       currentPage: `/movie-page`,
-      selectedMovie: film,
+      selectedFilm: film,
     });
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const MovieTabs = (prop) => {
+const FilmsTabs = (prop) => {
   const {tabs, currentTab, onTabClick} = prop;
 
   return (
@@ -22,8 +22,8 @@ const MovieTabs = (prop) => {
   );
 };
 
-export default MovieTabs;
+export default FilmsTabs;
 
-MovieTabs.propTypes = {
+FilmsTabs.propTypes = {
   tabs: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

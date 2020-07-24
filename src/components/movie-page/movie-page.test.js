@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MoviePage from './movie-page.jsx';
+import FilmPage from './movie-page.jsx';
 
 const cardFilm = {
   id: 1,
@@ -110,14 +110,14 @@ const likeFilm = [
     }],
   },
 ];
-const onMovieCardClick = () =>{};
-describe(`MoviePage`, () => {
-  it(`Render MoviePage`, () => {
+const onFilmCardClick = () =>{};
+describe(`FilmPage`, () => {
+  it(`Render FilmPage`, () => {
     const tree = renderer.create(
-        <MoviePage
+        <FilmPage
           cardFilms = {cardFilm}
           likeFilms = {likeFilm}
-          onMovieCardClick = {onMovieCardClick}
+          onFilmCardClick = {onFilmCardClick}
         />
     ).toJSON();
     expect(tree).toMatchSnapshot();
