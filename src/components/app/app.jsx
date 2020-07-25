@@ -3,6 +3,7 @@ import propTypes from "prop-types";
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from "../main/main.jsx";
 import FilmPage from "../movie-page/movie-page.jsx";
+import {connect} from "react-redux";
 
 const onTitleClick = () => {};
 const COUNT_FILMS = 4;
@@ -26,7 +27,7 @@ class App extends PureComponent {
           <Route exact path='/movie-page'>
             <FilmPage
               cardFilms={cardFilms}
-              likeFilms={this.props.films}
+              likeFilms={this.props.filmsByGenre}
               onFilmCardClick={this._handleFilmCardClick}
             />
           </Route>
@@ -45,10 +46,10 @@ class App extends PureComponent {
     return null;
   }
   _renderMain() {
-    const {films, cardFilms} = this.props;
+    const {filmsByGenre, cardFilms} = this.props;
     return (
       <Main
-        films={films}
+        films={filmsByGenre}
         cardFilms={cardFilms}
         onTitleClick={onTitleClick}
         onFilmCardClick={this._handleFilmCardClick}
@@ -78,9 +79,11 @@ class App extends PureComponent {
     });
   }
 }
-export default App;
 App.propTypes = {
   films: propTypes.arrayOf(propTypes.object).isRequired,
   cardFilms: propTypes.object.isRequired,
 };
-
+const mapStateToProps = (state) => ({
+  filmsByGenre: state.filmsByGenre,
+});
+export default connect(mapStateToProps) (App);
