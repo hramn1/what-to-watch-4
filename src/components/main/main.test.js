@@ -25,7 +25,7 @@ it(`Main rendering`, () => {
   films = {films}
   cardFilms = {cardFilms}
   onTitleClick={onTitleClick}
-  onMovieCardClick = {()=>{}}
+  onFilmCardClick = {()=>{}}
 />)
     .toJSON();
   expect(tree).toMatchSnapshot();

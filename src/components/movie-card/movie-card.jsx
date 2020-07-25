@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import propTypes from "prop-types";
 import VideoPlayer from "../video-player/video-player.jsx";
-class MovieCard extends PureComponent {
+class FilmCard extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,12 +9,12 @@ class MovieCard extends PureComponent {
     };
   }
   render() {
-    const {film, title, onMouseHover, onMovieCardClick} = this.props;
+    const {film, title, onMouseHover, onFilmCardClick} = this.props;
     const {isPlaying} = this.state;
     return (
       <article className="small-movie-card catalog__movies-card"
-        onClick={() => onMovieCardClick(film)}
-        onMouseOver={onMouseHover(title)}
+        onClick={() => onFilmCardClick(film)}
+        onMouseOver={() => onMouseHover(title)}
         onMouseEnter={() => {
           this.setState({
             isPlaying: true
@@ -39,12 +39,12 @@ class MovieCard extends PureComponent {
     );
   }
 }
-MovieCard.propTypes = {
+FilmCard.propTypes = {
   film: propTypes.object.isRequired,
   title: propTypes.string.isRequired,
   img: propTypes.string.isRequired,
-  onMovieCardClick: propTypes.func.isRequired,
+  onFilmCardClick: propTypes.func.isRequired,
   onMouseHover: propTypes.func.isRequired,
 };
-export default MovieCard;
+export default FilmCard;
 

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MoviesList rendering 1`] = `
+exports[`FilmList rendering 1`] = `
 <div
   className="catalog__movies-list"
 >
@@ -9,6 +9,7 @@ exports[`MoviesList rendering 1`] = `
     onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
+    onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
@@ -41,6 +42,7 @@ exports[`MoviesList rendering 1`] = `
     onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
+    onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
