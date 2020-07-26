@@ -7,7 +7,7 @@ import FilmGenre from "../movie-genre/movie-genre.jsx";
 
 
 const Main = (props) => {
-  const {films, cardFilms, availableGenres, currentGenre, onTitleClick, onGenreClick, filmsByGenre, onFilmCardClick} = props;
+  const {films, cardFilms, availableGenres, currentGenre, onTitleClick, onGenreClick, onFilmCardClick} = props;
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -103,10 +103,15 @@ const Main = (props) => {
 Main.propTypes = {
   films: propTypes.arrayOf(propTypes.object).isRequired,
   cardFilms: propTypes.object.isRequired,
+  availableGenres: propTypes.array.isRequired,
+  currentGenre: propTypes.string.isRequired,
+  onGenreClick: propTypes.func.isRequired,
   onTitleClick: propTypes.func.isRequired,
   onFilmCardClick: propTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
+  films: state.filmsByGenre,
+  cardFilms: state.cardFilms,
   availableGenres: state.availableGenres,
   currentGenre: state.currentGenre,
   filmsByGenre: state.filmsByGenre,

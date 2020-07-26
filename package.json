@@ -17,6 +17,7 @@
     "babel-jest": "26.1.0",
     "babel-loader": "8.1.0",
     "enzyme": "3.11.0",
+    "redux-mock-store": "1.5.4",
     "enzyme-adapter-react-16": "1.15.2",
     "eslint": "5.13.0",
     "eslint-config-htmlacademy": "0.5.2",

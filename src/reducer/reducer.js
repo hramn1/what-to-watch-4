@@ -1,10 +1,12 @@
 import films from '../mocks/films.js';
 import {ALL_GENRES} from '../const.js';
 import {availableGenre} from '../utils.js';
+import cardFilms from "../mocks/card-film.js";
 
 const extend = (a, b) => Object.assign({}, a, b);
 const initialState = {
   films,
+  cardFilms,
   currentGenre: ALL_GENRES,
   availableGenres: availableGenre,
   filmsByGenre: films,

@@ -58,15 +58,15 @@ class App extends PureComponent {
   }
   _renderFilm() {
     const {selectedFilm} = this.state;
-    const {films} = this.props;
+    const {filmsByGenre} = this.props;
 
-    const likeFilms = films.filter((film) => film.genre === selectedFilm.genre && film.title !== selectedFilm.title)
+    const likeFilms = filmsByGenre.filter((film) => film.genre === selectedFilm.genre && film.title !== selectedFilm.title)
       .slice(0, COUNT_FILMS);
 
     return (
       <FilmPage
         cardFilms={selectedFilm}
-        films={films}
+        filmsByGenre={filmsByGenre}
         likeFilms={likeFilms}
         onFilmCardClick={this._handleFilmCardClick}
       />
@@ -82,8 +82,12 @@ class App extends PureComponent {
 App.propTypes = {
   films: propTypes.arrayOf(propTypes.object).isRequired,
   cardFilms: propTypes.object.isRequired,
+  filmsByGenre: propTypes.arrayOf(propTypes.object).isRequired
 };
 const mapStateToProps = (state) => ({
   filmsByGenre: state.filmsByGenre,
+  cardFilms: state.cardFilms,
+  films: state.films
 });
-export default connect(mapStateToProps) (App);
+
+export default connect(mapStateToProps)(App);

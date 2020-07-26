@@ -8,12 +8,11 @@ const FilmGenre = (props) => {
     <ul className="catalog__genres-list">
       {genres.map((genre) => (
         <li key={genre}
-            className={currentGenre === genre ? `catalog__genres-item catalog__genres-item--active` : `catalog__genres-item`}
-            onClick={(evt) => {
-              evt.preventDefault();
-              onGenreClick(genre);
-            }}
-        >
+          className={currentGenre === genre ? `catalog__genres-item catalog__genres-item--active` : `catalog__genres-item`}
+          onClick={(evt) => {
+            evt.preventDefault();
+            onGenreClick(genre);
+          }}>
           <a href="#" className="catalog__genres-link">{genre}</a>
         </li>
       ))}
