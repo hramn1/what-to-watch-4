@@ -10,6 +10,13 @@ import BtnLoad from "../btn-load/btn-load.jsx";
 const Main = (props) => {
   const {films, cardFilms, availableGenres, currentGenre, onTitleClick, onShowMoreClick, onGenreClick, showFilms, onFilmCardClick} = props;
   const showedFilms = films.slice(0, showFilms);
+  const getShowedMore = ()=> {
+    if (showedFilms.length === films.length) {
+      return true
+    } else {
+      return false
+    }
+  }
 
   return (
     <React.Fragment>
@@ -80,9 +87,10 @@ const Main = (props) => {
             films = {showedFilms}
             onFilmCardClick = {onFilmCardClick}
           />
+          {getShowedMore() ? null :
           <BtnLoad
             onShowMoreClick={onShowMoreClick}
-          />
+          />}
 
 
         </section>
