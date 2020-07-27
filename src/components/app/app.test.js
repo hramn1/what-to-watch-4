@@ -1,7 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {Provider} from 'react-redux';
+import configureStore from 'redux-mock-store';
+import {ALL_GENRES} from '../../const.js';
+import {availableGenre} from '../../utils.js';
 import App from './app.jsx';
-
+const mockStore = configureStore([]);
 const films = [
   {
     id: `1`,
@@ -19,15 +23,27 @@ const cardFilms = {
   genre: `Drame`,
   year: `2014`,
 };
-const onTitleClick = () => {};
 
-it(`Render App`, () => {
-  const tree = renderer
-  .create(<App
-    films = {films}
-    cardFilms = {cardFilms}
-    onTitleClick={onTitleClick}
-  />).toJSON();
+describe(`App`, () => {
+  const store = mockStore({
+    films,
+    cardFilms,
+    availableGenres: availableGenre,
+    currentGenre: ALL_GENRES,
+    filmsByGenre: films,
+  });
 
-  expect(tree).toMatchSnapshot();
+  it(`Render`, () => {
+    const tree = renderer.create(
+        <Provider store={store}>
+          <App />
+        </Provider>, {
+          createNodeMock: () => {
+            return {};
+          }
+        }
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
 });

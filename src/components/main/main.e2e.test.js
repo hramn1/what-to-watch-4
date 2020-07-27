@@ -1,12 +1,16 @@
 import React from 'react';
-import Enzyme, {shallow} from 'enzyme';
+import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-
+import {Provider} from 'react-redux';
+import configureStore from 'redux-mock-store';
+import {ALL_GENRES} from '../../const.js';
+import {availableGenre} from '../../utils.js';
 import Main from './main.jsx';
 
 Enzyme.configure({
   adapter: new Adapter(),
 });
+const mockStore = configureStore([]);
 const films = [
   {
     id: `1`,
@@ -24,17 +28,27 @@ const cardFilms = {
   genre: `Drame`,
   year: `2014`,
 };
-it(`Should list items be clicked on genre`, () => {
-  const onTitleClick = jest.fn();
-  const main = shallow(
-      <Main
-        films = {films}
-        cardFilms = {cardFilms}
-        onTitleClick={onTitleClick}
-        onFilmCardClick = {()=>{}}
-      />);
+describe(`Main`, () => {
+  const store = mockStore({
+    films,
+    cardFilms,
+    availableGenres: availableGenre,
+    currentGenre: ALL_GENRES,
+    filmsByGenre: films,
+  });
 
-  const welcomeButton = main.find(`.logo__link`).first();
-  welcomeButton.props().onClick();
-  expect(onTitleClick.mock.calls.length).toBe(1);
+  it(`Should list items be clicked on genre`, () => {
+    const onTitleClick = jest.fn();
+    const main = mount(
+        <Provider store={store}>
+          <Main
+            onTitleClick={onTitleClick}
+            onFilmCardClick={() => {}}
+          />
+        </Provider>
+    );
+    const welcomeButton = main.find(`.logo__link`).first();
+    welcomeButton.props().onClick();
+    expect(onTitleClick.mock.calls.length).toBe(1);
+  });
 });
