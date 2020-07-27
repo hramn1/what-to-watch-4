@@ -4,10 +4,13 @@ import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/reducer.js';
 import FilmList from "../movie-list/movie-list.jsx";
 import FilmGenre from "../movie-genre/movie-genre.jsx";
+import BtnLoad from "../btn-load/btn-load.jsx";
 
 
 const Main = (props) => {
-  const {films, cardFilms, availableGenres, currentGenre, onTitleClick, onGenreClick, onFilmCardClick} = props;
+  const {films, cardFilms, availableGenres, currentGenre, onTitleClick, onShowMoreClick, onGenreClick, showFilms, onFilmCardClick} = props;
+  const showedFilms = films.slice(0, showFilms);
+
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -74,13 +77,14 @@ const Main = (props) => {
           />
 
           <FilmList
-            films = {films}
+            films = {showedFilms}
             onFilmCardClick = {onFilmCardClick}
           />
+          <BtnLoad
+            onShowMoreClick={onShowMoreClick}
+          />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+
         </section>
 
         <footer className="page-footer">
@@ -115,11 +119,15 @@ const mapStateToProps = (state) => ({
   availableGenres: state.availableGenres,
   currentGenre: state.currentGenre,
   filmsByGenre: state.filmsByGenre,
+  showFilms: state.showFilms,
 });
 const mapDispatchToProps = (dispatch) => ({
   onGenreClick(genre) {
     dispatch(ActionCreator.choiseGenre(genre));
     dispatch(ActionCreator.getFilmsByGenre(genre));
   },
+  onShowMoreClick() {
+    dispatch(ActionCreator.onButtonShowClick());
+  }
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
