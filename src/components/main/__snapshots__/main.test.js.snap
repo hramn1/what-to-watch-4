@@ -215,7 +215,6 @@ Array [
           >
             <video
               height="175"
-              muted={true}
               poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             >
@@ -248,7 +247,6 @@ Array [
           >
             <video
               height="175"
-              muted={true}
               poster="img/bohemian-rhapsody.jpg"
               width="280"
             >

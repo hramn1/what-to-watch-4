@@ -17,7 +17,7 @@ const cardFilm = {
   director: `Wes Anderson`,
   starring: [`Ralph Fiennes`, `F. Murray Abraham`, `Mathieu Amalric`],
 };
-
+const muted = `muted`;
 
 describe(`VideoPlayer`, () => {
   it(`Render VideoPlayer`, () => {
@@ -25,6 +25,7 @@ describe(`VideoPlayer`, () => {
         <VideoPlayer
           film={cardFilm}
           isPlaying={false}
+          muted={muted}
         />, {
           createNodeMock: () => {
             return {};

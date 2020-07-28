@@ -6,18 +6,19 @@ class FilmCard extends PureComponent {
     super(props);
     this.state = {
       isPlaying: false,
+      muted: `muted`,
     };
   }
   render() {
     const {film, title, onMouseHover, onFilmCardClick} = this.props;
-    const {isPlaying} = this.state;
+    const {isPlaying, muted} = this.state;
     return (
       <article className="small-movie-card catalog__movies-card"
         onClick={() => onFilmCardClick(film)}
         onMouseOver={() => onMouseHover(title)}
         onMouseEnter={() => {
           this.setState({
-            isPlaying: true
+            isPlaying: true,
           });
         }}
         onMouseLeave={() => {
@@ -29,6 +30,7 @@ class FilmCard extends PureComponent {
           <VideoPlayer
             film={film}
             isPlaying={isPlaying}
+            muted={muted}
           />
         </div>
         <h3 className="small-movie-card__title">
