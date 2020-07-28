@@ -6,8 +6,7 @@ const BtnLoad = (props) => {
   return (<React.Fragment>
     <div className="catalog__more">
       <button className="catalog__button" type="button"
-        onClick={(evt) => {
-          evt.preventDefault();
+        onClick={() => {
           onShowMoreClick();
         }}
       >Show more</button>
