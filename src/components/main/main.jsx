@@ -12,11 +12,11 @@ const Main = (props) => {
   const showedFilms = films.slice(0, showFilms);
   const getShowedMore = ()=> {
     if (showedFilms.length === films.length) {
-      return true
+      return true;
     } else {
-      return false
+      return false;
     }
-  }
+  };
 
   return (
     <React.Fragment>
@@ -88,9 +88,9 @@ const Main = (props) => {
             onFilmCardClick = {onFilmCardClick}
           />
           {getShowedMore() ? null :
-          <BtnLoad
-            onShowMoreClick={onShowMoreClick}
-          />}
+            <BtnLoad
+              onShowMoreClick={onShowMoreClick}
+            />}
 
 
         </section>
@@ -114,12 +114,14 @@ const Main = (props) => {
 };
 Main.propTypes = {
   films: propTypes.arrayOf(propTypes.object).isRequired,
+  showFilms: propTypes.number.isRequired,
   cardFilms: propTypes.object.isRequired,
   availableGenres: propTypes.array.isRequired,
   currentGenre: propTypes.string.isRequired,
   onGenreClick: propTypes.func.isRequired,
   onTitleClick: propTypes.func.isRequired,
   onFilmCardClick: propTypes.func.isRequired,
+  onShowMoreClick: propTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
   films: state.filmsByGenre,
