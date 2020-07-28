@@ -16,8 +16,8 @@ class VideoPlayer extends PureComponent {
 
   componentDidUpdate() {
     const video = this.videoRef.current;
-    const {isPlaying} = this.props;
-
+    const {isPlaying, muted} = this.props;
+    video.muted = muted;
     if (isPlaying) {
       this._timeout = setTimeout(() => video.play(), 1000);
     } else {
@@ -29,7 +29,7 @@ class VideoPlayer extends PureComponent {
     const {film} = this.props;
 
     return (
-      <video poster={film.poster} muted width="280" height="175"
+      <video poster={film.poster} width="280" height="175"
         ref={this.videoRef}>
         <source src={film.preview} type='video/webm; codecs="vp8, vorbis"'/>
       </video>
@@ -39,5 +39,6 @@ class VideoPlayer extends PureComponent {
 VideoPlayer.propTypes = {
   film: propTypes.object.isRequired,
   isPlaying: propTypes.bool.isRequired,
+  muted: propTypes.string.isRequired,
 };
 export default VideoPlayer;

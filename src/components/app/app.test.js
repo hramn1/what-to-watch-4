@@ -23,10 +23,11 @@ const cardFilms = {
   genre: `Drame`,
   year: `2014`,
 };
-
+const showFilms = 8;
 describe(`App`, () => {
   const store = mockStore({
     films,
+    showFilms,
     cardFilms,
     availableGenres: availableGenre,
     currentGenre: ALL_GENRES,

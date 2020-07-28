@@ -3,7 +3,6 @@
 exports[`VideoPlayer Render VideoPlayer 1`] = `
 <video
   height="175"
-  muted={true}
   poster="img/the-grand-budapest-hotel-poster.jpg"
   width="280"
 >
