@@ -6,22 +6,15 @@ import PageDetails from "../page-details/page-details.jsx";
 import PageReviews from "../page-reviews/page-reviews.jsx";
 import FilmList from "../movie-list/movie-list.jsx";
 
+
 const filmNavList = [`Overview`, `Details`, `Reviews`];
 
 class FilmPage extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-      currentTab: filmNavList[0],
-    };
-    this._handleTabClick = this._handleTabClick.bind(this);
   }
-  _handleTabClick(tab) {
-    this.setState({
-      currentTab: tab,
-    });
-  }
+
   _renderCurrentTab(currentTab) {
     const {cardFilms} = this.props;
     switch (currentTab) {
@@ -47,8 +40,9 @@ class FilmPage extends PureComponent {
     }
   }
   render() {
-    const {cardFilms, likeFilms, onFilmCardClick} = this.props;
-    const {currentTab} = this.state;
+    const {cardFilms, likeFilms, activeTab,
+      onTabClick, onFilmCardClick} = this.props;
+    console.log(this.props)
     return (<React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
@@ -110,10 +104,10 @@ class FilmPage extends PureComponent {
             <div className="movie-card__desc">
               <FilmsTabs
                 tabs={filmNavList}
-                currentTab={currentTab}
-                onTabClick = {this._handleTabClick}
+                currentTab={activeTab}
+                onTabClick = {onTabClick}
               />
-              {this._renderCurrentTab(currentTab)}
+              {this._renderCurrentTab(activeTab)}
             </div>
           </div>
         </div>

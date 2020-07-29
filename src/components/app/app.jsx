@@ -4,6 +4,9 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from "../main/main.jsx";
 import FilmPage from "../movie-page/movie-page.jsx";
 import {connect} from "react-redux";
+import withTabs from '../../hoc/with-tab/with-tab.jsx';
+
+const FilmPageWrapper = withTabs(FilmPage);
 
 const onTitleClick = () => {};
 const COUNT_FILMS = 4;
@@ -25,7 +28,7 @@ class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path='/movie-page'>
-            <FilmPage
+            <FilmPageWrapper
               cardFilms={cardFilms}
               likeFilms={this.props.filmsByGenre}
               onFilmCardClick={this._handleFilmCardClick}
@@ -64,7 +67,7 @@ class App extends PureComponent {
       .slice(0, COUNT_FILMS);
 
     return (
-      <FilmPage
+      <FilmPageWrapper
         cardFilms={selectedFilm}
         filmsByGenre={filmsByGenre}
         likeFilms={likeFilms}
