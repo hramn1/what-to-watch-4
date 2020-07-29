@@ -44,6 +44,8 @@ const films = [
     poster: `img/johnny-english.jpg`,
   },
 ];
+const isPlaying = true;
+const muted = `muted`;
 for (let item of films) {
   it(`FilmCard rendering`, () => {
     const tree = renderer
@@ -51,8 +53,11 @@ for (let item of films) {
     film = {item}
     title = {item.title}
     img = {item.poster}
+    isPlaying = {isPlaying}
+    muted = {muted}
     onMouseHover = {() =>{}}
     onFilmCardClick = {()=>{}}
+    onIsPlayingChange = {()=>{}}
   />)
     .toJSON();
     expect(tree).toMatchSnapshot();

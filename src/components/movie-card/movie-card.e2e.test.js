@@ -17,7 +17,8 @@ const film = {
   director: `Wes Anderson`,
   starring: [`Ralph Fiennes`, `F. Murray Abraham`, `Mathieu Amalric`],
 };
-
+const isPlaying = true;
+const muted = `muted`;
 Enzyme.configure({
   adapter: new Adapter(),
 });
@@ -31,8 +32,11 @@ describe(`FilmCard`, () => {
           film = {film}
           title = {film.title}
           img = {film.poster}
+          isPlaying = {isPlaying}
+          muted = {muted}
           onMouseHover = {onMouseHover}
           onFilmCardClick = {()=>{}}
+          onIsPlayingChange = {()=>{}}
         />
     );
 
