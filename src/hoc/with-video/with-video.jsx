@@ -4,45 +4,30 @@ const withVideo = (Component) => {
   class WithVideo extends PureComponent {
     constructor(props) {
       super(props);
-      this.videoRef = React.createRef();
 
       this.state = {
         isPlaying: false,
+        muted: `muted`,
       };
 
-    }
-    componentWillUnmount() {
-      const video = this.videoRef.current;
-      video.onplay = null;
-      clearTimeout(this._timeout);
+      this._handleIsPlayingChange = this._handleIsPlayingChange.bind(this);
     }
 
-    componentDidUpdate() {
-      const video = this.videoRef.current;
-      const {isPlaying, muted} = this.props;
-      video.muted = muted;
-      if (isPlaying) {
-        this._timeout = setTimeout(() => video.play(), 1000);
-      } else {
-        clearTimeout(this._timeout);
-        video.load();
-      }
+    _handleIsPlayingChange(isPlaying) {
+      this.setState({
+        isPlaying,
+      });
     }
-
 
     render() {
-      const {isPlaying} = this.state;
+      const {isPlaying, muted} = this.state;
 
-      return (<Component
+      return <Component
         {...this.props}
         isPlaying={isPlaying}
-      >
-      <video poster={film.poster} width="280" height="175"
-             ref={this.videoRef}>
-        <source src={film.preview} type='video/webm; codecs="vp8, vorbis"'/>
-      </video>
-    </Component>
-      );
+        muted = {muted}
+        onIsPlayingChange={this._handleIsPlayingChange}
+      />;
     }
   }
 

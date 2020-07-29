@@ -1,6 +1,10 @@
 import React, {PureComponent} from "react";
 import propTypes from "prop-types";
 import FilmCard from "../movie-card/movie-card.jsx";
+import withVideo from '../../hoc/with-video/with-video.jsx';
+
+const FilmCardWrapper = withVideo(FilmCard);
+
 class FilmList extends PureComponent {
   constructor(props) {
     super(props);
@@ -14,7 +18,7 @@ class FilmList extends PureComponent {
       <div className="catalog__movies-list">
         {films.map((it) => {
           return (
-            <FilmCard
+            <FilmCardWrapper
               film = {it}
               title={it.title}
               img={it.poster}

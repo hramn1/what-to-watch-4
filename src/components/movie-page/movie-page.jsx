@@ -42,7 +42,6 @@ class FilmPage extends PureComponent {
   render() {
     const {cardFilms, likeFilms, activeTab,
       onTabClick, onFilmCardClick} = this.props;
-    console.log(this.props)
     return (<React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
@@ -146,4 +145,6 @@ FilmPage.propTypes = {
   cardFilms: propTypes.object.isRequired,
   likeFilms: propTypes.arrayOf(propTypes.object).isRequired,
   onFilmCardClick: propTypes.func.isRequired,
+  activeTab: propTypes.string.isRequired,
+  onTabClick: propTypes.func.isRequired,
 };

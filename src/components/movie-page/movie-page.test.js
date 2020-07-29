@@ -110,6 +110,8 @@ const likeFilm = [
     }],
   },
 ];
+const activeTab = `Overview`;
+
 const onFilmCardClick = () =>{};
 describe(`FilmPage`, () => {
   it(`Render FilmPage`, () => {
@@ -117,6 +119,8 @@ describe(`FilmPage`, () => {
         <FilmPage
           cardFilms = {cardFilm}
           likeFilms = {likeFilm}
+          activeTab = {activeTab}
+          onTabClick = {()=>{}}
           onFilmCardClick = {onFilmCardClick}
         />
     ).toJSON();
