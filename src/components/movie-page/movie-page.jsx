@@ -41,7 +41,7 @@ class FilmPage extends PureComponent {
   }
   render() {
     const {cardFilms, likeFilms, activeTab,
-      onTabClick, onFilmCardClick} = this.props;
+      onTabClick, onFilmCardClick, onPlayClick} = this.props;
     return (<React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
@@ -76,7 +76,9 @@ class FilmPage extends PureComponent {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button className="btn btn--play movie-card__button" type="button"
+                  onClick={() => onPlayClick(cardFilms)}
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -147,4 +149,5 @@ FilmPage.propTypes = {
   onFilmCardClick: propTypes.func.isRequired,
   activeTab: propTypes.string.isRequired,
   onTabClick: propTypes.func.isRequired,
+  onPlayClick: propTypes.func.isRequired,
 };

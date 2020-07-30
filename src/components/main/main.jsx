@@ -8,7 +8,7 @@ import BtnLoad from "../btn-load/btn-load.jsx";
 
 
 const Main = (props) => {
-  const {films, cardFilms, availableGenres, currentGenre, onTitleClick, onShowMoreClick, onGenreClick, showFilms, onFilmCardClick} = props;
+  const {films, cardFilms, availableGenres, currentGenre, onPlayClick, onTitleClick, onShowMoreClick, onGenreClick, showFilms, onFilmCardClick} = props;
   const showedFilms = films.slice(0, showFilms);
 
   return (
@@ -50,7 +50,9 @@ const Main = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button className="btn btn--play movie-card__button" type="button"
+                  onClick={() => onPlayClick(cardFilms)}
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -115,6 +117,7 @@ Main.propTypes = {
   onTitleClick: propTypes.func.isRequired,
   onFilmCardClick: propTypes.func.isRequired,
   onShowMoreClick: propTypes.func.isRequired,
+  onPlayClick: propTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
   films: state.filmsByGenre,

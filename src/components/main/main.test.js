@@ -41,6 +41,7 @@ describe(`Main`, () => {
           <Main
             onTitleClick={() => {}}
             onFilmCardClick={() => {}}
+            onPlayClick = {()=>{}}
           />
         </Provider>, {
           createNodeMock: () => {
