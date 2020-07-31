@@ -47,6 +47,7 @@ describe(`Main`, () => {
           <Main
             onTitleClick={onTitleClick}
             onFilmCardClick={() => {}}
+            onPlayClick = {()=>{}}
           />
         </Provider>
     );

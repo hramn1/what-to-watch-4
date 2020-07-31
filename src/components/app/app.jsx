@@ -3,10 +3,13 @@ import propTypes from "prop-types";
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from "../main/main.jsx";
 import FilmPage from "../movie-page/movie-page.jsx";
+import VideoPlayerFull from '../video-full-player/video-full-player.jsx';
+import withVideoControls from '../../hoc/with-video-controls/with-video-controls.jsx';
 import {connect} from "react-redux";
 import withTabs from '../../hoc/with-tab/with-tab.jsx';
 
 const FilmPageWrapper = withTabs(FilmPage);
+const VideoPlayerFullWrapped = withVideoControls(VideoPlayerFull);
 
 const onTitleClick = () => {};
 const COUNT_FILMS = 4;
@@ -16,8 +19,12 @@ class App extends PureComponent {
     this.state = {
       currentPage: `/`,
       selectedFilm: null,
+      isVideoPlayer: false,
     };
     this._handleFilmCardClick = this._handleFilmCardClick.bind(this);
+    this._renderMoviePlayer = this._renderMoviePlayer.bind(this);
+    this._handlePlayClick = this._handlePlayClick.bind(this);
+    this._handleClosePlayerClick = this._handleClosePlayerClick.bind(this);
   }
   render() {
     const {cardFilms} = this.props;
@@ -40,6 +47,11 @@ class App extends PureComponent {
   }
   _renderApp() {
     const {currentPage} = this.state;
+    const {isVideoPlayer} = this.state;
+
+    if (isVideoPlayer) {
+      return this._renderMoviePlayer();
+    }
     switch (currentPage) {
       case `/`:
         return this._renderMain();
@@ -54,15 +66,27 @@ class App extends PureComponent {
       <Main
         films={filmsByGenre}
         cardFilms={cardFilms}
+        onPlayClick={this._handlePlayClick}
         onTitleClick={onTitleClick}
         onFilmCardClick={this._handleFilmCardClick}
       />
     );
   }
+  _handlePlayClick(film) {
+    const onFilmSelect = () => {
+      this.setState({
+        selectedFilm: film,
+      });
+    };
+    onFilmSelect(film);
+
+    this.setState({
+      isVideoPlayer: true,
+    });
+  }
   _renderFilm() {
     const {selectedFilm} = this.state;
     const {filmsByGenre} = this.props;
-
     const likeFilms = filmsByGenre.filter((film) => film.genre === selectedFilm.genre && film.title !== selectedFilm.title)
       .slice(0, COUNT_FILMS);
 
@@ -71,10 +95,30 @@ class App extends PureComponent {
         cardFilms={selectedFilm}
         filmsByGenre={filmsByGenre}
         likeFilms={likeFilms}
+        onPlayClick={this._handlePlayClick}
         onFilmCardClick={this._handleFilmCardClick}
       />
     );
   }
+  _renderMoviePlayer() {
+    const {cardFilms} = this.props;
+    let {selectedFilm} = this.state;
+    if (!selectedFilm) {
+      selectedFilm = cardFilms;
+    }
+    return (
+      <VideoPlayerFullWrapped
+        film={selectedFilm}
+        onClosePlayerClick={this._handleClosePlayerClick}
+      />
+    );
+  }
+  _handleClosePlayerClick() {
+    this.setState({
+      isVideoPlayer: false,
+    });
+  }
+
   _handleFilmCardClick(film) {
     this.setState({
       currentPage: `/movie-page`,
