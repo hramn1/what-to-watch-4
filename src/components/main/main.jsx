@@ -10,7 +10,6 @@ import BtnLoad from "../btn-load/btn-load.jsx";
 const Main = (props) => {
   const {films, cardFilms, availableGenres, currentGenre, onPlayClick, onTitleClick, onShowMoreClick, onGenreClick, showFilms, onFilmCardClick} = props;
   const showedFilms = films.slice(0, showFilms);
-
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -39,7 +38,7 @@ const Main = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={cardFilms.poster} alt={cardFilms.title} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -76,6 +75,7 @@ const Main = (props) => {
             genres={availableGenres}
             currentGenre={currentGenre}
             onGenreClick={onGenreClick}
+            films={films}
           />
 
           <FilmList
@@ -128,9 +128,9 @@ const mapStateToProps = (state) => ({
   showFilms: state.showFilms,
 });
 const mapDispatchToProps = (dispatch) => ({
-  onGenreClick(genre) {
+  onGenreClick(genre, films) {
     dispatch(ActionCreator.choiseGenre(genre));
-    dispatch(ActionCreator.getFilmsByGenre(genre));
+    dispatch(ActionCreator.getFilmsByGenre(genre,films));
   },
   onShowMoreClick() {
     dispatch(ActionCreator.onButtonShowClick());

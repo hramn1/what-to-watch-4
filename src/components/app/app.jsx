@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import propTypes from "prop-types";
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {ActionCreator} from '../../reducer/reducer.js';
 import Main from "../main/main.jsx";
 import FilmPage from "../movie-page/movie-page.jsx";
 import VideoPlayerFull from '../video-full-player/video-full-player.jsx';
