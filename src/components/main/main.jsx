@@ -1,16 +1,19 @@
 import React from "react";
 import propTypes from "prop-types";
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer/reducer.js';
+import {ActionCreator} from '../../reducer/app/app.js';
 import FilmList from "../movie-list/movie-list.jsx";
 import FilmGenre from "../movie-genre/movie-genre.jsx";
 import BtnLoad from "../btn-load/btn-load.jsx";
 
-
 const Main = (props) => {
-  const {films, cardFilms, availableGenres, currentGenre, onPlayClick, onTitleClick, onShowMoreClick, onGenreClick, showFilms, onFilmCardClick} = props;
-  const showedFilms = films.slice(0, showFilms);
-
+  const {films, cardFilms, filmsByGenre, availableGenres, currentGenre, onPlayClick, onTitleClick, onShowMoreClick, onGenreClick, showFilms, onFilmCardClick} = props;
+  let showedFilms = [];
+  if (filmsByGenre.length === 0) {
+    showedFilms = films.slice(0, showFilms);
+  } else {
+    showedFilms = filmsByGenre.slice(0, showFilms);
+  }
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -39,7 +42,7 @@ const Main = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={cardFilms.poster} alt={cardFilms.title} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -76,6 +79,7 @@ const Main = (props) => {
             genres={availableGenres}
             currentGenre={currentGenre}
             onGenreClick={onGenreClick}
+            films={films}
           />
 
           <FilmList
@@ -110,27 +114,31 @@ const Main = (props) => {
 Main.propTypes = {
   films: propTypes.arrayOf(propTypes.object).isRequired,
   showFilms: propTypes.number.isRequired,
-  cardFilms: propTypes.object.isRequired,
+  cardFilms: propTypes.oneOfType([
+    propTypes.array.isRequired,
+    propTypes.object.isRequired,
+  ]),
   availableGenres: propTypes.array.isRequired,
   currentGenre: propTypes.string.isRequired,
   onGenreClick: propTypes.func.isRequired,
   onTitleClick: propTypes.func.isRequired,
+  filmsByGenre: propTypes.array.isRequired,
   onFilmCardClick: propTypes.func.isRequired,
   onShowMoreClick: propTypes.func.isRequired,
   onPlayClick: propTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
-  films: state.filmsByGenre,
-  cardFilms: state.cardFilms,
-  availableGenres: state.availableGenres,
-  currentGenre: state.currentGenre,
-  filmsByGenre: state.filmsByGenre,
-  showFilms: state.showFilms,
+  films: state.DATA.films,
+  cardFilms: state.DATA.cardFilms,
+  availableGenres: state.DATA.availableGenres,
+  currentGenre: state.APP.currentGenre,
+  filmsByGenre: state.APP.filmsByGenre,
+  showFilms: state.APP.showFilms,
 });
 const mapDispatchToProps = (dispatch) => ({
-  onGenreClick(genre) {
+  onGenreClick(genre, films) {
     dispatch(ActionCreator.choiseGenre(genre));
-    dispatch(ActionCreator.getFilmsByGenre(genre));
+    dispatch(ActionCreator.getFilmsByGenre(genre, films));
   },
   onShowMoreClick() {
     dispatch(ActionCreator.onButtonShowClick());

@@ -19,6 +19,12 @@ exports[`FilmCard rendering 1`] = `
       <source
         type="video/webm; codecs=\\"vp8, vorbis\\""
       />
+      <source
+        type="video/ogg; codecs=\\"theora, vorbis\\""
+      />
+      <source
+        type="video/mp4; codecs=\\"avc1.42E01E, mp4a.40.2\\""
+      />
     </video>
   </div>
   <h3
@@ -53,6 +59,12 @@ exports[`FilmCard rendering 2`] = `
     >
       <source
         type="video/webm; codecs=\\"vp8, vorbis\\""
+      />
+      <source
+        type="video/ogg; codecs=\\"theora, vorbis\\""
+      />
+      <source
+        type="video/mp4; codecs=\\"avc1.42E01E, mp4a.40.2\\""
       />
     </video>
   </div>
@@ -89,6 +101,12 @@ exports[`FilmCard rendering 3`] = `
       <source
         type="video/webm; codecs=\\"vp8, vorbis\\""
       />
+      <source
+        type="video/ogg; codecs=\\"theora, vorbis\\""
+      />
+      <source
+        type="video/mp4; codecs=\\"avc1.42E01E, mp4a.40.2\\""
+      />
     </video>
   </div>
   <h3
@@ -123,6 +141,12 @@ exports[`FilmCard rendering 4`] = `
     >
       <source
         type="video/webm; codecs=\\"vp8, vorbis\\""
+      />
+      <source
+        type="video/ogg; codecs=\\"theora, vorbis\\""
+      />
+      <source
+        type="video/mp4; codecs=\\"avc1.42E01E, mp4a.40.2\\""
       />
     </video>
   </div>
@@ -159,6 +183,12 @@ exports[`FilmCard rendering 5`] = `
       <source
         type="video/webm; codecs=\\"vp8, vorbis\\""
       />
+      <source
+        type="video/ogg; codecs=\\"theora, vorbis\\""
+      />
+      <source
+        type="video/mp4; codecs=\\"avc1.42E01E, mp4a.40.2\\""
+      />
     </video>
   </div>
   <h3
@@ -193,6 +223,12 @@ exports[`FilmCard rendering 6`] = `
     >
       <source
         type="video/webm; codecs=\\"vp8, vorbis\\""
+      />
+      <source
+        type="video/ogg; codecs=\\"theora, vorbis\\""
+      />
+      <source
+        type="video/mp4; codecs=\\"avc1.42E01E, mp4a.40.2\\""
       />
     </video>
   </div>
@@ -229,6 +265,12 @@ exports[`FilmCard rendering 7`] = `
       <source
         type="video/webm; codecs=\\"vp8, vorbis\\""
       />
+      <source
+        type="video/ogg; codecs=\\"theora, vorbis\\""
+      />
+      <source
+        type="video/mp4; codecs=\\"avc1.42E01E, mp4a.40.2\\""
+      />
     </video>
   </div>
   <h3
@@ -263,6 +305,12 @@ exports[`FilmCard rendering 8`] = `
     >
       <source
         type="video/webm; codecs=\\"vp8, vorbis\\""
+      />
+      <source
+        type="video/ogg; codecs=\\"theora, vorbis\\""
+      />
+      <source
+        type="video/mp4; codecs=\\"avc1.42E01E, mp4a.40.2\\""
       />
     </video>
   </div>

@@ -31,7 +31,9 @@ class VideoPlayer extends PureComponent {
     return (
       <video poster={film.poster} width="280" height="175"
         ref={this.videoRef}>
-        <source src={film.preview} type='video/webm; codecs="vp8, vorbis"'/>
+        <source src={film.previewSrc} type='video/webm; codecs="vp8, vorbis"'/>
+        <source src={film.previewSrc} type='video/ogg; codecs="theora, vorbis"'/>
+        <source src={film.previewSrc} type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/>
       </video>
     );
   }

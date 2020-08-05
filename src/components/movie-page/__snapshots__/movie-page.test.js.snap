@@ -278,8 +278,13 @@ Array [
               width="280"
             >
               <source
-                src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
                 type="video/webm; codecs=\\"vp8, vorbis\\""
+              />
+              <source
+                type="video/ogg; codecs=\\"theora, vorbis\\""
+              />
+              <source
+                type="video/mp4; codecs=\\"avc1.42E01E, mp4a.40.2\\""
               />
             </video>
           </div>
@@ -311,8 +316,13 @@ Array [
               width="280"
             >
               <source
-                src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
                 type="video/webm; codecs=\\"vp8, vorbis\\""
+              />
+              <source
+                type="video/ogg; codecs=\\"theora, vorbis\\""
+              />
+              <source
+                type="video/mp4; codecs=\\"avc1.42E01E, mp4a.40.2\\""
               />
             </video>
           </div>

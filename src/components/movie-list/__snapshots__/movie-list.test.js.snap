@@ -22,6 +22,12 @@ exports[`FilmList rendering 1`] = `
         <source
           type="video/webm; codecs=\\"vp8, vorbis\\""
         />
+        <source
+          type="video/ogg; codecs=\\"theora, vorbis\\""
+        />
+        <source
+          type="video/mp4; codecs=\\"avc1.42E01E, mp4a.40.2\\""
+        />
       </video>
     </div>
     <h3
@@ -53,6 +59,12 @@ exports[`FilmList rendering 1`] = `
       >
         <source
           type="video/webm; codecs=\\"vp8, vorbis\\""
+        />
+        <source
+          type="video/ogg; codecs=\\"theora, vorbis\\""
+        />
+        <source
+          type="video/mp4; codecs=\\"avc1.42E01E, mp4a.40.2\\""
         />
       </video>
     </div>

@@ -93,7 +93,10 @@ const withVideoControls = (Component) => {
         <video className="player__video"
           poster={film.poster}
           ref={this._videoRef}
-        >        <source src={film.preview} type='video/webm; codecs="vp8, vorbis"'/>
+        >
+          <source src={film.src} type='video/webm; codecs="vp8, vorbis"'/>
+          <source src={film.src} type='video/ogg; codecs="theora, vorbis"'/>
+          <source src={film.src} type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/>
           your browser doesn`t support embedded videos</video>
       </Component>;
     }
