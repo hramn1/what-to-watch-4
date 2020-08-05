@@ -71,9 +71,8 @@ Array [
           className="movie-card__poster"
         >
           <img
-            alt="The Grand Budapest Hotel poster"
+            alt="The Grand Budapest Hotel"
             height="327"
-            src="img/the-grand-budapest-hotel-poster.jpg"
             width="218"
           />
         </div>
@@ -157,14 +156,14 @@ Array [
         className="catalog__genres-list"
       >
         <li
-          className="catalog__genres-item catalog__genres-item--active"
+          className="catalog__genres-item"
           onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
             href="#"
           >
-            All genres
+            crime
           </a>
         </li>
         <li
@@ -175,29 +174,7 @@ Array [
             className="catalog__genres-link"
             href="#"
           >
-            Crime
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-          onClick={[Function]}
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-          >
-            Drame
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-          onClick={[Function]}
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-          >
-            Commedy
+            drama
           </a>
         </li>
       </ul>
@@ -221,6 +198,12 @@ Array [
             >
               <source
                 type="video/webm; codecs=\\"vp8, vorbis\\""
+              />
+              <source
+                type="video/ogg; codecs=\\"theora, vorbis\\""
+              />
+              <source
+                type="video/mp4; codecs=\\"avc1.42E01E, mp4a.40.2\\""
               />
             </video>
           </div>
@@ -253,6 +236,12 @@ Array [
             >
               <source
                 type="video/webm; codecs=\\"vp8, vorbis\\""
+              />
+              <source
+                type="video/ogg; codecs=\\"theora, vorbis\\""
+              />
+              <source
+                type="video/mp4; codecs=\\"avc1.42E01E, mp4a.40.2\\""
               />
             </video>
           </div>

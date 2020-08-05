@@ -128,7 +128,7 @@ Main.propTypes = {
   onPlayClick: propTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
-  films: state.DATA.filmsByGenre,
+  films: state.DATA.films,
   cardFilms: state.DATA.cardFilms,
   availableGenres: state.DATA.availableGenres,
   currentGenre: state.APP.currentGenre,

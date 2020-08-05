@@ -3,10 +3,10 @@ import renderer from "react-test-renderer";
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import {ALL_GENRES} from '../../const.js';
-import {availableGenre} from '../../utils.js';
 import Main from "./main";
+import NameSpace from '../../reducer/name-space.js';
 const mockStore = configureStore([]);
-
+const availableGenres = [`crime`, `drama`];
 const films = [
   {
     id: `1`,
@@ -27,12 +27,16 @@ const cardFilms = {
 const showFilms = 2;
 describe(`Main`, () => {
   const store = mockStore({
-    films,
-    cardFilms,
-    showFilms,
-    availableGenres: availableGenre,
-    currentGenre: ALL_GENRES,
-    filmsByGenre: films,
+    [NameSpace.DATA]: {
+      films,
+      cardFilms,
+      availableGenres,
+    },
+    [NameSpace.APP]: {
+      currentGenre: ALL_GENRES,
+      filmsByGenre: films,
+      showFilms,
+    },
   });
 
   it(`Render Main`, () => {

@@ -134,7 +134,6 @@ App.propTypes = {
   filmsByGenre: propTypes.arrayOf(propTypes.object).isRequired
 };
 const mapStateToProps = (state) => ({
-  f: console.log(state),
   filmsByGenre: state.DATA.filmsByGenre,
   cardFilms: state.DATA.cardFilms,
   films: state.DATA.films
