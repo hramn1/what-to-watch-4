@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import propTypes from "prop-types";
 
 const FilmGenre = (props) => {
   const {genres, currentGenre, films, onGenreClick} = props;
@@ -22,6 +23,7 @@ const FilmGenre = (props) => {
 FilmGenre.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   currentGenre: PropTypes.string.isRequired,
+  films: propTypes.arrayOf(propTypes.object).isRequired,
   onGenreClick: PropTypes.func.isRequired,
 };
 
