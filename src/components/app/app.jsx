@@ -7,6 +7,8 @@ import VideoPlayerFull from '../video-full-player/video-full-player.jsx';
 import withVideoControls from '../../hoc/with-video-controls/with-video-controls.jsx';
 import {connect} from "react-redux";
 import withTabs from '../../hoc/with-tab/with-tab.jsx';
+import {ActionCreator} from "../../reducer/app/app";
+import {Operations} from "../../reducer/data/data";
 const FilmPageWrapper = withTabs(FilmPage);
 const VideoPlayerFullWrapped = withVideoControls(VideoPlayerFull);
 
@@ -85,15 +87,15 @@ class App extends PureComponent {
   }
   _renderFilm() {
     const {selectedFilm} = this.state;
-    const {filmsByGenre} = this.props;
+    const {filmsByGenre, reviews} = this.props;
     const likeFilms = filmsByGenre.filter((film) => film.genre === selectedFilm.genre && film.title !== selectedFilm.title)
       .slice(0, COUNT_FILMS);
-
     return (
       <FilmPageWrapper
         cardFilms={selectedFilm}
         filmsByGenre={filmsByGenre}
         likeFilms={likeFilms}
+        reviews={reviews}
         onPlayClick={this._handlePlayClick}
         onFilmCardClick={this._handleFilmCardClick}
       />
@@ -119,10 +121,12 @@ class App extends PureComponent {
   }
 
   _handleFilmCardClick(film) {
+    const {getReviews} = this.props;
     this.setState({
       currentPage: `/movie-page`,
       selectedFilm: film,
     });
+    getReviews(film)
   }
 }
 App.propTypes = {
@@ -134,9 +138,15 @@ App.propTypes = {
   filmsByGenre: propTypes.arrayOf(propTypes.object).isRequired
 };
 const mapStateToProps = (state) => ({
+  f:console.log(state),
   filmsByGenre: state.DATA.filmsByGenre,
   cardFilms: state.DATA.cardFilms,
-  films: state.DATA.films
+  films: state.DATA.films,
+  reviews: state.DATA.review
 });
-
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => ({
+  getReviews(film){
+    dispatch(Operations.loadReviews(film.id))
+  }
+});
+export default connect(mapStateToProps,mapDispatchToProps)(App);

@@ -8,10 +8,12 @@ const initialState = {
   cardFilms: [],
   availableGenres: [ALL_GENRES],
   filmsByGenre: [],
+  review: [],
 };
 const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO: `LOAD_PROMO`,
+  LOAD_REVIEW: `LOAD_REVIEW`,
 };
 const ActionCreator = {
   loadFilms: (films) => ({
@@ -23,6 +25,12 @@ const ActionCreator = {
     type: ActionType.LOAD_PROMO,
     payload: promo,
   }),
+
+  loadReviews: (review) => ({
+    type: ActionType.LOAD_REVIEW,
+    payload: review,
+  }),
+
 };
 const Operations = {
   loadFilms: () => (dispatch, getState, api) => {
@@ -33,6 +41,12 @@ const Operations = {
   loadPromo: () => (dispatch, getState, api) => {
     return api.get(`/films/promo`)
       .then((responce) => dispatch(ActionCreator.loadPromo(filmAdapter(responce.data))));
+  },
+  loadReviews: (movieId) => (dispatch, getState, api) => {
+    return api.get(`/comments/${movieId}`)
+      .then((response) => {
+        dispatch(ActionCreator.loadReviews(response.data));
+      })
   },
 };
 const reducer = (state = initialState, action) => {
@@ -46,6 +60,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_PROMO:
       return extend(state, {
         cardFilms: action.payload,
+      });
+    case ActionType.LOAD_REVIEW:
+      return extend(state, {
+        review: action.payload,
       });
   }
   return state;

@@ -23,7 +23,6 @@ export const createAPI = (onUnauthorized) => {
       onUnauthorized();
       throw err;
     }
-
     throw err;
   };
 

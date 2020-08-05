@@ -2,12 +2,14 @@ import React from "react";
 import propTypes from "prop-types";
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/app/app.js';
+import {AuthorizationStatus} from "../../reducer/user/user";
 import FilmList from "../movie-list/movie-list.jsx";
 import FilmGenre from "../movie-genre/movie-genre.jsx";
 import BtnLoad from "../btn-load/btn-load.jsx";
+import {Operations} from "../../reducer/data/data";
 
 const Main = (props) => {
-  const {films, cardFilms, filmsByGenre, availableGenres, currentGenre, onPlayClick, onTitleClick, onShowMoreClick, onGenreClick, showFilms, onFilmCardClick} = props;
+  const {films, cardFilms, authorizationStatus, filmsByGenre, availableGenres, currentGenre, onPlayClick, onTitleClick, onShowMoreClick, onGenreClick, showFilms, onFilmCardClick} = props;
   let showedFilms = [];
   if (filmsByGenre.length === 0) {
     showedFilms = films.slice(0, showFilms);
@@ -23,7 +25,7 @@ const Main = (props) => {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header movie-card__head">
+        <header className={`page-header ${authorizationStatus === AuthorizationStatus.NO_AUTH ? `user-page__head` : `movie-card__head`}}`}>
           <div className="logo">
             <a onClick={onTitleClick} href="#" className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
@@ -33,9 +35,21 @@ const Main = (props) => {
           </div>
 
           <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
+
+            {authorizationStatus === AuthorizationStatus.AUTH ?
+              <div className="user-block__avatar">
+                <img src={authorizationInfo.avatar} alt={`${authorizationInfo.name} avatar`} width="63" height="63" />
+              </div>
+              : <a
+                href="sign-in.html"
+                className="user-block__link"
+                onClick={(evt) => {
+                  evt.preventDefault();
+                  onSignInClick();
+                }}
+              >Sign in</a>
+            }
+
           </div>
         </header>
 
@@ -134,6 +148,9 @@ const mapStateToProps = (state) => ({
   currentGenre: state.APP.currentGenre,
   filmsByGenre: state.APP.filmsByGenre,
   showFilms: state.APP.showFilms,
+  // authorizationStatus: getAuthorizationStatus(state),
+  // authorizationInfo: getAuthorizationInfo(state),
+
 });
 const mapDispatchToProps = (dispatch) => ({
   onGenreClick(genre, films) {
@@ -142,6 +159,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onShowMoreClick() {
     dispatch(ActionCreator.onButtonShowClick());
-  }
+  },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

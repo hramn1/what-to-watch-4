@@ -1,6 +1,8 @@
 import React, {PureComponent} from "react";
 import propTypes from "prop-types";
 import VideoPlayer from "../video-player/video-player.jsx";
+import {connect} from "react-redux";
+import {Operations} from "../../reducer/data/data";
 class FilmCard extends PureComponent {
   constructor(props) {
     super(props);
@@ -32,6 +34,7 @@ class FilmCard extends PureComponent {
     );
   }
 }
+
 FilmCard.propTypes = {
   film: propTypes.object.isRequired,
   title: propTypes.string.isRequired,
