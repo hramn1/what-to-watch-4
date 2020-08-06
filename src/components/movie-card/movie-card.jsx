@@ -32,6 +32,7 @@ class FilmCard extends PureComponent {
     );
   }
 }
+
 FilmCard.propTypes = {
   film: propTypes.object.isRequired,
   title: propTypes.string.isRequired,

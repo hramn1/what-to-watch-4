@@ -16,7 +16,7 @@ class FilmPage extends PureComponent {
   }
 
   _renderCurrentTab(currentTab) {
-    const {cardFilms} = this.props;
+    const {cardFilms, reviews} = this.props;
     switch (currentTab) {
       case filmNavList[0]:
         return (
@@ -33,7 +33,7 @@ class FilmPage extends PureComponent {
       case filmNavList[2]:
         return (
           <PageReviews
-            reviews={cardFilms.reviews}
+            reviews={reviews}
           />
         );
       default: throw new Error(`Can't handle tab type ` + currentTab);
@@ -141,8 +141,6 @@ class FilmPage extends PureComponent {
   }
 }
 
-export default FilmPage;
-
 FilmPage.propTypes = {
   cardFilms: propTypes.object.isRequired,
   likeFilms: propTypes.arrayOf(propTypes.object).isRequired,
@@ -150,4 +148,6 @@ FilmPage.propTypes = {
   activeTab: propTypes.string.isRequired,
   onTabClick: propTypes.func.isRequired,
   onPlayClick: propTypes.func.isRequired,
+  reviews: propTypes.array.isRequired,
 };
+export default FilmPage;
