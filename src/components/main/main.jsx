@@ -8,7 +8,22 @@ import FilmGenre from "../movie-genre/movie-genre.jsx";
 import BtnLoad from "../btn-load/btn-load.jsx";
 
 const Main = (props) => {
-  const {films, cardFilms, authorizationStatus, onSignInClick, authorizationInfo, filmsByGenre, availableGenres, currentGenre, onPlayClick, onTitleClick, onShowMoreClick, onGenreClick, showFilms, onFilmCardClick} = props;
+  const {
+    films,
+    cardFilms,
+    authorizationStatus,
+    onSignInClick,
+    authorizationInfo,
+    filmsByGenre,
+    availableGenres,
+    currentGenre,
+    onPlayClick,
+    onTitleClick,
+    onShowMoreClick,
+    onGenreClick,
+    showFilms,
+    onFilmCardClick,
+  } = props;
   let showedFilms = [];
   let filmOnPage = [];
   if (filmsByGenre.length === 0) {
@@ -22,7 +37,7 @@ const Main = (props) => {
     <React.Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="{nameFilm}" />
+          <img src={cardFilms.bg} alt={cardFilms.title} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>

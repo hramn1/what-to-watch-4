@@ -8,6 +8,7 @@ import withVideoControls from '../../hoc/with-video-controls/with-video-controls
 import SignIn from "../sign-in/sign-in.jsx";
 import {connect} from "react-redux";
 import withTabs from '../../hoc/with-tab/with-tab.jsx';
+import PageAddOverview from "../add-review/add-review.jsx";
 import {Operations} from "../../reducer/data/data";
 import {Operations as UserOperation} from "../../reducer/user/user";
 import {ActionCreator as UserActionCreator} from "../../reducer/user/user";
@@ -29,6 +30,7 @@ class App extends PureComponent {
     this._handlePlayClick = this._handlePlayClick.bind(this);
     this._handleClosePlayerClick = this._handleClosePlayerClick.bind(this);
     this._handleSignInClick = this._handleSignInClick.bind(this);
+    this._handleAddReview = this._handleAddReview.bind(this);
   }
   render() {
     const {cardFilms} = this.props;
@@ -39,11 +41,7 @@ class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path='/movie-page'>
-            <FilmPageWrapper
-              cardFilms={cardFilms}
-              likeFilms={this.props.filmsByGenre}
-              onFilmCardClick={this._handleFilmCardClick}
-            />
+
           </Route>
           <Route exact path="/dev-auth">
             {this._renderSignIn()}
@@ -66,6 +64,8 @@ class App extends PureComponent {
         return this._renderFilm();
       case `/dev-auth`:
         return this._renderSignIn();
+      case `/dev-review`:
+        return this._renderAddReview();
     }
     return null;
   }
@@ -76,6 +76,12 @@ class App extends PureComponent {
         onSubmit={login}
       />
     );
+  }
+  _renderAddReview(){
+    return (
+      <PageAddOverview
+        />
+    )
   }
   _renderMain() {
     const {filmsByGenre, cardFilms} = this.props;
@@ -115,6 +121,7 @@ class App extends PureComponent {
         reviews={reviews}
         onPlayClick={this._handlePlayClick}
         onFilmCardClick={this._handleFilmCardClick}
+        onAddReview={this._handleAddReview}
       />
     );
   }
@@ -142,6 +149,11 @@ class App extends PureComponent {
       currentPage: `/dev-auth`,
     });
     isAuthorizing();
+  }
+  _handleAddReview() {
+    this.setState({
+      currentPage: `/dev-review`,
+    });
   }
 
   _handleFilmCardClick(film) {

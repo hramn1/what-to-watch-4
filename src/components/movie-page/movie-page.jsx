@@ -41,7 +41,8 @@ class FilmPage extends PureComponent {
   }
   render() {
     const {cardFilms, likeFilms, activeTab,
-      onTabClick, onFilmCardClick, onPlayClick} = this.props;
+      onTabClick, onFilmCardClick, onPlayClick, onAddReview} = this.props;
+    console.log(this.props)
     return (<React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
@@ -90,7 +91,13 @@ class FilmPage extends PureComponent {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                <a href="add-review.html" className="btn movie-card__button"
+                onClick={(evt)=> {
+                  evt.preventDefault()
+                  onAddReview(cardFilms)
+                  }
+                }
+                >Add review</a>
               </div>
             </div>
           </div>
