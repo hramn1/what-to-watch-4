@@ -3,11 +3,9 @@ import propTypes from "prop-types";
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/app/app.js';
 import {AuthorizationStatus} from "../../reducer/user/user";
-import {ActionCreator as UserActionCreator} from "../../reducer/user/user";
 import FilmList from "../movie-list/movie-list.jsx";
 import FilmGenre from "../movie-genre/movie-genre.jsx";
 import BtnLoad from "../btn-load/btn-load.jsx";
-import {Operations} from "../../reducer/data/data";
 
 const Main = (props) => {
   const {films, cardFilms, authorizationStatus, onSignInClick, authorizationInfo, filmsByGenre, availableGenres, currentGenre, onPlayClick, onTitleClick, onShowMoreClick, onGenreClick, showFilms, onFilmCardClick} = props;
@@ -20,8 +18,6 @@ const Main = (props) => {
     showedFilms = filmsByGenre.slice(0, showFilms);
     filmOnPage = filmsByGenre;
   }
-  console.log(showedFilms);
-  console.log(filmsByGenre)
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -146,6 +142,9 @@ Main.propTypes = {
   onFilmCardClick: propTypes.func.isRequired,
   onShowMoreClick: propTypes.func.isRequired,
   onPlayClick: propTypes.func.isRequired,
+  authorizationStatus: propTypes.string.isRequired,
+  onSignInClick: propTypes.func.isRequired,
+  authorizationInfo: propTypes.object.isRequired,
 };
 const mapStateToProps = (state) => ({
   films: state.DATA.films,

@@ -141,7 +141,7 @@ class App extends PureComponent {
     this.setState({
       currentPage: `/dev-auth`,
     });
-    isAuthorizing()
+    isAuthorizing();
   }
 
   _handleFilmCardClick(film) {
@@ -150,7 +150,7 @@ class App extends PureComponent {
       currentPage: `/movie-page`,
       selectedFilm: film,
     });
-    getReviews(film)
+    getReviews(film);
   }
 }
 App.propTypes = {
@@ -159,7 +159,11 @@ App.propTypes = {
     propTypes.array.isRequired,
     propTypes.object.isRequired,
   ]),
-  filmsByGenre: propTypes.arrayOf(propTypes.object).isRequired
+  filmsByGenre: propTypes.arrayOf(propTypes.object).isRequired,
+  login: propTypes.func.isRequired,
+  getReviews: propTypes.func.isRequired,
+  isAuthorizing: propTypes.func.isRequired,
+  reviews: propTypes.array.isRequired,
 };
 const mapStateToProps = (state) => ({
   filmsByGenre: state.DATA.filmsByGenre,
@@ -168,8 +172,8 @@ const mapStateToProps = (state) => ({
   reviews: state.DATA.review
 });
 const mapDispatchToProps = (dispatch) => ({
-  getReviews(film){
-    dispatch(Operations.loadReviews(film.id))
+  getReviews(film) {
+    dispatch(Operations.loadReviews(film.id));
   },
   isAuthorizing() {
     dispatch(UserActionCreator.isAuthorizing());

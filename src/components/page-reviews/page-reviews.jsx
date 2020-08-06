@@ -1,17 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import {getNormalDate} from "../../utils.js";
 const PageReviews = (props) => {
   const {reviews} = props;
-  console.log(new Date(reviews[0].date))
   const half1 = reviews.slice(0, Math.round(reviews.length / 2));
   const half2 = reviews.slice(Math.round(reviews.length / 2));
-  const getDate = (date) =>{
-    const n = new Date(date).getDate()
-    console.log(n)
-    return n
-  }
-
 
   return (<React.Fragment>
     <div className="movie-card__reviews movie-card__row">
@@ -23,7 +16,7 @@ const PageReviews = (props) => {
 
               <footer className="review__details">
                 <cite className="review__author">{it.user.name}</cite>
-                <time className="review__date" dateTime={it.date}>{getDate(it.date)}</time>
+                <time className="review__date" dateTime={it.date}>{getNormalDate(it.date)}</time>
               </footer>
             </blockquote>
 
@@ -35,11 +28,11 @@ const PageReviews = (props) => {
         {half2.map((it) =>
           <div key={it.id} className="review">
             <blockquote className="review__quote">
-              <p className="review__text">{it.text}</p>
+              <p className="review__text">{it.comment}</p>
 
               <footer className="review__details">
-                <cite className="review__author">{it.author}</cite>
-                <time className="review__date" dateTime={it.date}>{it.date}</time>
+                <cite className="review__author">{it.user.name}</cite>
+                <time className="review__date" dateTime={it.date}>{getNormalDate(it.date)}</time>
               </footer>
             </blockquote>
 

@@ -54,6 +54,8 @@ describe(`App`, () => {
       showFilms,
       filmsByGenre,
     },
+    [NameSpace.USER]: {
+    },
   });
 
   it(`Render`, () => {

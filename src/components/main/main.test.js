@@ -25,6 +25,8 @@ const cardFilms = {
   year: `2014`,
 };
 const showFilms = 2;
+const authorizationStatus = `NO-AUTH`;
+const authorizationInfo = [];
 describe(`Main`, () => {
   const store = mockStore({
     [NameSpace.DATA]: {
@@ -36,6 +38,10 @@ describe(`Main`, () => {
       currentGenre: ALL_GENRES,
       filmsByGenre: films,
       showFilms,
+    },
+    [NameSpace.USER]: {
+      authorizationStatus,
+      authorizationInfo
     },
   });
 

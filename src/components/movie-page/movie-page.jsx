@@ -16,7 +16,7 @@ class FilmPage extends PureComponent {
   }
 
   _renderCurrentTab(currentTab) {
-    const {cardFilms,reviews} = this.props;
+    const {cardFilms, reviews} = this.props;
     switch (currentTab) {
       case filmNavList[0]:
         return (
@@ -148,5 +148,6 @@ FilmPage.propTypes = {
   activeTab: propTypes.string.isRequired,
   onTabClick: propTypes.func.isRequired,
   onPlayClick: propTypes.func.isRequired,
+  reviews: propTypes.array.isRequired,
 };
 export default FilmPage;

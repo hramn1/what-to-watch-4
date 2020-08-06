@@ -46,7 +46,7 @@ const Operations = {
     return api.get(`/comments/${movieId}`)
       .then((response) => {
         dispatch(ActionCreator.loadReviews(response.data));
-      })
+      });
   },
 };
 const reducer = (state = initialState, action) => {
@@ -68,4 +68,4 @@ const reducer = (state = initialState, action) => {
   }
   return state;
 };
-export {ActionType, ActionCreator, Operations, reducer};
+export {ActionType, ActionCreator, initialState, Operations, reducer};
