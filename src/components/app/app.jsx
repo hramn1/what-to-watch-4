@@ -5,10 +5,12 @@ import Main from "../main/main.jsx";
 import FilmPage from "../movie-page/movie-page.jsx";
 import VideoPlayerFull from '../video-full-player/video-full-player.jsx';
 import withVideoControls from '../../hoc/with-video-controls/with-video-controls.jsx';
+import SignIn from "../sign-in/sign-in.jsx";
 import {connect} from "react-redux";
 import withTabs from '../../hoc/with-tab/with-tab.jsx';
-import {ActionCreator} from "../../reducer/app/app";
 import {Operations} from "../../reducer/data/data";
+import {Operations as UserOperation} from "../../reducer/user/user";
+import {ActionCreator as UserActionCreator} from "../../reducer/user/user";
 const FilmPageWrapper = withTabs(FilmPage);
 const VideoPlayerFullWrapped = withVideoControls(VideoPlayerFull);
 
@@ -26,6 +28,7 @@ class App extends PureComponent {
     this._renderMoviePlayer = this._renderMoviePlayer.bind(this);
     this._handlePlayClick = this._handlePlayClick.bind(this);
     this._handleClosePlayerClick = this._handleClosePlayerClick.bind(this);
+    this._handleSignInClick = this._handleSignInClick.bind(this);
   }
   render() {
     const {cardFilms} = this.props;
@@ -41,6 +44,9 @@ class App extends PureComponent {
               likeFilms={this.props.filmsByGenre}
               onFilmCardClick={this._handleFilmCardClick}
             />
+          </Route>
+          <Route exact path="/dev-auth">
+            {this._renderSignIn()}
           </Route>
         </Switch>
       </BrowserRouter>
@@ -58,8 +64,18 @@ class App extends PureComponent {
         return this._renderMain();
       case `/movie-page`:
         return this._renderFilm();
+      case `/dev-auth`:
+        return this._renderSignIn();
     }
     return null;
+  }
+  _renderSignIn() {
+    const {login} = this.props;
+    return (
+      <SignIn
+        onSubmit={login}
+      />
+    );
   }
   _renderMain() {
     const {filmsByGenre, cardFilms} = this.props;
@@ -70,6 +86,7 @@ class App extends PureComponent {
         onPlayClick={this._handlePlayClick}
         onTitleClick={onTitleClick}
         onFilmCardClick={this._handleFilmCardClick}
+        onSignInClick={this._handleSignInClick}
       />
     );
   }
@@ -119,6 +136,13 @@ class App extends PureComponent {
       isVideoPlayer: false,
     });
   }
+  _handleSignInClick() {
+    const {isAuthorizing} = this.props;
+    this.setState({
+      currentPage: `/dev-auth`,
+    });
+    isAuthorizing()
+  }
 
   _handleFilmCardClick(film) {
     const {getReviews} = this.props;
@@ -138,7 +162,6 @@ App.propTypes = {
   filmsByGenre: propTypes.arrayOf(propTypes.object).isRequired
 };
 const mapStateToProps = (state) => ({
-  f:console.log(state),
   filmsByGenre: state.DATA.filmsByGenre,
   cardFilms: state.DATA.cardFilms,
   films: state.DATA.films,
@@ -147,6 +170,12 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getReviews(film){
     dispatch(Operations.loadReviews(film.id))
-  }
+  },
+  isAuthorizing() {
+    dispatch(UserActionCreator.isAuthorizing());
+  },
+  login(authData) {
+    dispatch(UserOperation.login(authData));
+  },
 });
-export default connect(mapStateToProps,mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

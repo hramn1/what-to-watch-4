@@ -3,19 +3,25 @@ import propTypes from "prop-types";
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/app/app.js';
 import {AuthorizationStatus} from "../../reducer/user/user";
+import {ActionCreator as UserActionCreator} from "../../reducer/user/user";
 import FilmList from "../movie-list/movie-list.jsx";
 import FilmGenre from "../movie-genre/movie-genre.jsx";
 import BtnLoad from "../btn-load/btn-load.jsx";
 import {Operations} from "../../reducer/data/data";
 
 const Main = (props) => {
-  const {films, cardFilms, authorizationStatus, filmsByGenre, availableGenres, currentGenre, onPlayClick, onTitleClick, onShowMoreClick, onGenreClick, showFilms, onFilmCardClick} = props;
+  const {films, cardFilms, authorizationStatus, onSignInClick, authorizationInfo, filmsByGenre, availableGenres, currentGenre, onPlayClick, onTitleClick, onShowMoreClick, onGenreClick, showFilms, onFilmCardClick} = props;
   let showedFilms = [];
+  let filmOnPage = [];
   if (filmsByGenre.length === 0) {
+    filmOnPage = films;
     showedFilms = films.slice(0, showFilms);
   } else {
     showedFilms = filmsByGenre.slice(0, showFilms);
+    filmOnPage = filmsByGenre;
   }
+  console.log(showedFilms);
+  console.log(filmsByGenre)
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -100,7 +106,7 @@ const Main = (props) => {
             films = {showedFilms}
             onFilmCardClick = {onFilmCardClick}
           />
-          {showedFilms.length === films.length ? null :
+          {showedFilms.length >= filmOnPage.length ? null :
             <BtnLoad
               onShowMoreClick={onShowMoreClick}
             />}
@@ -148,8 +154,8 @@ const mapStateToProps = (state) => ({
   currentGenre: state.APP.currentGenre,
   filmsByGenre: state.APP.filmsByGenre,
   showFilms: state.APP.showFilms,
-  // authorizationStatus: getAuthorizationStatus(state),
-  // authorizationInfo: getAuthorizationInfo(state),
+  authorizationStatus: state.USER.authorizationStatus,
+  authorizationInfo: state.USER.authorizationInfo,
 
 });
 const mapDispatchToProps = (dispatch) => ({
