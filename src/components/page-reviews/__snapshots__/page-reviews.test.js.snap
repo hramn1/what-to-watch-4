@@ -28,7 +28,7 @@ exports[`PageReviews Render PageReviews 1`] = `
             className="review__date"
             dateTime="December 24, 2016"
           >
-            November 24, 2016
+            December 24, 2016
           </time>
         </footer>
       </blockquote>
@@ -59,7 +59,7 @@ exports[`PageReviews Render PageReviews 1`] = `
             className="review__date"
             dateTime="November 18, 2015"
           >
-            October 18, 2015
+            November 18, 2015
           </time>
         </footer>
       </blockquote>
@@ -124,7 +124,7 @@ exports[`PageReviews Render PageReviews 1`] = `
             className="review__date"
             dateTime="December 20, 2016"
           >
-            November 20, 2016
+            December 20, 2016
           </time>
         </footer>
       </blockquote>
@@ -155,7 +155,7 @@ exports[`PageReviews Render PageReviews 1`] = `
             className="review__date"
             dateTime="December 20, 2016"
           >
-            November 20, 2016
+            December 20, 2016
           </time>
         </footer>
       </blockquote>

@@ -1,7 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import FilmPage from './movie-page.jsx';
-
+import {Provider} from 'react-redux';
+import configureStore from 'redux-mock-store';
+import NameSpace from '../../reducer/name-space.js';
+const mockStore = configureStore([]);
 const cardFilm = {
   id: 1,
   bg: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -110,20 +113,37 @@ const likeFilm = [
     }],
   },
 ];
+const reviews = [];
 const activeTab = `Overview`;
-
+const authorizationStatus = `NO-AUTH`;
+const authorizationInfo = {};
 const onFilmCardClick = () =>{};
 describe(`FilmPage`, () => {
-  it(`Render FilmPage`, () => {
+  const store = mockStore({
+    [NameSpace.USER]: {
+      authorizationStatus,
+      authorizationInfo
+    },
+  });
+  it(`Render Main`, () => {
     const tree = renderer.create(
-        <FilmPage
-          cardFilms = {cardFilm}
-          likeFilms = {likeFilm}
-          activeTab = {activeTab}
-          onTabClick = {()=>{}}
-          onFilmCardClick = {onFilmCardClick}
-          onPlayClick = {()=>{}}
-        />
+        <Provider store={store}>
+          <FilmPage
+            cardFilms = {cardFilm}
+            likeFilms = {likeFilm}
+            activeTab = {activeTab}
+            reviews={reviews}
+            onTabClick = {()=>{}}
+            onFilmCardClick = {onFilmCardClick}
+            onPlayClick = {()=>{}}
+            onSignInClick={()=>{}}
+            onAddReview={()=>{}}
+          />
+        </Provider>, {
+          createNodeMock: () => {
+            return {};
+          }
+        }
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

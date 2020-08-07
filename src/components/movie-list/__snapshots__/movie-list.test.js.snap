@@ -16,7 +16,6 @@ exports[`FilmList rendering 1`] = `
     >
       <video
         height="175"
-        poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
         width="280"
       >
         <source
@@ -54,7 +53,6 @@ exports[`FilmList rendering 1`] = `
     >
       <video
         height="175"
-        poster="img/bohemian-rhapsody.jpg"
         width="280"
       >
         <source
