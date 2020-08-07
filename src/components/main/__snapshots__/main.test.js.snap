@@ -9,8 +9,7 @@ Array [
       className="movie-card__bg"
     >
       <img
-        alt="{nameFilm}"
-        src="img/bg-the-grand-budapest-hotel.jpg"
+        alt="The Grand Budapest Hotel"
       />
     </div>
     <h1
@@ -190,7 +189,6 @@ Array [
           >
             <video
               height="175"
-              poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             >
               <source
@@ -228,7 +226,6 @@ Array [
           >
             <video
               height="175"
-              poster="img/bohemian-rhapsody.jpg"
               width="280"
             >
               <source

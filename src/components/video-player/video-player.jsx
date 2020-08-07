@@ -29,7 +29,7 @@ class VideoPlayer extends PureComponent {
     const {film} = this.props;
 
     return (
-      <video poster={film.poster} width="280" height="175"
+      <video poster={film.previewImg} width="280" height="175"
         ref={this.videoRef}>
         <source src={film.previewSrc} type='video/webm; codecs="vp8, vorbis"'/>
         <source src={film.previewSrc} type='video/ogg; codecs="theora, vorbis"'/>

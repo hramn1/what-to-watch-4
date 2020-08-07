@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import propTypes from "prop-types";
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Router, Route, Switch} from 'react-router-dom';
 import Main from "../main/main.jsx";
 import FilmPage from "../movie-page/movie-page.jsx";
 import VideoPlayerFull from '../video-full-player/video-full-player.jsx';
@@ -8,9 +8,12 @@ import withVideoControls from '../../hoc/with-video-controls/with-video-controls
 import SignIn from "../sign-in/sign-in.jsx";
 import {connect} from "react-redux";
 import withTabs from '../../hoc/with-tab/with-tab.jsx';
+import PageAddOverview from "../add-review/add-review.jsx";
 import {Operations} from "../../reducer/data/data";
+import {Operations as ReviewOperation} from "../../reducer/data/data";
 import {Operations as UserOperation} from "../../reducer/user/user";
 import {ActionCreator as UserActionCreator} from "../../reducer/user/user";
+import history from "../../history.js";
 const FilmPageWrapper = withTabs(FilmPage);
 const VideoPlayerFullWrapped = withVideoControls(VideoPlayerFull);
 
@@ -29,27 +32,28 @@ class App extends PureComponent {
     this._handlePlayClick = this._handlePlayClick.bind(this);
     this._handleClosePlayerClick = this._handleClosePlayerClick.bind(this);
     this._handleSignInClick = this._handleSignInClick.bind(this);
+    this._handleAddReview = this._handleAddReview.bind(this);
+    this._handlePostReview = this._handlePostReview.bind(this);
   }
   render() {
-    const {cardFilms} = this.props;
     return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path='/' >
-            {this._renderApp()}
-          </Route>
-          <Route exact path='/movie-page'>
-            <FilmPageWrapper
-              cardFilms={cardFilms}
-              likeFilms={this.props.filmsByGenre}
-              onFilmCardClick={this._handleFilmCardClick}
-            />
-          </Route>
-          <Route exact path="/dev-auth">
-            {this._renderSignIn()}
-          </Route>
-        </Switch>
-      </BrowserRouter>
+      <Router
+        history={history}
+      >
+        <BrowserRouter>
+          <Switch>
+            <Route exact path='/' >
+              {this._renderApp()}
+            </Route>
+            <Route exact path='/movie-page'>
+
+            </Route>
+            <Route exact path="/dev-auth">
+              {this._renderSignIn()}
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </Router>
     );
   }
   _renderApp() {
@@ -66,6 +70,8 @@ class App extends PureComponent {
         return this._renderFilm();
       case `/dev-auth`:
         return this._renderSignIn();
+      case `/dev-review`:
+        return this._renderAddReview();
     }
     return null;
   }
@@ -74,6 +80,16 @@ class App extends PureComponent {
     return (
       <SignIn
         onSubmit={login}
+      />
+    );
+  }
+  _renderAddReview() {
+    const {selectedFilm} = this.state;
+    return (
+      <PageAddOverview
+        film={selectedFilm}
+        postReview={this._handlePostReview}
+        onSignInClick={this._handleSignInClick}
       />
     );
   }
@@ -102,6 +118,10 @@ class App extends PureComponent {
       isVideoPlayer: true,
     });
   }
+  _handlePostReview(film, reviewData) {
+    const {postReviews} = this.props;
+    postReviews(reviewData, film);
+  }
   _renderFilm() {
     const {selectedFilm} = this.state;
     const {filmsByGenre, reviews} = this.props;
@@ -115,6 +135,8 @@ class App extends PureComponent {
         reviews={reviews}
         onPlayClick={this._handlePlayClick}
         onFilmCardClick={this._handleFilmCardClick}
+        onAddReview={this._handleAddReview}
+        onSignInClick={this._handleSignInClick}
       />
     );
   }
@@ -143,6 +165,11 @@ class App extends PureComponent {
     });
     isAuthorizing();
   }
+  _handleAddReview() {
+    this.setState({
+      currentPage: `/dev-review`,
+    });
+  }
 
   _handleFilmCardClick(film) {
     const {getReviews} = this.props;
@@ -164,6 +191,7 @@ App.propTypes = {
   getReviews: propTypes.func.isRequired,
   isAuthorizing: propTypes.func.isRequired,
   reviews: propTypes.array.isRequired,
+  postReviews: propTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
   filmsByGenre: state.DATA.filmsByGenre,
@@ -181,5 +209,8 @@ const mapDispatchToProps = (dispatch) => ({
   login(authData) {
     dispatch(UserOperation.login(authData));
   },
+  postReviews(reviewData, film) {
+    dispatch(ReviewOperation.postReview(film.id, reviewData));
+  }
 });
 export default connect(mapStateToProps, mapDispatchToProps)(App);

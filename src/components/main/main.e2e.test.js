@@ -30,7 +30,7 @@ const cardFilms = {
 };
 const showFilms = 2;
 const authorizationStatus = `NO-AUTH`;
-const authorizationInfo = [];
+const authorizationInfo = {};
 describe(`Main`, () => {
   const store = mockStore({
     [NameSpace.DATA]: {
@@ -57,6 +57,7 @@ describe(`Main`, () => {
             onTitleClick={onTitleClick}
             onFilmCardClick={() => {}}
             onPlayClick = {()=>{}}
+            onSignInClick={()=>{}}
           />
         </Provider>
     );

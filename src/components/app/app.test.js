@@ -4,10 +4,13 @@ import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import {ALL_GENRES} from '../../const.js';
 import App from './app.jsx';
-const availableGenres = [`crime`, `drama`];
 import NameSpace from '../../reducer/name-space.js';
 
 const mockStore = configureStore([]);
+const availableGenres = [`crime`, `drama`];
+const authorizationStatus = `NO-AUTH`;
+const authorizationInfo = {};
+const review = [];
 const films = [
   {
     id: `1`,
@@ -48,6 +51,8 @@ describe(`App`, () => {
       films,
       cardFilms,
       availableGenres,
+      filmsByGenre,
+      review,
     },
     [NameSpace.APP]: {
       currentGenre: ALL_GENRES,
@@ -55,13 +60,16 @@ describe(`App`, () => {
       filmsByGenre,
     },
     [NameSpace.USER]: {
+      authorizationStatus,
+      authorizationInfo
     },
   });
 
   it(`Render`, () => {
     const tree = renderer.create(
         <Provider store={store}>
-          <App />
+          <App
+          />
         </Provider>, {
           createNodeMock: () => {
             return {};

@@ -13,7 +13,6 @@ exports[`FilmCard rendering 1`] = `
   >
     <video
       height="175"
-      poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
       width="280"
     >
       <source
@@ -54,7 +53,6 @@ exports[`FilmCard rendering 2`] = `
   >
     <video
       height="175"
-      poster="img/bohemian-rhapsody.jpg"
       width="280"
     >
       <source
@@ -95,7 +93,6 @@ exports[`FilmCard rendering 3`] = `
   >
     <video
       height="175"
-      poster="img/macbeth.jpg"
       width="280"
     >
       <source
@@ -136,7 +133,6 @@ exports[`FilmCard rendering 4`] = `
   >
     <video
       height="175"
-      poster="img/aviator.jpg"
       width="280"
     >
       <source
@@ -177,7 +173,6 @@ exports[`FilmCard rendering 5`] = `
   >
     <video
       height="175"
-      poster="img/we-need-to-talk-about-kevin.jpg"
       width="280"
     >
       <source
@@ -218,7 +213,6 @@ exports[`FilmCard rendering 6`] = `
   >
     <video
       height="175"
-      poster="img/snatch.jpg"
       width="280"
     >
       <source
@@ -259,7 +253,6 @@ exports[`FilmCard rendering 7`] = `
   >
     <video
       height="175"
-      poster="img/revenant.jpg"
       width="280"
     >
       <source
@@ -300,7 +293,6 @@ exports[`FilmCard rendering 8`] = `
   >
     <video
       height="175"
-      poster="img/johnny-english.jpg"
       width="280"
     >
       <source

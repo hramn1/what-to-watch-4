@@ -14,6 +14,7 @@ const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO: `LOAD_PROMO`,
   LOAD_REVIEW: `LOAD_REVIEW`,
+  POST_REVIEW: `POST_REVIEW`,
 };
 const ActionCreator = {
   loadFilms: (films) => ({
@@ -30,7 +31,6 @@ const ActionCreator = {
     type: ActionType.LOAD_REVIEW,
     payload: review,
   }),
-
 };
 const Operations = {
   loadFilms: () => (dispatch, getState, api) => {
@@ -44,6 +44,15 @@ const Operations = {
   },
   loadReviews: (movieId) => (dispatch, getState, api) => {
     return api.get(`/comments/${movieId}`)
+      .then((response) => {
+        dispatch(ActionCreator.loadReviews(response.data));
+      });
+  },
+  postReview: (movieId, reviewData) => (dispatch, getState, api) => {
+    return api.post(`/comments/${movieId}`, {
+      rating: reviewData.rating,
+      comment: reviewData.review,
+    })
       .then((response) => {
         dispatch(ActionCreator.loadReviews(response.data));
       });
