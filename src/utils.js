@@ -39,7 +39,7 @@ export const validatePassword = (evt) => {
 };
 export const getNormalDate = (date) =>{
   const dayComment = new Date(date).getDate();
-  const monthComment = MONTH_NAMES[new Date(date).getMonth() - 1];
+  const monthComment = MONTH_NAMES[new Date(date).getMonth()];
   const yearComment = new Date(date).getFullYear();
   return `${monthComment} ${dayComment}, ${yearComment}`;
 };

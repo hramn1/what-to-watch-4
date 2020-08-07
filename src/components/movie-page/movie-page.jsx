@@ -5,7 +5,8 @@ import PageOverview from "../page-overview/page-overview.jsx";
 import PageDetails from "../page-details/page-details.jsx";
 import PageReviews from "../page-reviews/page-reviews.jsx";
 import FilmList from "../movie-list/movie-list.jsx";
-
+import {AuthorizationStatus} from "../../reducer/user/user";
+import {connect} from "react-redux";
 
 const filmNavList = [`Overview`, `Details`, `Reviews`];
 
@@ -41,8 +42,7 @@ class FilmPage extends PureComponent {
   }
   render() {
     const {cardFilms, likeFilms, activeTab,
-      onTabClick, onFilmCardClick, onPlayClick, onAddReview} = this.props;
-    console.log(this.props)
+      onTabClick, onFilmCardClick, onPlayClick, authorizationStatus, onSignInClick, authorizationInfo, onAddReview} = this.props;
     return (<React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
@@ -62,9 +62,19 @@ class FilmPage extends PureComponent {
             </div>
 
             <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-              </div>
+              {authorizationStatus === AuthorizationStatus.AUTH ?
+                <div className="user-block__avatar">
+                  <img src={authorizationInfo.avatar} alt={`${authorizationInfo.name} avatar`} width="63" height="63" />
+                </div>
+                : <a
+                  href="sign-in.html"
+                  className="user-block__link"
+                  onClick={(evt) => {
+                    evt.preventDefault();
+                    onSignInClick();
+                  }}
+                >Sign in</a>
+              }
             </div>
           </header>
 
@@ -91,13 +101,13 @@ class FilmPage extends PureComponent {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button"
-                onClick={(evt)=> {
-                  evt.preventDefault()
-                  onAddReview(cardFilms)
-                  }
-                }
-                >Add review</a>
+                {authorizationStatus === AuthorizationStatus.AUTH ?
+                  <a href="add-review.html" className="btn movie-card__button"
+                    onClick={(evt)=> {
+                      evt.preventDefault();
+                      onAddReview(cardFilms);
+                    }}
+                  >Add review</a> : null}
               </div>
             </div>
           </div>
@@ -147,7 +157,10 @@ class FilmPage extends PureComponent {
     </React.Fragment>);
   }
 }
-
+const mapStateToProps = (state) => ({
+  authorizationStatus: state.USER.authorizationStatus,
+  authorizationInfo: state.USER.authorizationInfo,
+});
 FilmPage.propTypes = {
   cardFilms: propTypes.object.isRequired,
   likeFilms: propTypes.arrayOf(propTypes.object).isRequired,
@@ -156,5 +169,9 @@ FilmPage.propTypes = {
   onTabClick: propTypes.func.isRequired,
   onPlayClick: propTypes.func.isRequired,
   reviews: propTypes.array.isRequired,
+  onSignInClick: propTypes.func.isRequired,
+  authorizationStatus: propTypes.string.isRequired,
+  authorizationInfo: propTypes.object.isRequired,
+  onAddReview: propTypes.func.isRequired,
 };
-export default FilmPage;
+export default connect(mapStateToProps)(FilmPage);
