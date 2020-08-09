@@ -41,13 +41,13 @@ export default class SignIn extends PureComponent {
           <form action="#" className="sign-in__form" onSubmit={this.handleSubmit}>
             <div className="sign-in__fields">
               <div className="sign-in__field">
-                <input className="sign-in__input" type="email"  placeholder="Email address" name="user-email"
-                  id="user-email" ref={this.loginRef}  required/>
+                <input className="sign-in__input" type="email" placeholder="Email address" name="user-email"
+                  id="user-email" ref={this.loginRef} required/>
                 <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
               </div>
               <div className="sign-in__field">
                 <input className="sign-in__input" type="password" placeholder="Password" name="user-password"
-                  id="user-password" ref={this.passwordRef}  required/>
+                  id="user-password" ref={this.passwordRef} required/>
                 <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
               </div>
             </div>

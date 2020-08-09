@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import propTypes from "prop-types";
-import {Redirect, Router, Route, Switch} from 'react-router-dom';
+import {Redirect, Router, Link, Route, Switch} from 'react-router-dom';
 import Main from "../main/main.jsx";
 import FilmPage from "../film-page/film-page.jsx";
 import VideoPlayerFull from '../video-full-player/video-full-player.jsx';
@@ -88,6 +88,18 @@ class App extends PureComponent {
                 postReview={this._handlePostReview}
               />;
             }}/>
+          <Route
+            render={() => (
+              <React.Fragment>
+                <h1>
+                  404.
+                  <br />
+                  <small>Page not found</small>
+                </h1>
+                <Link to="/">Go to main page</Link>
+              </React.Fragment>
+            )}
+          />
         </Switch>
       </Router>
     );
