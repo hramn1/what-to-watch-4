@@ -5,6 +5,9 @@ import configureStore from 'redux-mock-store';
 import {ALL_GENRES} from '../../const.js';
 import Main from "./main";
 import NameSpace from '../../reducer/name-space.js';
+import {Router} from 'react-router-dom';
+import history from '../../history.js';
+
 const mockStore = configureStore([]);
 const availableGenres = [`crime`, `drama`];
 const films = [
@@ -47,14 +50,15 @@ describe(`Main`, () => {
 
   it(`Render Main`, () => {
     const tree = renderer.create(
-        <Provider store={store}>
-          <Main
-            onTitleClick={() => {}}
-            onFilmCardClick={() => {}}
-            onPlayClick = {()=>{}}
-            onSignInClick = {()=>{}}
-          />
-        </Provider>, {
+        <Router history={history}>
+          <Provider store={store}>
+            <Main
+              onFilmCardClick={() => {}}
+              onPlayClick = {()=>{}}
+              handleFilmFavorite= {()=>{}}
+            />
+          </Provider>
+        </Router>, {
           createNodeMock: () => {
             return {};
           }

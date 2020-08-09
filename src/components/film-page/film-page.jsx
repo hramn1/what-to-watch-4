@@ -1,12 +1,14 @@
 import React, {PureComponent} from 'react';
 import propTypes from "prop-types";
-import FilmsTabs from "../movie-tab/movie-tab.jsx";
+import FilmsTabs from "../film-tab/film-tab.jsx";
 import PageOverview from "../page-overview/page-overview.jsx";
 import PageDetails from "../page-details/page-details.jsx";
 import PageReviews from "../page-reviews/page-reviews.jsx";
-import FilmList from "../movie-list/movie-list.jsx";
+import FilmList from "../film-list/film-list.jsx";
 import {AuthorizationStatus} from "../../reducer/user/user";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
+import {Pages} from "../../const";
 
 const filmNavList = [`Overview`, `Details`, `Reviews`];
 
@@ -41,8 +43,19 @@ class FilmPage extends PureComponent {
     }
   }
   render() {
-    const {cardFilms, likeFilms, activeTab,
-      onTabClick, onFilmCardClick, onPlayClick, authorizationStatus, onSignInClick, authorizationInfo, onAddReview} = this.props;
+    const {activeTab, cardFilms, likeFilms,
+      onTabClick, onFilmCardClick, handleFilmFavorite, authorizationStatus, authorizationInfo} = this.props;
+    const isInMyLyst = cardFilms.isFavorite ?
+      <React.Fragment>
+        <svg viewBox="0 0 18 14" width="18" height="14">
+          <use xlinkHref="#in-list"></use>
+        </svg>
+      </React.Fragment> :
+      <React.Fragment>
+        <svg viewBox="0 0 19 20" width="19" height="20">
+          <use xlinkHref="#add"></use>
+        </svg>
+      </React.Fragment>;
     return (<React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
@@ -54,11 +67,11 @@ class FilmPage extends PureComponent {
 
           <header className="page-header movie-card__head">
             <div className="logo">
-              <a href="/" className="logo__link">
+              <Link to={Pages.MAIN} className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <div className="user-block">
@@ -66,14 +79,11 @@ class FilmPage extends PureComponent {
                 <div className="user-block__avatar">
                   <img src={authorizationInfo.avatar} alt={`${authorizationInfo.name} avatar`} width="63" height="63" />
                 </div>
-                : <a
-                  href="sign-in.html"
-                  className="user-block__link"
-                  onClick={(evt) => {
-                    evt.preventDefault();
-                    onSignInClick();
-                  }}
-                >Sign in</a>
+                : <Link
+                  to={Pages.LOGIN}
+                  className="user-block__link">
+                  Sign in
+                </Link>
               }
             </div>
           </header>
@@ -87,27 +97,25 @@ class FilmPage extends PureComponent {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button"
-                  onClick={() => onPlayClick(cardFilms)}
-                >
+                <Link to={`${Pages.PLAYER}/${cardFilms.id}`} className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                </Link>
                 {authorizationStatus === AuthorizationStatus.AUTH ?
-                  <a href="add-review.html" className="btn movie-card__button"
-                    onClick={(evt)=> {
-                      evt.preventDefault();
-                      onAddReview(cardFilms);
-                    }}
-                  >Add review</a> : null}
+                  <button className="btn btn--list movie-card__button" type="button"
+                    onClick={() => handleFilmFavorite(cardFilms)}>
+                    {isInMyLyst}
+                    <span>My list</span>
+                  </button> :
+                  <Link to={Pages.LOGIN} className="btn btn--list movie-card__button" type="button"> {isInMyLyst} <span>My list</span> </Link>}
+                {authorizationStatus === AuthorizationStatus.AUTH ?
+                  <Link to={`${Pages.FILM}/${cardFilms.id}/review`} className="btn btn--review movie-card__button">Add review</Link> : <Link
+                    to={Pages.LOGIN}
+                    className="btn btn--review movie-card__button">
+                    Add review
+                  </Link>}
               </div>
             </div>
           </div>
@@ -167,11 +175,9 @@ FilmPage.propTypes = {
   onFilmCardClick: propTypes.func.isRequired,
   activeTab: propTypes.string.isRequired,
   onTabClick: propTypes.func.isRequired,
-  onPlayClick: propTypes.func.isRequired,
+  handleFilmFavorite: propTypes.func.isRequired,
   reviews: propTypes.array.isRequired,
-  onSignInClick: propTypes.func.isRequired,
   authorizationStatus: propTypes.string.isRequired,
   authorizationInfo: propTypes.object.isRequired,
-  onAddReview: propTypes.func.isRequired,
 };
 export default connect(mapStateToProps)(FilmPage);

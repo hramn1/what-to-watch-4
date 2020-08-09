@@ -31,7 +31,7 @@ exports[`FilmCard rendering 1`] = `
   >
     <a
       className="small-movie-card__link"
-      href="movie-page.html"
+      href="/films/1"
       onClick={[Function]}
     >
       Fantastic Beasts: The Crimes of Grindelwald
@@ -71,7 +71,7 @@ exports[`FilmCard rendering 2`] = `
   >
     <a
       className="small-movie-card__link"
-      href="movie-page.html"
+      href="/films/2"
       onClick={[Function]}
     >
       Bohemian Rhapsody
@@ -111,7 +111,7 @@ exports[`FilmCard rendering 3`] = `
   >
     <a
       className="small-movie-card__link"
-      href="movie-page.html"
+      href="/films/3"
       onClick={[Function]}
     >
       Macbeth
@@ -151,7 +151,7 @@ exports[`FilmCard rendering 4`] = `
   >
     <a
       className="small-movie-card__link"
-      href="movie-page.html"
+      href="/films/4"
       onClick={[Function]}
     >
       Aviator
@@ -191,7 +191,7 @@ exports[`FilmCard rendering 5`] = `
   >
     <a
       className="small-movie-card__link"
-      href="movie-page.html"
+      href="/films/5"
       onClick={[Function]}
     >
       We need to talk about Kevin
@@ -231,7 +231,7 @@ exports[`FilmCard rendering 6`] = `
   >
     <a
       className="small-movie-card__link"
-      href="movie-page.html"
+      href="/films/6"
       onClick={[Function]}
     >
       Snatch
@@ -271,7 +271,7 @@ exports[`FilmCard rendering 7`] = `
   >
     <a
       className="small-movie-card__link"
-      href="movie-page.html"
+      href="/films/7"
       onClick={[Function]}
     >
       Revenant
@@ -311,7 +311,7 @@ exports[`FilmCard rendering 8`] = `
   >
     <a
       className="small-movie-card__link"
-      href="movie-page.html"
+      href="/films/8"
       onClick={[Function]}
     >
       Johnny English

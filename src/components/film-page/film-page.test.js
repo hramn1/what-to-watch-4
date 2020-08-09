@@ -1,9 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import FilmPage from './movie-page.jsx';
+import FilmPage from './film-page.jsx';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import NameSpace from '../../reducer/name-space.js';
+import {Router} from 'react-router-dom';
+import history from '../../history.js';
 const mockStore = configureStore([]);
 const cardFilm = {
   id: 1,
@@ -127,19 +129,21 @@ describe(`FilmPage`, () => {
   });
   it(`Render Main`, () => {
     const tree = renderer.create(
-        <Provider store={store}>
-          <FilmPage
-            cardFilms = {cardFilm}
-            likeFilms = {likeFilm}
-            activeTab = {activeTab}
-            reviews={reviews}
-            onTabClick = {()=>{}}
-            onFilmCardClick = {onFilmCardClick}
-            onPlayClick = {()=>{}}
-            onSignInClick={()=>{}}
-            onAddReview={()=>{}}
-          />
-        </Provider>, {
+        <Router history={history}>
+          <Provider store={store}>
+            <FilmPage
+              cardFilms = {cardFilm}
+              likeFilms = {likeFilm}
+              activeTab = {activeTab}
+              reviews={reviews}
+              onTabClick = {()=>{}}
+              onFilmCardClick = {onFilmCardClick}
+              onPlayClick = {()=>{}}
+              onAddReview={()=>{}}
+              handleFilmFavorite={()=>{}}
+            />
+          </Provider>
+        </Router>, {
           createNodeMock: () => {
             return {};
           }

@@ -1,6 +1,7 @@
 import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
-import {validateEmail, validatePassword} from "../../utils";
+import {Link} from "react-router-dom";
+import {Pages} from "../../const";
 
 export default class SignIn extends PureComponent {
   constructor(props) {
@@ -13,15 +14,12 @@ export default class SignIn extends PureComponent {
   }
 
   handleSubmit(evt) {
-    const {onSubmit} = this.props;
-
     evt.preventDefault();
-
+    const {onSubmit} = this.props;
     const userData = {
       login: this.loginRef.current.value,
       password: this.passwordRef.current.value,
     };
-
     onSubmit(userData);
   }
 
@@ -30,11 +28,11 @@ export default class SignIn extends PureComponent {
       <div className="user-page">
         <header className="page-header user-page__head">
           <div className="logo">
-            <a href="main.html" className="logo__link">
+            <Link to={Pages.MAIN} className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <h1 className="page-title user-page__title">Sign in</h1>
@@ -44,12 +42,12 @@ export default class SignIn extends PureComponent {
             <div className="sign-in__fields">
               <div className="sign-in__field">
                 <input className="sign-in__input" type="email" placeholder="Email address" name="user-email"
-                  id="user-email" ref={this.loginRef} onInput={validateEmail} required/>
+                  id="user-email" ref={this.loginRef} required/>
                 <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
               </div>
               <div className="sign-in__field">
                 <input className="sign-in__input" type="password" placeholder="Password" name="user-password"
-                  id="user-password" ref={this.passwordRef} onInput={validatePassword} required/>
+                  id="user-password" ref={this.passwordRef} required/>
                 <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
               </div>
             </div>

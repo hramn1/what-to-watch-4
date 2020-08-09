@@ -1,6 +1,9 @@
 import React, {PureComponent} from "react";
 import propTypes from "prop-types";
 import VideoPlayer from "../video-player/video-player.jsx";
+import {Link} from 'react-router-dom';
+import {Pages} from "../../const.js";
+
 class FilmCard extends PureComponent {
   constructor(props) {
     super(props);
@@ -25,8 +28,7 @@ class FilmCard extends PureComponent {
           />
         </div>
         <h3 className="small-movie-card__title">
-          <a className="small-movie-card__link" href="movie-page.html"
-            onClick={(evt) => evt.preventDefault()}>{title}</a>
+          <Link to={`${Pages.FILM}/${film.id}`} className="small-movie-card__link">{film.title}</Link>
         </h3>
       </article>
     );
