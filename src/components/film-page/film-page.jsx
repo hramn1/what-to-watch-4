@@ -77,7 +77,9 @@ class FilmPage extends PureComponent {
             <div className="user-block">
               {authorizationStatus === AuthorizationStatus.AUTH ?
                 <div className="user-block__avatar">
-                  <img src={authorizationInfo.avatar} alt={`${authorizationInfo.name} avatar`} width="63" height="63" />
+                  <Link to={Pages.MY_LIST}>
+                    <img src={authorizationInfo.avatar} alt={`${authorizationInfo.name} avatar`} width="63" height="63" />
+                  </Link>
                 </div>
                 : <Link
                   to={Pages.LOGIN}
@@ -150,11 +152,11 @@ class FilmPage extends PureComponent {
 
         <footer className="page-footer">
           <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
+            <Link to={Pages.MAIN} className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">
