@@ -9,12 +9,14 @@ const initialState = {
   availableGenres: [ALL_GENRES],
   filmsByGenre: [],
   review: [],
+  favoriteFilms: [],
 };
 const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO: `LOAD_PROMO`,
   LOAD_REVIEW: `LOAD_REVIEW`,
   POST_REVIEW: `POST_REVIEW`,
+  LOAD_FAVORITE_FILMS: `LOAD_FAVORITE_FILMS`,
 };
 const ActionCreator = {
   loadFilms: (films) => ({
@@ -30,6 +32,10 @@ const ActionCreator = {
   loadReviews: (review) => ({
     type: ActionType.LOAD_REVIEW,
     payload: review,
+  }),
+  loadFavoriteFilms: (films) => ({
+    type: ActionType.LOAD_FAVORITE_FILMS,
+    payload: films,
   }),
 };
 const Operations = {
@@ -64,7 +70,16 @@ const Operations = {
         dispatch(Operations.loadFilms());
         dispatch(Operations.loadPromo());
       });
-  }
+  },
+  loadFavoriteMovies: () => (dispatch, getState, api) => {
+    return api.get(`/favorite`)
+      .then((response) => {
+        dispatch(ActionCreator.loadFavoriteFilms(response.data.map((film) => filmAdapter(film))));
+      })
+      .catch((err) => {
+        throw err;
+      });
+  },
 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -81,6 +96,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_REVIEW:
       return extend(state, {
         review: action.payload,
+      });
+    case ActionType.LOAD_FAVORITE_FILMS:
+      return extend(state, {
+        favoriteFilms: action.payload,
       });
   }
   return state;

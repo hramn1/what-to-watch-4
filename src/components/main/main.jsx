@@ -67,7 +67,9 @@ const Main = (props) => {
 
             {authorizationStatus === AuthorizationStatus.AUTH ?
               <div className="user-block__avatar">
-                <img src={authorizationInfo.avatar} alt={`${authorizationInfo.name} avatar`} width="63" height="63" />
+                <Link to={Pages.MY_LIST}>
+                  <img src={authorizationInfo.avatar} alt={`${authorizationInfo.name} avatar`} width="63" height="63" />
+                </Link>
               </div>
               : <Link
                 to={Pages.LOGIN}

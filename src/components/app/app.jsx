@@ -17,6 +17,8 @@ import {AuthorizationStatus} from "../../reducer/user/user";
 import {ActionCreator as UserActionCreator} from "../../reducer/user/user";
 import history from "../../history.js";
 import {Pages} from "../../const.js";
+import PrivateRoute from "../private-route/private-route.jsx";
+import MyList from "../my-list/my-list.jsx";
 const FilmPageWrapper = withTabs(FilmPage);
 const VideoPlayerFullWrapped = withVideoControls(VideoPlayerFull);
 
@@ -88,6 +90,14 @@ class App extends PureComponent {
                 postReview={this._handlePostReview}
               />;
             }}/>
+          <PrivateRoute exact
+            path={Pages.MY_LIST}
+            render={() => {
+              return <MyList
+                onFilmCardClick={this._handleFilmCardClick}
+              />;
+            }}
+          />
           <Route
             render={() => (
               <React.Fragment>
