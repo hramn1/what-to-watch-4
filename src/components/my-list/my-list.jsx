@@ -7,7 +7,6 @@
 //
 // import {Pages} from '../../const.js';
 // import {Operations as DataOperations} from '../../reducer/data/data.js';
-// import {getUserData} from '../../reducer/user/selector.js';
 // import {ActionCreator} from '../../reducer/show-films/show-films.js';
 //
 //
@@ -17,7 +16,7 @@
 //   }
 //
 //   render() {
-//     const {films} = this.props;
+//     const {films, authorizationInfo} = this.props;
 //
 //
 //     return (<React.Fragment>
@@ -36,7 +35,7 @@
 //           <div className="user-block">
 //             <div className="user-block__avatar">
 //               <Link to={Pages.MAIN}>
-//                 <img src={user.avatarSrc} alt={user.name} width="63" height="63" />
+//                 <img src={authorizationInfo.avatar} alt={authorizationInfo.name} width="63" height="63" />
 //               </Link>
 //             </div>
 //           </div>
@@ -67,7 +66,12 @@
 //   loadFavoriteFilms: PropTypes.func.isRequired,
 //   user: CustomPropTypes.USER,
 // };
+// const mapStateToProps = (state) => ({
+//   films: state.DATA.films,
+//   authorizationStatus: state.USER.authorizationStatus,
+//   authorizationInfo: state.USER.authorizationInfo,
+//
+// });
 //
 //
-//
-// export default {MyList};
+// export default connect(mapStateToProps)(MyList);
