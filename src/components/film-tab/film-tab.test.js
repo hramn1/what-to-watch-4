@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import FilmsTabs from './movie-tab.jsx';
+import FilmsTabs from './film-tab.jsx';
 
 const FilmsNavList = [`Overview`, `Details`, `Reviews`];
 

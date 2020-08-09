@@ -1,10 +1,10 @@
 import React, {PureComponent} from 'react';
 import propTypes from "prop-types";
-import FilmsTabs from "../movie-tab/movie-tab.jsx";
+import FilmsTabs from "../film-tab/film-tab.jsx";
 import PageOverview from "../page-overview/page-overview.jsx";
 import PageDetails from "../page-details/page-details.jsx";
 import PageReviews from "../page-reviews/page-reviews.jsx";
-import FilmList from "../movie-list/movie-list.jsx";
+import FilmList from "../film-list/film-list.jsx";
 import {AuthorizationStatus} from "../../reducer/user/user";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";

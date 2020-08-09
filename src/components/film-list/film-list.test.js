@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import FilmList from "./movie-list.jsx";
+import FilmList from "./film-list.jsx";
 import {Router} from 'react-router-dom';
 import history from '../../history.js';
 const films = [

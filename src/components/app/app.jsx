@@ -2,7 +2,7 @@ import React, {PureComponent} from "react";
 import propTypes from "prop-types";
 import {Redirect, Router, Route, Switch} from 'react-router-dom';
 import Main from "../main/main.jsx";
-import FilmPage from "../movie-page/movie-page.jsx";
+import FilmPage from "../film-page/film-page.jsx";
 import VideoPlayerFull from '../video-full-player/video-full-player.jsx';
 import withVideoControls from '../../hoc/with-video-controls/with-video-controls.jsx';
 import SignIn from "../sign-in/sign-in.jsx";

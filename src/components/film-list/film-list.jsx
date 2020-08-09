@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import propTypes from "prop-types";
-import FilmCard from "../movie-card/movie-card.jsx";
+import FilmCard from "../film-card/film-card.jsx";
 import withVideo from '../../hoc/with-video/with-video.jsx';
 
 const FilmCardWrapper = withVideo(FilmCard);

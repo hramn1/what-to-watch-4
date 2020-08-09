@@ -3,7 +3,7 @@
 // import {Link} from 'react-router-dom';
 // import PropTypes from 'prop-types';
 // import {CustomPropTypes} from '../custom-prop-types.js';
-// import FilmList from "../movie-list/movie-list.jsx";
+// import FilmList from "../film-list/film-list.jsx";
 //
 // import {Pages} from '../../const.js';
 // import {Operations as DataOperations} from '../../reducer/data/data.js';

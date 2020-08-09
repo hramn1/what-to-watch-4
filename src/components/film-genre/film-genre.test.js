@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import FilmGenre from './movie-genre.jsx';
+import FilmGenre from './film-genre.jsx';
 
 const FilmGenreList = [
   `All genres`,
