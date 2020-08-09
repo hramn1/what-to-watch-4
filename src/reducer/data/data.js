@@ -63,7 +63,7 @@ const Operations = {
       .then(() => {
         dispatch(Operations.loadFilms());
         dispatch(Operations.loadPromo());
-      })
+      });
   }
 };
 const reducer = (state = initialState, action) => {

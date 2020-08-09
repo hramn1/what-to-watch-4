@@ -3,24 +3,26 @@ import history from '../../history.js';
 import propTypes from "prop-types";
 import {AuthorizationStatus} from "../../reducer/user/user";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
+import {Pages} from "../../const";
 
 
 class PageAddOverview extends PureComponent {
   constructor(props) {
     super(props);
-    this.retingRef1 = createRef();
-    this.retingRef2 = createRef();
-    this.retingRef3 = createRef();
-    this.retingRef4 = createRef();
-    this.retingRef5 = createRef();
+    this.ratingRef1 = createRef();
+    this.ratingRef2 = createRef();
+    this.ratingRef3 = createRef();
+    this.ratingRef4 = createRef();
+    this.ratingRef5 = createRef();
     this.reviewRef = createRef();
     this._handleSubmit = this._handleSubmit.bind(this);
   }
   _handleSubmit(evt) {
     const {film, postReview} = this.props;
     evt.preventDefault();
-    const Allrating = [this.retingRef1, this.retingRef2, this.retingRef3, this.retingRef4, this.retingRef5];
-    const ratingChecked = Allrating.filter((it) => it.current.checked === true);
+    const allRating = [this.ratingRef1, this.ratingRef2, this.ratingRef3, this.ratingRef4, this.ratingRef5];
+    const ratingChecked = allRating.filter((it) => it.current.checked === true);
     const reviewData = {
       rating: ratingChecked[0].current.value,
       review: this.reviewRef.current.value,
@@ -29,7 +31,7 @@ class PageAddOverview extends PureComponent {
     history.goBack();
   }
   render() {
-    const {film, onSignInClick, authorizationStatus, authorizationInfo} = this.props;
+    const {film, authorizationStatus, authorizationInfo} = this.props;
     return (
       <section className="movie-card movie-card--full">
         <div className="movie-card__header">
@@ -41,17 +43,21 @@ class PageAddOverview extends PureComponent {
 
           <header className={`page-header ${authorizationStatus === AuthorizationStatus.NO_AUTH ? `user-page__head` : `movie-card__head`}}`}>
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <Link to={Pages.MAIN} className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <a href="movie-page.html" className="breadcrumbs__link">{film.title}</a>
+                  <Link
+                    to={`${Pages.FILM}/${film.id}`}
+                    className="breadcrumbs__link">
+                    {film.title}
+                  </Link>
                 </li>
                 <li className="breadcrumbs__item">
                   <a className="breadcrumbs__link">Add review</a>
@@ -64,14 +70,11 @@ class PageAddOverview extends PureComponent {
                 <div className="user-block__avatar">
                   <img src={authorizationInfo.avatar} alt={`${authorizationInfo.name} avatar`} width="63" height="63" />
                 </div>
-                : <a
-                  href="sign-in.html"
-                  className="user-block__link"
-                  onClick={(evt) => {
-                    evt.preventDefault();
-                    onSignInClick();
-                  }}
-                >Sign in</a>
+                : <Link
+                  to={Pages.LOGIN}
+                  className="user-block__link">
+                  Sign in
+                </Link>
               }
             </div>
           </header>
@@ -85,29 +88,19 @@ class PageAddOverview extends PureComponent {
           <form action="#" className="add-review__form" onSubmit={this._handleSubmit}>
             <div className="rating">
               <div className="rating__stars">
-                <input className="rating__input" ref={this.retingRef1} id="star-1" type="radio" name="rating" value="1"
-                  onChange={()=>{}}
-                />
+                <input className="rating__input" ref={this.ratingRef1} id="star-1" type="radio" name="rating" defaultValue="1"/>
                 <label className="rating__label" htmlFor="star-1">Rating 1</label>
 
-                <input className="rating__input" ref={this.retingRef2} id="star-2" type="radio" name="rating" value="2"
-                  onChange={()=>{}}
-                />
+                <input className="rating__input" ref={this.ratingRef2} id="star-2" type="radio" name="rating" defaultValue="2"/>
                 <label className="rating__label" htmlFor="star-2">Rating 2</label>
 
-                <input className="rating__input" ref={this.retingRef3} id="star-3" type="radio" name="rating" value="3"
-                  onChange={()=>{}}
-                />
+                <input className="rating__input" ref={this.ratingRef3} id="star-3" type="radio" name="rating" defaultValue="3"/>
                 <label className="rating__label" htmlFor="star-3">Rating 3</label>
 
-                <input className="rating__input" ref={this.retingRef4} id="star-4" type="radio" name="rating" value="4"
-                  onChange={()=>{}}
-                />
+                <input className="rating__input" ref={this.ratingRef4} id="star-4" type="radio" name="rating" defaultValue="4"/>
                 <label className="rating__label" htmlFor="star-4">Rating 4</label>
 
-                <input className="rating__input" ref={this.retingRef5} id="star-5" type="radio" name="rating" value="5"
-                  onChange={()=>{}}
-                />
+                <input className="rating__input" ref={this.ratingRef5} id="star-5" type="radio" name="rating" defaultValue="5"/>
                 <label className="rating__label" htmlFor="star-5">Rating 5</label>
               </div>
             </div>
@@ -133,7 +126,6 @@ const mapStateToProps = (state) => ({
 PageAddOverview.propTypes = {
   film: propTypes.object.isRequired,
   postReview: propTypes.func.isRequired,
-  onSignInClick: propTypes.func.isRequired,
   authorizationStatus: propTypes.string.isRequired,
   authorizationInfo: propTypes.object.isRequired,
 };

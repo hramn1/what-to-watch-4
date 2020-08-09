@@ -1,7 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import FilmCard from './movie-card.jsx';
-
+import {Router} from 'react-router-dom';
+import history from '../../history.js';
 const films = [
   {
     id: `1`,
@@ -49,16 +50,20 @@ const muted = `muted`;
 for (let item of films) {
   it(`FilmCard rendering`, () => {
     const tree = renderer
-  .create(<FilmCard
-    film = {item}
-    title = {item.title}
-    img = {item.poster}
-    isPlaying = {isPlaying}
-    muted = {muted}
-    onMouseHover = {() =>{}}
-    onFilmCardClick = {()=>{}}
-    onIsPlayingChange = {()=>{}}
-  />)
+  .create(
+      <Router history={history}>
+        <FilmCard
+          film = {item}
+          title = {item.title}
+          img = {item.poster}
+          isPlaying = {isPlaying}
+          muted = {muted}
+          onMouseHover = {() =>{}}
+          onFilmCardClick = {()=>{}}
+          onIsPlayingChange = {()=>{}}
+        />
+      </Router>
+  )
     .toJSON();
     expect(tree).toMatchSnapshot();
   });

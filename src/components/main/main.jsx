@@ -7,7 +7,7 @@ import FilmList from "../movie-list/movie-list.jsx";
 import FilmGenre from "../movie-genre/movie-genre.jsx";
 import BtnLoad from "../btn-load/btn-load.jsx";
 import {Link} from "react-router-dom";
-import {Pages} from  "../../const.js"
+import {Pages} from "../../const.js";
 
 
 const Main = (props) => {
@@ -98,12 +98,13 @@ const Main = (props) => {
                   </svg>
                   <span>Play</span>
                 </Link>
-                <button className="btn btn--list movie-card__button" type="button"
-                  onClick={() => handleFilmFavorite(cardFilms)}
-                >
-                  {isInMyLyst}
-                  <span>My list</span>
-                </button>
+                {authorizationStatus === AuthorizationStatus.AUTH ?
+                  <button className="btn btn--list movie-card__button" type="button"
+                    onClick={() => handleFilmFavorite(cardFilms)}>
+                    {isInMyLyst}
+                    <span>My list</span>
+                  </button> :
+                  <Link to={Pages.LOGIN} className="btn btn--list movie-card__button" type="button"> {isInMyLyst} <span>My list</span> </Link>}
               </div>
             </div>
           </div>
@@ -159,6 +160,7 @@ Main.propTypes = {
   filmsByGenre: propTypes.array.isRequired,
   onFilmCardClick: propTypes.func.isRequired,
   onShowMoreClick: propTypes.func.isRequired,
+  handleFilmFavorite: propTypes.func.isRequired,
   authorizationStatus: propTypes.string.isRequired,
   authorizationInfo: propTypes.object.isRequired,
 };

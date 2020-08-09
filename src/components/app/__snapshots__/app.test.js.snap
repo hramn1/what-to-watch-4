@@ -25,7 +25,7 @@ Array [
       >
         <a
           className="logo__link"
-          href="#"
+          href="/"
           onClick={[Function]}
         >
           <span
@@ -50,7 +50,7 @@ Array [
       >
         <a
           className="user-block__link"
-          href="sign-in.html"
+          href="/login"
           onClick={[Function]}
         >
           Sign in
@@ -97,8 +97,9 @@ Array [
           <div
             className="movie-card__buttons"
           >
-            <button
+            <a
               className="btn btn--play movie-card__button"
+              href="/player/undefined"
               onClick={[Function]}
               type="button"
             >
@@ -114,11 +115,14 @@ Array [
               <span>
                 Play
               </span>
-            </button>
-            <button
+            </a>
+            <a
               className="btn btn--list movie-card__button"
+              href="/login"
+              onClick={[Function]}
               type="button"
             >
+               
               <svg
                 height="20"
                 viewBox="0 0 19 20"
@@ -128,10 +132,12 @@ Array [
                   xlinkHref="#add"
                 />
               </svg>
+               
               <span>
                 My list
               </span>
-            </button>
+               
+            </a>
           </div>
         </div>
       </div>
@@ -207,7 +213,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/1"
               onClick={[Function]}
             >
               Fantastic Beasts: The Crimes of Grindelwald
@@ -244,7 +250,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/2"
               onClick={[Function]}
             >
               Bohemian Rhapsody

@@ -6,6 +6,9 @@ import configureStore from 'redux-mock-store';
 import {ALL_GENRES} from '../../const.js';
 import Main from './main.jsx';
 import NameSpace from '../../reducer/name-space.js';
+import {Router} from 'react-router-dom';
+import history from '../../history.js';
+
 const availableGenres = [`crime`, `drama`];
 Enzyme.configure({
   adapter: new Adapter(),
@@ -50,19 +53,20 @@ describe(`Main`, () => {
   });
 
   it(`Should list items be clicked on genre`, () => {
-    const onTitleClick = jest.fn();
+    const onFilmCardClick = jest.fn();
     const main = mount(
-        <Provider store={store}>
-          <Main
-            onTitleClick={onTitleClick}
-            onFilmCardClick={() => {}}
-            onPlayClick = {()=>{}}
-            onSignInClick={()=>{}}
-          />
-        </Provider>
+        <Router history={history}>
+          <Provider store={store}>
+            <Main
+              onFilmCardClick={onFilmCardClick}
+              onPlayClick = {()=>{}}
+              handleFilmFavorite= {()=>{}}
+            />
+          </Provider>
+        </Router>
     );
-    const welcomeButton = main.find(`.logo__link`).first();
+    const welcomeButton = main.find(`.small-movie-card`).first();
     welcomeButton.props().onClick();
-    expect(onTitleClick.mock.calls.length).toBe(1);
+    expect(onFilmCardClick.mock.calls.length).toBe(1);
   });
 });

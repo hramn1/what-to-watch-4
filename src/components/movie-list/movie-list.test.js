@@ -1,6 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import FilmList from "./movie-list.jsx";
+import {Router} from 'react-router-dom';
+import history from '../../history.js';
 const films = [
   {
     id: `1`,
@@ -22,11 +24,15 @@ const onFilmCardClick = () => {};
 
 it(`FilmList rendering`, () => {
   const tree = renderer
-.create(<FilmList
-  films = {films}
-  cardFilms = {cardFilms}
-  onFilmCardClick={onFilmCardClick}
-/>)
+.create(
+    <Router history={history}>
+      <FilmList
+        films = {films}
+        cardFilms = {cardFilms}
+        onFilmCardClick={onFilmCardClick}
+      />
+    </Router>
+)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

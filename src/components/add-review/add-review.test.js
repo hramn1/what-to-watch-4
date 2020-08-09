@@ -4,8 +4,10 @@ import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import PageAddOverview from "./add-review.jsx";
 import NameSpace from '../../reducer/name-space.js';
-const mockStore = configureStore([]);
+import {Router} from 'react-router-dom';
+import history from '../../history.js';
 
+const mockStore = configureStore([]);
 const film = {
   title: `The Grand Budapest Hotel`,
   genre: `Drame`,
@@ -23,13 +25,15 @@ describe(`Main`, () => {
 
   it(`Render Main`, () => {
     const tree = renderer.create(
-        <Provider store={store}>
-          <PageAddOverview
-            film={film}
-            postReview={() => {}}
-            onSignInClick={()=>{}}
-          />
-        </Provider>, {
+        <Router history={history}>
+          <Provider store={store}>
+            <PageAddOverview
+              film={film}
+              postReview={() => {}}
+              onSignInClick={()=>{}}
+            />
+          </Provider>
+        </Router>, {
           createNodeMock: () => {
             return {};
           }

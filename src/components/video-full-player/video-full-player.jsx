@@ -11,7 +11,6 @@ const VideoPlayerFull = (props) => {
     film,
     isPlaying,
     leftTime,
-    onClosePlayerClick,
     onIsPlayingChange,
     onSetFullScreen,
   } = props;
@@ -21,8 +20,7 @@ const VideoPlayerFull = (props) => {
       {children}
       <button type="button" className="player__exit"
         onClick={() => history.goBack()}
-          >Exit</button>
-
+      >Exit</button>
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">

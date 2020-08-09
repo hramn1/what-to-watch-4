@@ -27,7 +27,8 @@ exports[`Main Render Main 1`] = `
       >
         <a
           className="logo__link"
-          href="main.html"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -57,7 +58,8 @@ exports[`Main Render Main 1`] = `
           >
             <a
               className="breadcrumbs__link"
-              href="movie-page.html"
+              href="/films/undefined"
+              onClick={[Function]}
             >
               The Grand Budapest Hotel
             </a>
@@ -78,7 +80,7 @@ exports[`Main Render Main 1`] = `
       >
         <a
           className="user-block__link"
-          href="sign-in.html"
+          href="/login"
           onClick={[Function]}
         >
           Sign in
@@ -111,11 +113,10 @@ exports[`Main Render Main 1`] = `
         >
           <input
             className="rating__input"
+            defaultValue="1"
             id="star-1"
             name="rating"
-            onChange={[Function]}
             type="radio"
-            value="1"
           />
           <label
             className="rating__label"
@@ -125,11 +126,10 @@ exports[`Main Render Main 1`] = `
           </label>
           <input
             className="rating__input"
+            defaultValue="2"
             id="star-2"
             name="rating"
-            onChange={[Function]}
             type="radio"
-            value="2"
           />
           <label
             className="rating__label"
@@ -139,11 +139,10 @@ exports[`Main Render Main 1`] = `
           </label>
           <input
             className="rating__input"
+            defaultValue="3"
             id="star-3"
             name="rating"
-            onChange={[Function]}
             type="radio"
-            value="3"
           />
           <label
             className="rating__label"
@@ -153,11 +152,10 @@ exports[`Main Render Main 1`] = `
           </label>
           <input
             className="rating__input"
+            defaultValue="4"
             id="star-4"
             name="rating"
-            onChange={[Function]}
             type="radio"
-            value="4"
           />
           <label
             className="rating__label"
@@ -167,11 +165,10 @@ exports[`Main Render Main 1`] = `
           </label>
           <input
             className="rating__input"
+            defaultValue="5"
             id="star-5"
             name="rating"
-            onChange={[Function]}
             type="radio"
-            value="5"
           />
           <label
             className="rating__label"

@@ -44,7 +44,18 @@ class FilmPage extends PureComponent {
   }
   render() {
     const {activeTab, cardFilms, likeFilms,
-      onTabClick, onFilmCardClick,  authorizationStatus, onSignInClick, authorizationInfo, } = this.props;
+      onTabClick, onFilmCardClick, handleFilmFavorite, authorizationStatus, authorizationInfo} = this.props;
+    const isInMyLyst = cardFilms.isFavorite ?
+      <React.Fragment>
+        <svg viewBox="0 0 18 14" width="18" height="14">
+          <use xlinkHref="#in-list"></use>
+        </svg>
+      </React.Fragment> :
+      <React.Fragment>
+        <svg viewBox="0 0 19 20" width="19" height="20">
+          <use xlinkHref="#add"></use>
+        </svg>
+      </React.Fragment>;
     return (<React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
@@ -56,11 +67,11 @@ class FilmPage extends PureComponent {
 
           <header className="page-header movie-card__head">
             <div className="logo">
-              <a href="/" className="logo__link">
+              <Link to={Pages.MAIN} className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <div className="user-block">
@@ -68,14 +79,11 @@ class FilmPage extends PureComponent {
                 <div className="user-block__avatar">
                   <img src={authorizationInfo.avatar} alt={`${authorizationInfo.name} avatar`} width="63" height="63" />
                 </div>
-                : <a
-                  href="sign-in.html"
-                  className="user-block__link"
-                  onClick={(evt) => {
-                    evt.preventDefault();
-                    onSignInClick();
-                  }}
-                >Sign in</a>
+                : <Link
+                  to={Pages.LOGIN}
+                  className="user-block__link">
+                  Sign in
+                </Link>
               }
             </div>
           </header>
@@ -95,14 +103,19 @@ class FilmPage extends PureComponent {
                   </svg>
                   <span>Play</span>
                 </Link>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
                 {authorizationStatus === AuthorizationStatus.AUTH ?
-                  <Link to={`${Pages.FILM}/${cardFilms.id}/review`} className="btn btn--review movie-card__button">Add review</Link> : null}
+                  <button className="btn btn--list movie-card__button" type="button"
+                    onClick={() => handleFilmFavorite(cardFilms)}>
+                    {isInMyLyst}
+                    <span>My list</span>
+                  </button> :
+                  <Link to={Pages.LOGIN} className="btn btn--list movie-card__button" type="button"> {isInMyLyst} <span>My list</span> </Link>}
+                {authorizationStatus === AuthorizationStatus.AUTH ?
+                  <Link to={`${Pages.FILM}/${cardFilms.id}/review`} className="btn btn--review movie-card__button">Add review</Link> : <Link
+                    to={Pages.LOGIN}
+                    className="btn btn--review movie-card__button">
+                    Add review
+                  </Link>}
               </div>
             </div>
           </div>
@@ -162,10 +175,9 @@ FilmPage.propTypes = {
   onFilmCardClick: propTypes.func.isRequired,
   activeTab: propTypes.string.isRequired,
   onTabClick: propTypes.func.isRequired,
-  onPlayClick: propTypes.func.isRequired,
+  handleFilmFavorite: propTypes.func.isRequired,
   reviews: propTypes.array.isRequired,
   authorizationStatus: propTypes.string.isRequired,
   authorizationInfo: propTypes.object.isRequired,
-  onAddReview: propTypes.func.isRequired,
 };
 export default connect(mapStateToProps)(FilmPage);

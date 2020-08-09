@@ -2,7 +2,7 @@ import React, {PureComponent} from "react";
 import propTypes from "prop-types";
 import VideoPlayer from "../video-player/video-player.jsx";
 import {Link} from 'react-router-dom';
-import {Pages} from  "../../const.js"
+import {Pages} from "../../const.js";
 
 class FilmCard extends PureComponent {
   constructor(props) {
