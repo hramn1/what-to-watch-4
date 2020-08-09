@@ -57,6 +57,14 @@ const Operations = {
         dispatch(ActionCreator.loadReviews(response.data));
       });
   },
+  putFavorite: (film, isFavorite) => (dispatch, getState, api) => {
+    const status = isFavorite ? 0 : 1;
+    return api.post(`/favorite/${film.id}/${status}`)
+      .then(() => {
+        dispatch(Operations.loadFilms());
+        dispatch(Operations.loadPromo());
+      })
+  }
 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {

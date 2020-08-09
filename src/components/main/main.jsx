@@ -6,22 +6,23 @@ import {AuthorizationStatus} from "../../reducer/user/user";
 import FilmList from "../movie-list/movie-list.jsx";
 import FilmGenre from "../movie-genre/movie-genre.jsx";
 import BtnLoad from "../btn-load/btn-load.jsx";
+import {Link} from "react-router-dom";
+import {Pages} from  "../../const.js"
+
 
 const Main = (props) => {
   const {
     films,
     cardFilms,
     authorizationStatus,
-    onSignInClick,
     authorizationInfo,
     filmsByGenre,
     availableGenres,
     currentGenre,
-    onPlayClick,
-    onTitleClick,
     onShowMoreClick,
     onGenreClick,
     showFilms,
+    handleFilmFavorite,
     onFilmCardClick,
   } = props;
   let showedFilms = [];
@@ -33,6 +34,17 @@ const Main = (props) => {
     showedFilms = filmsByGenre.slice(0, showFilms);
     filmOnPage = filmsByGenre;
   }
+  const isInMyLyst = cardFilms.isFavorite ?
+    <React.Fragment>
+      <svg viewBox="0 0 18 14" width="18" height="14">
+        <use xlinkHref="#in-list"></use>
+      </svg>
+    </React.Fragment> :
+    <React.Fragment>
+      <svg viewBox="0 0 19 20" width="19" height="20">
+        <use xlinkHref="#add"></use>
+      </svg>
+    </React.Fragment>;
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -44,11 +56,11 @@ const Main = (props) => {
 
         <header className={`page-header ${authorizationStatus === AuthorizationStatus.NO_AUTH ? `user-page__head` : `movie-card__head`}}`}>
           <div className="logo">
-            <a onClick={onTitleClick} href="#" className="logo__link">
+            <Link to={Pages.MAIN} className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="user-block">
@@ -57,16 +69,12 @@ const Main = (props) => {
               <div className="user-block__avatar">
                 <img src={authorizationInfo.avatar} alt={`${authorizationInfo.name} avatar`} width="63" height="63" />
               </div>
-              : <a
-                href="sign-in.html"
-                className="user-block__link"
-                onClick={(evt) => {
-                  evt.preventDefault();
-                  onSignInClick();
-                }}
-              >Sign in</a>
+              : <Link
+                to={Pages.LOGIN}
+                className="user-block__link">
+                Sign in
+              </Link>
             }
-
           </div>
         </header>
 
@@ -84,18 +92,16 @@ const Main = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button"
-                  onClick={() => onPlayClick(cardFilms)}
-                >
+                <Link to={`${Pages.PLAYER}/${cardFilms.id}`} className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
+                </Link>
+                <button className="btn btn--list movie-card__button" type="button"
+                  onClick={() => handleFilmFavorite(cardFilms)}
+                >
+                  {isInMyLyst}
                   <span>My list</span>
                 </button>
               </div>
@@ -121,8 +127,6 @@ const Main = (props) => {
             <BtnLoad
               onShowMoreClick={onShowMoreClick}
             />}
-
-
         </section>
 
         <footer className="page-footer">
@@ -152,13 +156,10 @@ Main.propTypes = {
   availableGenres: propTypes.array.isRequired,
   currentGenre: propTypes.string.isRequired,
   onGenreClick: propTypes.func.isRequired,
-  onTitleClick: propTypes.func.isRequired,
   filmsByGenre: propTypes.array.isRequired,
   onFilmCardClick: propTypes.func.isRequired,
   onShowMoreClick: propTypes.func.isRequired,
-  onPlayClick: propTypes.func.isRequired,
   authorizationStatus: propTypes.string.isRequired,
-  onSignInClick: propTypes.func.isRequired,
   authorizationInfo: propTypes.object.isRequired,
 };
 const mapStateToProps = (state) => ({

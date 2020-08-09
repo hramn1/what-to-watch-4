@@ -2,6 +2,8 @@ import MockAdapter from 'axios-mock-adapter';
 import {initialState, reducer, Operations} from './data';
 import {createAPI} from '../../api';
 import filmAdapter from '../../adapter/film';
+import {ALL_GENRES} from "../../const";
+
 
 const testMovie = {
   title: `The Grand Budapest Hotel`,
@@ -12,27 +14,30 @@ const testMovie = {
   src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
 };
 
-// const testMovies = [
-//   {
-//     id: 0,
-//     title: `The Grand Budapest Hotel`,
-//     poster: `img/the-grand-budapest-hotel-poster.jpg`,
-//     previewImg: `img/bg-the-grand-budapest-hotel.jpg`,
-//   },
-//   {
-//     id: 1,
-//     title: `The Grand Budapest Hotel`,
-//     poster: `img/the-grand-budapest-hotel-poster.jpg`,
-//     previewImg: `img/bg-the-grand-budapest-hotel.jpg`,
-//   },
-//   {
-//     id: 2,
-//     title: `The Grand Budapest Hotel`,
-//     poster: `img/the-grand-budapest-hotel-poster.jpg`,
-//     previewImg: `img/bg-the-grand-budapest-hotel.jpg`,
-//   }
-// ];
-
+const testMovies = [
+  {
+    id: 0,
+    title: `The Grand Budapest Hotel`,
+    poster: `img/the-grand-budapest-hotel-poster.jpg`,
+    previewImg: `img/bg-the-grand-budapest-hotel.jpg`,
+    genre: `drama`
+  },
+  {
+    id: 1,
+    title: `The Grand Budapest Hotel`,
+    poster: `img/the-grand-budapest-hotel-poster.jpg`,
+    previewImg: `img/bg-the-grand-budapest-hotel.jpg`,
+    genre: `drama`
+  },
+  {
+    id: 2,
+    title: `The Grand Budapest Hotel`,
+    poster: `img/the-grand-budapest-hotel-poster.jpg`,
+    previewImg: `img/bg-the-grand-budapest-hotel.jpg`,
+    genre: `drama`
+  }
+];
+const genres = [ALL_GENRES, `drama`];
 const testReviews = [
   {
     id: 1,
@@ -61,16 +66,18 @@ describe(`Data Reducer`, () => {
     expect(reducer(undefined, {})).toEqual(initialState);
   });
 
-  //   it(`Reducer should update PromoMovie by load`, () => {
-  //     expect(reducer({
-  //       cardFilms: [],
-  //     }, {
-  //       type: ActionType.LOAD_PROMO,
-  //       payload: testMovie,
-  //     })).toEqual({
-  //       cardFilms: testMovie,
-  //     });
-  //   });
+  it(`Reducer should update PromoMovie by load`, () => {
+    expect(reducer({
+      films: [],
+    }, {
+      type: ActionType.LOAD_FILMS,
+      payload: testMovies,
+    })).toEqual({
+      films: testMovies,
+      filmsByGenre: testMovies,
+      availableGenres: genres
+    });
+  });
 
   it(`Reducer should update movies by load`, () => {
     expect(reducer({

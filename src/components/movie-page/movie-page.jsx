@@ -7,6 +7,8 @@ import PageReviews from "../page-reviews/page-reviews.jsx";
 import FilmList from "../movie-list/movie-list.jsx";
 import {AuthorizationStatus} from "../../reducer/user/user";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
+import {Pages} from "../../const";
 
 const filmNavList = [`Overview`, `Details`, `Reviews`];
 
@@ -41,8 +43,8 @@ class FilmPage extends PureComponent {
     }
   }
   render() {
-    const {cardFilms, likeFilms, activeTab,
-      onTabClick, onFilmCardClick, onPlayClick, authorizationStatus, onSignInClick, authorizationInfo, onAddReview} = this.props;
+    const {activeTab, cardFilms, likeFilms,
+      onTabClick, onFilmCardClick,  authorizationStatus, onSignInClick, authorizationInfo, } = this.props;
     return (<React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
@@ -87,14 +89,12 @@ class FilmPage extends PureComponent {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button"
-                  onClick={() => onPlayClick(cardFilms)}
-                >
+                <Link to={`${Pages.PLAYER}/${cardFilms.id}`} className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </button>
+                </Link>
                 <button className="btn btn--list movie-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
@@ -102,12 +102,7 @@ class FilmPage extends PureComponent {
                   <span>My list</span>
                 </button>
                 {authorizationStatus === AuthorizationStatus.AUTH ?
-                  <a href="add-review.html" className="btn movie-card__button"
-                    onClick={(evt)=> {
-                      evt.preventDefault();
-                      onAddReview(cardFilms);
-                    }}
-                  >Add review</a> : null}
+                  <Link to={`${Pages.FILM}/${cardFilms.id}/review`} className="btn btn--review movie-card__button">Add review</Link> : null}
               </div>
             </div>
           </div>
@@ -169,7 +164,6 @@ FilmPage.propTypes = {
   onTabClick: propTypes.func.isRequired,
   onPlayClick: propTypes.func.isRequired,
   reviews: propTypes.array.isRequired,
-  onSignInClick: propTypes.func.isRequired,
   authorizationStatus: propTypes.string.isRequired,
   authorizationInfo: propTypes.object.isRequired,
   onAddReview: propTypes.func.isRequired,

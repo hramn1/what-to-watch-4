@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import history from "../../history";
 
 const VideoPlayerFull = (props) => {
   const {
@@ -19,8 +20,8 @@ const VideoPlayerFull = (props) => {
     <div className="player">
       {children}
       <button type="button" className="player__exit"
-        onClick={() => onClosePlayerClick()}
-      >Exit</button>
+        onClick={() => history.goBack()}
+          >Exit</button>
 
       <div className="player__controls">
         <div className="player__controls-row">
@@ -72,7 +73,6 @@ VideoPlayerFull.propTypes = {
   film: PropTypes.object.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   leftTime: PropTypes.string.isRequired,
-  onClosePlayerClick: PropTypes.func.isRequired,
   onIsPlayingChange: PropTypes.func.isRequired,
   onSetFullScreen: PropTypes.func.isRequired,
 };
