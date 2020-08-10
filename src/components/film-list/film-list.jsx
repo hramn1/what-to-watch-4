@@ -8,9 +8,6 @@ const FilmCardWrapper = withVideo(FilmCard);
 class FilmList extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      onFilm: {},
-    };
   }
   render() {
     const {films, onFilmCardClick} = this.props;
@@ -22,11 +19,7 @@ class FilmList extends PureComponent {
               film = {it}
               title={it.title}
               img={it.poster}
-              onMouseHover = {(currentFilm) =>{
-                this.setState({
-                  onFilm: currentFilm
-                });
-              }}
+              onMouseHover = {() =>{}}
               key={it.id}
               onFilmCardClick = {onFilmCardClick}
             />

@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
-import PageAddOverview from "./add-review.jsx";
+import AddReview from "./add-review.jsx";
 import NameSpace from '../../reducer/name-space.js';
 import {Router} from 'react-router-dom';
 import history from '../../history.js';
@@ -27,7 +27,7 @@ describe(`Main`, () => {
     const tree = renderer.create(
         <Router history={history}>
           <Provider store={store}>
-            <PageAddOverview
+            <AddReview
               film={film}
               postReview={() => {}}
               onSignInClick={()=>{}}

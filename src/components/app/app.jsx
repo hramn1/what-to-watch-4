@@ -8,7 +8,7 @@ import withVideoControls from '../../hoc/with-video-controls/with-video-controls
 import SignIn from "../sign-in/sign-in.jsx";
 import {connect} from "react-redux";
 import withTabs from '../../hoc/with-tab/with-tab.jsx';
-import PageAddOverview from "../add-review/add-review.jsx";
+import AddReview from "../add-review/add-review.jsx";
 import {Operations} from "../../reducer/data/data";
 import {Operations as ReviewOperation} from "../../reducer/data/data";
 import {Operations as FavoriteOperation} from "../../reducer/data/data";
@@ -31,7 +31,9 @@ class App extends PureComponent {
     this._handleFilmFavorite = this._handleFilmFavorite.bind(this);
   }
   render() {
-    const {films, reviews, cardFilms, login, authorizationStatus, filmsByGenre} = this.props;
+    const {films, isLoadingFilm, reviews, cardFilms, login, authorizationStatus, filmsByGenre} = this.props;
+
+
     return (
       <Router history={history}>
         <Switch>
@@ -51,7 +53,9 @@ class App extends PureComponent {
               const id = Number(match.params.id);
               const cardFilm = films[id - 1];
               const likeFilms = filmsByGenre.filter((film) => film.genre === cardFilm.genre && film.title !== cardFilm.title).slice(0, COUNT_FILMS);
-              return <FilmPageWrapper
+              return(
+                !isLoadingFilm ?
+                <FilmPageWrapper
                 id={id}
                 films={films}
                 cardFilms={cardFilm}
@@ -60,15 +64,19 @@ class App extends PureComponent {
                 reviews={reviews}
                 handleFilmFavorite={this._handleFilmFavorite}
                 onFilmCardClick={this._handleFilmCardClick}
-              />;
+              /> : null
+            );
             }}/>
           <Route exact path={`${Pages.PLAYER}/:id?`}
             render={({match}) => {
               const id = Number(match.params.id);
               const cardFilm = films[id - 1];
-              return <VideoPlayerFullWrapped
+              return (
+                !isLoadingFilm ?
+                <VideoPlayerFullWrapped
                 film={cardFilm}
-              />;
+              /> : null
+              )
             }}/>
           <Route exact path={Pages.LOGIN}
             render={()=> {
@@ -85,7 +93,7 @@ class App extends PureComponent {
             render={({match}) => {
               const id = Number(match.params.id);
               const cardFilm = films[id - 1];
-              return <PageAddOverview
+              return <AddReview
                 film={cardFilm}
                 postReview={this._handlePostReview}
               />;
@@ -144,11 +152,13 @@ App.propTypes = {
   authorizationStatus: propTypes.string.isRequired,
 };
 const mapStateToProps = (state) => ({
+  f: console.log(state),
   filmsByGenre: state.DATA.filmsByGenre,
   cardFilms: state.DATA.cardFilms,
   films: state.DATA.films,
   reviews: state.DATA.review,
   authorizationStatus: state.USER.authorizationStatus,
+  isLoadingFilm: state.DATA.loadingFilms,
 });
 const mapDispatchToProps = (dispatch) => ({
   getReviews(film) {

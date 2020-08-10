@@ -10,6 +10,7 @@ const initialState = {
   filmsByGenre: [],
   review: [],
   favoriteFilms: [],
+  loadingFilms: true,
 };
 const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
@@ -17,6 +18,7 @@ const ActionType = {
   LOAD_REVIEW: `LOAD_REVIEW`,
   POST_REVIEW: `POST_REVIEW`,
   LOAD_FAVORITE_FILMS: `LOAD_FAVORITE_FILMS`,
+  IS_LOADING_FILM: `IS_LOADING_FILM`,
 };
 const ActionCreator = {
   loadFilms: (films) => ({
@@ -37,11 +39,18 @@ const ActionCreator = {
     type: ActionType.LOAD_FAVORITE_FILMS,
     payload: films,
   }),
+  isLoadingFilm: (load) => ({
+    type: ActionType.IS_LOADING_FILM,
+    payload: load,
+  }),
 };
 const Operations = {
   loadFilms: () => (dispatch, getState, api) => {
     return api.get(`/films`)
-      .then((responce) => dispatch(ActionCreator.loadFilms(responce.data.map((film) => filmAdapter(film)))));
+      .then((responce) => {
+        dispatch(ActionCreator.loadFilms(responce.data.map((film) => filmAdapter(film))))
+        dispatch(ActionCreator.isLoadingFilm(false));
+      });
   },
 
   loadPromo: () => (dispatch, getState, api) => {
@@ -100,6 +109,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_FAVORITE_FILMS:
       return extend(state, {
         favoriteFilms: action.payload,
+      });
+    case ActionType.IS_LOADING_FILM:
+      return extend(state, {
+        loadingFilms: action.payload,
       });
   }
   return state;

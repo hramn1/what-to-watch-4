@@ -32,7 +32,7 @@ const withVideoControls = (Component) => {
       video.requestFullscreen();
     }
 
-    _leftTime() {
+    _showLeftTime() {
       const {currentTime, duration} = this.state;
 
       const timeDiff = duration - currentTime;
@@ -79,7 +79,7 @@ const withVideoControls = (Component) => {
     render() {
       const {currentTime, duration, isPlaying} = this.state;
       const {film} = this.props;
-      const leftTime = this._leftTime();
+      const leftTime = this._showLeftTime();
 
       return <Component
         {...this.props}

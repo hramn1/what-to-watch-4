@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 import {Pages} from "../../const";
 
 
-class PageAddOverview extends PureComponent {
+class AddReview extends PureComponent {
   constructor(props) {
     super(props);
     this.ratingRef1 = createRef();
@@ -125,10 +125,10 @@ const mapStateToProps = (state) => ({
   authorizationStatus: state.USER.authorizationStatus,
   authorizationInfo: state.USER.authorizationInfo,
 });
-PageAddOverview.propTypes = {
+AddReview.propTypes = {
   film: propTypes.object.isRequired,
   postReview: propTypes.func.isRequired,
   authorizationStatus: propTypes.string.isRequired,
   authorizationInfo: propTypes.object.isRequired,
 };
-export default connect(mapStateToProps)(PageAddOverview);
+export default connect(mapStateToProps)(AddReview);
