@@ -6,21 +6,24 @@ import {AuthorizationStatus} from "../../reducer/user/user";
 import {Pages} from "../../const.js";
 
 const PrivateRoute = (props) => {
-  const {render, path, exact, authorizationStatus} = props;
-
-  return (
+  const {render, path, exact, progressAuth, authorizationStatus} = props;
+  console.log(progressAuth)
+  const isAuth = authorizationStatus !== AuthorizationStatus.NO_AUTH
+  return(
     <Route
       path={path}
       exact={exact}
       render={(routeProps) => {
-        return (
-          authorizationStatus !== AuthorizationStatus.NO_AUTH
-            ? render(routeProps)
-            : <Redirect to={Pages.LOGIN} />
-        );
+        if (isAuth && progressAuth) {
+          return render(routeProps);
+        } else if (!progressAuth) {
+          return ;
+        }
+        // return <Redirect to={`${Pages.LOGIN}`} />;
       }}
     />
-  );
+  )
+
 };
 
 PrivateRoute.propTypes = {
@@ -32,6 +35,7 @@ PrivateRoute.propTypes = {
 
 const mapStateToProps = (state) => ({
   authorizationStatus: state.USER.authorizationStatus,
+  progressAuth: state.USER.authorizationInProgress
 });
 
 

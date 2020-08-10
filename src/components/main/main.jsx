@@ -24,6 +24,7 @@ const Main = (props) => {
     showFilms,
     handleFilmFavorite,
     onFilmCardClick,
+    error,
   } = props;
   let showedFilms = [];
   let filmOnPage = [];
@@ -33,6 +34,13 @@ const Main = (props) => {
   } else {
     showedFilms = filmsByGenre.slice(0, showFilms);
     filmOnPage = filmsByGenre;
+  }
+  if(error){
+    return (
+    <React.Fragment>
+      <h1>SERVER ERROR</h1>
+    </React.Fragment>
+    )
   }
   const isInMyLyst = cardFilms.isFavorite ?
     <React.Fragment>
@@ -175,7 +183,7 @@ const mapStateToProps = (state) => ({
   showFilms: state.APP.showFilms,
   authorizationStatus: state.USER.authorizationStatus,
   authorizationInfo: state.USER.authorizationInfo,
-
+  error: state.DATA.error,
 });
 const mapDispatchToProps = (dispatch) => ({
   onGenreClick(genre, films) {

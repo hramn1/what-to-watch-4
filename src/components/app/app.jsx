@@ -19,8 +19,11 @@ import history from "../../history.js";
 import {Pages} from "../../const.js";
 import PrivateRoute from "../private-route/private-route.jsx";
 import MyList from "../my-list/my-list.jsx";
+import withReview from "../../hoc/with-review/with-review.jsx";
+
 const FilmPageWrapper = withTabs(FilmPage);
 const VideoPlayerFullWrapped = withVideoControls(VideoPlayerFull);
+const AddReviewWrapped = withReview(AddReview);
 
 const COUNT_FILMS = 4;
 class App extends PureComponent {
@@ -31,8 +34,7 @@ class App extends PureComponent {
     this._handleFilmFavorite = this._handleFilmFavorite.bind(this);
   }
   render() {
-    const {films, isLoadingFilm, reviews, cardFilms, login, authorizationStatus, filmsByGenre} = this.props;
-
+    const {films, isLoadingFilm, getReviews, reviews, cardFilms, login, authorizationStatus, filmsByGenre} = this.props;
 
     return (
       <Router history={history}>
@@ -55,12 +57,13 @@ class App extends PureComponent {
               const likeFilms = filmsByGenre.filter((film) => film.genre === cardFilm.genre && film.title !== cardFilm.title).slice(0, COUNT_FILMS);
               return(
                 !isLoadingFilm ?
-                <FilmPageWrapper
+              <FilmPageWrapper
                 id={id}
                 films={films}
                 cardFilms={cardFilm}
                 filmsByGenre={filmsByGenre}
                 likeFilms={likeFilms}
+                getReviews={getReviews}
                 reviews={reviews}
                 handleFilmFavorite={this._handleFilmFavorite}
                 onFilmCardClick={this._handleFilmCardClick}
@@ -93,17 +96,22 @@ class App extends PureComponent {
             render={({match}) => {
               const id = Number(match.params.id);
               const cardFilm = films[id - 1];
-              return <AddReview
+              return (
+                !isLoadingFilm ?
+                <AddReviewWrapped
                 film={cardFilm}
                 postReview={this._handlePostReview}
-              />;
+              /> : null
+            )
             }}/>
           <PrivateRoute exact
             path={Pages.MY_LIST}
             render={() => {
-              return <MyList
+              return( !isLoadingFilm ?
+                <MyList
                 onFilmCardClick={this._handleFilmCardClick}
-              />;
+              />: null
+              )
             }}
           />
           <Route
@@ -152,7 +160,7 @@ App.propTypes = {
   authorizationStatus: propTypes.string.isRequired,
 };
 const mapStateToProps = (state) => ({
-  f: console.log(state),
+  progressAuth: state.USER.authorizationInProgress,
   filmsByGenre: state.DATA.filmsByGenre,
   cardFilms: state.DATA.cardFilms,
   films: state.DATA.films,
@@ -170,7 +178,7 @@ const mapDispatchToProps = (dispatch) => ({
   login(authData) {
     dispatch(UserOperation.login(authData));
   },
-  postReviews(reviewData, film) {
+  postReviews(film, reviewData) {
     dispatch(ReviewOperation.postReview(film.id, reviewData));
   },
   putFavoriteFilm(film) {

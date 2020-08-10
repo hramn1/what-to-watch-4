@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const Error = {
-  UNAUTHORIZED: 401
+  UNAUTHORIZED: 401,
+  BAD_REQUEST: 400,
 };
 
 const ENTRY_POINT = `https://4.react.pages.academy/wtw`;

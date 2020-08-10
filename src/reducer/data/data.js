@@ -10,7 +10,9 @@ const initialState = {
   filmsByGenre: [],
   review: [],
   favoriteFilms: [],
+  sendingComment: false,
   loadingFilms: true,
+  error: ``,
 };
 const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
@@ -19,6 +21,8 @@ const ActionType = {
   POST_REVIEW: `POST_REVIEW`,
   LOAD_FAVORITE_FILMS: `LOAD_FAVORITE_FILMS`,
   IS_LOADING_FILM: `IS_LOADING_FILM`,
+  ERROR_SERVER:  `ERROR_SERVER`,
+  SEND_COMMENT_DONE: `SEND_COMMENT_DONE`,
 };
 const ActionCreator = {
   loadFilms: (films) => ({
@@ -43,6 +47,14 @@ const ActionCreator = {
     type: ActionType.IS_LOADING_FILM,
     payload: load,
   }),
+  serverError: (msg) => ({
+    type: ActionType.ERROR_SERVER,
+    payload: msg,
+ }),
+  sendCommentDone: (done) => ({
+    type: ActionType.SEND_COMMENT_DONE,
+    payload: done,
+  }),
 };
 const Operations = {
   loadFilms: () => (dispatch, getState, api) => {
@@ -50,6 +62,9 @@ const Operations = {
       .then((responce) => {
         dispatch(ActionCreator.loadFilms(responce.data.map((film) => filmAdapter(film))))
         dispatch(ActionCreator.isLoadingFilm(false));
+      })
+      .catch((err) => {
+        dispatch(ActionCreator.serverError(err));
       });
   },
 
@@ -61,12 +76,15 @@ const Operations = {
     return api.get(`/comments/${movieId}`)
       .then((response) => {
         dispatch(ActionCreator.loadReviews(response.data));
+        dispatch(ActionCreator.sendCommentDone(false));
       });
   },
   postReview: (movieId, reviewData) => (dispatch, getState, api) => {
+    console.log(movieId)
+    console.log(reviewData)
     return api.post(`/comments/${movieId}`, {
       rating: reviewData.rating,
-      comment: reviewData.review,
+      comment: reviewData.comment,
     })
       .then((response) => {
         dispatch(ActionCreator.loadReviews(response.data));
@@ -113,6 +131,14 @@ const reducer = (state = initialState, action) => {
     case ActionType.IS_LOADING_FILM:
       return extend(state, {
         loadingFilms: action.payload,
+      });
+    case ActionType.ERROR_SERVER:
+      return extend(state, {
+        error: action.payload,
+      });
+    case ActionType.SEND_COMMENT_DONE:
+      return extend(state, {
+        sendCommentDone: action.payload,
       });
   }
   return state;

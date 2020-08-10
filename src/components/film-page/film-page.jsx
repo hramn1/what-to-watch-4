@@ -10,7 +10,7 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {Pages} from "../../const";
 
-const filmNavList = [`Overview`, `Details`, `Reviews`];
+const FILM_NAV_LIST = [`Overview`, `Details`, `Reviews`];
 
 class FilmPage extends PureComponent {
   constructor(props) {
@@ -19,22 +19,21 @@ class FilmPage extends PureComponent {
   }
 
   _renderCurrentTab(currentTab) {
-    const {cardFilms , id,  reviews} = this.props;
-    console.log(id)
+    const {cardFilms, reviews} = this.props;
     switch (currentTab) {
-      case filmNavList[0]:
+      case FILM_NAV_LIST[0]:
         return (
           <PageOverview
             cardFilms={cardFilms}
           />
         );
-      case filmNavList[1]:
+      case FILM_NAV_LIST[1]:
         return (
           <PageDetails
             cardFilms={cardFilms}
           />
         );
-      case filmNavList[2]:
+      case FILM_NAV_LIST[2]:
         return (
           <PageReviews
             reviews={reviews}
@@ -42,10 +41,6 @@ class FilmPage extends PureComponent {
         );
       default: throw new Error(`Can't handle tab type ` + currentTab);
     }
-  }
-  componentDidMount() {
-    const {id} = this.props;
-    console.log(id)
   }
 
   render() {
@@ -137,7 +132,7 @@ class FilmPage extends PureComponent {
 
             <div className="movie-card__desc">
               <FilmsTabs
-                tabs={filmNavList}
+                tabs={FILM_NAV_LIST}
                 currentTab={activeTab}
                 onTabClick = {onTabClick}
               />
@@ -174,7 +169,6 @@ class FilmPage extends PureComponent {
   }
 }
 const mapStateToProps = (state) => ({
-  d: console.log(state),
   authorizationStatus: state.USER.authorizationStatus,
   authorizationInfo: state.USER.authorizationInfo,
   films: state.DATA.films,

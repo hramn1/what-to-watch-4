@@ -24,3 +24,16 @@ export const getNormalDate = (date) =>{
   const yearComment = new Date(date).getFullYear();
   return `${monthComment} ${dayComment}, ${yearComment}`;
 };
+export const validateEmail = (evt) => {
+  const emailInput =  evt.target.value
+  if(emailInput === '') {
+    evt.target.setCustomValidity(`Email is required`);
+    return  false;
+  } else if(!/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(emailInput)) {
+    evt.target.setCustomValidity(`Email not correct`);
+    return  false;
+  } else {
+    evt.target.setCustomValidity(``);
+    return true;
+  }
+}

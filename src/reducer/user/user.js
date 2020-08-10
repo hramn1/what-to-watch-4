@@ -10,6 +10,7 @@ const AuthorizationStatus = {
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   isAuthorizing: false,
+  authorizationInProgress: false,
   authorizationInfo: {
     id: 0,
     email: ``,
@@ -20,12 +21,19 @@ const initialState = {
 const UserActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   AUTHORIZATION_INFO: `AUTHORIZATION_INFO`,
+  SET_PROGRESS_STATUS: `SET_PROGRESS_STATUS`,
   IS_AUTHORIZING: `IS_AUTHORIZING`,
 };
 const ActionCreator = {
   requireAuthorization: (status) => {
     return {
       type: UserActionType.REQUIRED_AUTHORIZATION,
+      payload: status,
+    };
+  },
+  setProgressStatus: (status) => {
+    return {
+      type: UserActionType.SET_PROGRESS_STATUS,
       payload: status,
     };
   },
@@ -46,10 +54,12 @@ const Operations = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
       .then((response) => {
+        dispatch(ActionCreator.setProgressStatus(true));
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.loadAuthorizationInfo(createUserInfo(response.data)));
       })
       .catch((err) => {
+        dispatch(ActionCreator.setProgressStatus(true));
         throw err;
       });
   },
@@ -84,6 +94,10 @@ const reducer = (state = initialState, action) => {
     case UserActionType.IS_AUTHORIZING:
       return extend(state, {
         isAuthorizing: true,
+      });
+    case UserActionType.SET_PROGRESS_STATUS:
+      return extend(state, {
+        authorizationInProgress: action.payload,
       });
   }
 

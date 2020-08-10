@@ -2,7 +2,7 @@ import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {Pages} from "../../const";
-
+import {validateEmail} from "../../utils";
 export default class SignIn extends PureComponent {
   constructor(props) {
     super(props);
@@ -41,9 +41,9 @@ export default class SignIn extends PureComponent {
           <form action="#" className="sign-in__form" onSubmit={this.handleSubmit}>
             <div className="sign-in__fields">
               <div className="sign-in__field">
-                <input className="sign-in__input" type="email" placeholder="Email address" name="user-email"
+                <input className="sign-in__input" type="email" onChange={validateEmail} placeholder="Email address" name="user-email"
                   id="user-email" ref={this.loginRef} required/>
-                <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
+                <label className="sign-in__label visually-hidden"  htmlFor="user-email">Email address</label>
               </div>
               <div className="sign-in__field">
                 <input className="sign-in__input" type="password" placeholder="Password" name="user-password"
