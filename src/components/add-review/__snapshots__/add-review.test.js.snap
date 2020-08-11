@@ -3,6 +3,11 @@
 exports[`Main Render Main 1`] = `
 <section
   className="movie-card movie-card--full"
+  style={
+    Object {
+      "backgroundColor": undefined,
+    }
+  }
 >
   <div
     className="movie-card__header"
@@ -103,10 +108,12 @@ exports[`Main Render Main 1`] = `
     <form
       action="#"
       className="add-review__form"
+      disabled={true}
       onSubmit={[Function]}
     >
       <div
         className="rating"
+        onChange={[Function]}
       >
         <div
           className="rating__stars"
@@ -114,6 +121,7 @@ exports[`Main Render Main 1`] = `
           <input
             className="rating__input"
             defaultValue="1"
+            disabled={true}
             id="star-1"
             name="rating"
             type="radio"
@@ -127,6 +135,7 @@ exports[`Main Render Main 1`] = `
           <input
             className="rating__input"
             defaultValue="2"
+            disabled={true}
             id="star-2"
             name="rating"
             type="radio"
@@ -140,6 +149,7 @@ exports[`Main Render Main 1`] = `
           <input
             className="rating__input"
             defaultValue="3"
+            disabled={true}
             id="star-3"
             name="rating"
             type="radio"
@@ -153,6 +163,7 @@ exports[`Main Render Main 1`] = `
           <input
             className="rating__input"
             defaultValue="4"
+            disabled={true}
             id="star-4"
             name="rating"
             type="radio"
@@ -166,6 +177,7 @@ exports[`Main Render Main 1`] = `
           <input
             className="rating__input"
             defaultValue="5"
+            disabled={true}
             id="star-5"
             name="rating"
             type="radio"
@@ -184,7 +196,10 @@ exports[`Main Render Main 1`] = `
         <textarea
           className="add-review__textarea"
           id="review-text"
+          maxLength={400}
+          minLength={50}
           name="review-text"
+          onInput={[Function]}
           placeholder="Review text"
         />
         <div
@@ -192,6 +207,7 @@ exports[`Main Render Main 1`] = `
         >
           <button
             className="add-review__btn"
+            disabled={true}
             type="submit"
           >
             Post

@@ -133,7 +133,7 @@ describe(`Operations work correctly`, () => {
 
     return moviesLoad(dispatch, () => {}, api)
           .then(() => {
-            expect(dispatch).toHaveBeenCalledTimes(1);
+            expect(dispatch).toHaveBeenCalledTimes(2);
             expect(dispatch).toHaveBeenCalledWith({
               type: ActionType.LOAD_FILMS,
               payload: [filmAdapter({fake: true})],
@@ -152,7 +152,7 @@ describe(`Operations work correctly`, () => {
 
     return reviewsLoad(dispatch, () => {}, api)
           .then(() => {
-            expect(dispatch).toHaveBeenCalledTimes(1);
+            expect(dispatch).toHaveBeenCalledTimes(2);
             expect(dispatch).toHaveBeenCalledWith({
               type: ActionType.LOAD_REVIEW,
               payload: [{fake: true}],

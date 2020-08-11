@@ -13,13 +13,24 @@ const film = {
   genre: `Drame`,
   year: `2014`,
 };
+const ReviewLength = {
+  MIN: 50,
+  MAX: 400,
+};
+const isSubmitDisabled = true;
 const authorizationStatus = `NO-AUTH`;
 const authorizationInfo = {};
+const sendingComment = true;
+const isError = ``;
 describe(`Main`, () => {
   const store = mockStore({
     [NameSpace.USER]: {
       authorizationStatus,
       authorizationInfo
+    },
+    [NameSpace.DATA]: {
+      sendingComment,
+      isError,
     },
   });
 
@@ -31,6 +42,11 @@ describe(`Main`, () => {
               film={film}
               postReview={() => {}}
               onSignInClick={()=>{}}
+              reviewLength={ReviewLength}
+              onSubmitClick={()=>{}}
+              onRatingChange={()=>{}}
+              onReviewChange={()=>{}}
+              isSubmitDisabled={isSubmitDisabled}
             />
           </Provider>
         </Router>, {

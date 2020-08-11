@@ -13,6 +13,7 @@ const initialState = {
   sendingComment: false,
   loadingFilms: true,
   error: ``,
+  errorComment: ``,
 };
 const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
@@ -21,15 +22,15 @@ const ActionType = {
   POST_REVIEW: `POST_REVIEW`,
   LOAD_FAVORITE_FILMS: `LOAD_FAVORITE_FILMS`,
   IS_LOADING_FILM: `IS_LOADING_FILM`,
-  ERROR_SERVER:  `ERROR_SERVER`,
+  ERROR_SERVER: `ERROR_SERVER`,
   SEND_COMMENT_DONE: `SEND_COMMENT_DONE`,
+  ERROR_COMMENT: `ERROR_COMMENT`,
 };
 const ActionCreator = {
   loadFilms: (films) => ({
     type: ActionType.LOAD_FILMS,
     payload: films,
   }),
-
   loadPromo: (promo) => ({
     type: ActionType.LOAD_PROMO,
     payload: promo,
@@ -50,17 +51,21 @@ const ActionCreator = {
   serverError: (msg) => ({
     type: ActionType.ERROR_SERVER,
     payload: msg,
- }),
+  }),
   sendCommentDone: (done) => ({
     type: ActionType.SEND_COMMENT_DONE,
     payload: done,
+  }),
+  commentError: (msg) => ({
+    type: ActionType.ERROR_COMMENT,
+    payload: msg,
   }),
 };
 const Operations = {
   loadFilms: () => (dispatch, getState, api) => {
     return api.get(`/films`)
       .then((responce) => {
-        dispatch(ActionCreator.loadFilms(responce.data.map((film) => filmAdapter(film))))
+        dispatch(ActionCreator.loadFilms(responce.data.map((film) => filmAdapter(film))));
         dispatch(ActionCreator.isLoadingFilm(false));
       })
       .catch((err) => {
@@ -77,17 +82,20 @@ const Operations = {
       .then((response) => {
         dispatch(ActionCreator.loadReviews(response.data));
         dispatch(ActionCreator.sendCommentDone(false));
+
       });
   },
   postReview: (movieId, reviewData) => (dispatch, getState, api) => {
-    console.log(movieId)
-    console.log(reviewData)
     return api.post(`/comments/${movieId}`, {
       rating: reviewData.rating,
       comment: reviewData.comment,
     })
       .then((response) => {
+        dispatch(ActionCreator.sendCommentDone(true));
         dispatch(ActionCreator.loadReviews(response.data));
+      })
+      .catch((err) =>{
+        dispatch(ActionCreator.commentError(err));
       });
   },
   putFavorite: (film, isFavorite) => (dispatch, getState, api) => {
@@ -138,7 +146,11 @@ const reducer = (state = initialState, action) => {
       });
     case ActionType.SEND_COMMENT_DONE:
       return extend(state, {
-        sendCommentDone: action.payload,
+        sendingComment: action.payload,
+      });
+    case ActionType.ERROR_COMMENT:
+      return extend(state, {
+        errorComment: action.payload,
       });
   }
   return state;

@@ -54,9 +54,9 @@ const Operations = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
       .then((response) => {
-        dispatch(ActionCreator.setProgressStatus(true));
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.loadAuthorizationInfo(createUserInfo(response.data)));
+        dispatch(ActionCreator.setProgressStatus(true));
       })
       .catch((err) => {
         dispatch(ActionCreator.setProgressStatus(true));

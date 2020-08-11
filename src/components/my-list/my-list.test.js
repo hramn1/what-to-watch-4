@@ -1,14 +1,20 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {Provider} from 'react-redux';
+import thunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 import {ALL_GENRES} from '../../const.js';
 import MyList from "./my-list.jsx";
 import NameSpace from '../../reducer/name-space.js';
 import {Router} from 'react-router-dom';
 import history from '../../history.js';
+import {createAPI} from '../../api.js';
 
-const mockStore = configureStore([]);
+const api = createAPI();
+
+const mockStore = configureStore([
+  thunk.withExtraArgument(api)
+]);
 const availableGenres = [`crime`, `drama`];
 const favoriteFilms = [
   {
@@ -55,6 +61,8 @@ describe(`MyList`, () => {
               onFilmCardClick={() => {}}
               onPlayClick = {()=>{}}
               handleFilmFavorite= {()=>{}}
+              loadFavoriteMovies={()=>{}}
+              films={favoriteFilms}
             />
           </Provider>
         </Router>, {

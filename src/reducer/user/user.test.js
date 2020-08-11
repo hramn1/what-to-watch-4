@@ -43,6 +43,7 @@ describe(`Reducer User`, () => {
   it(`Should return initital state`, () => {
     expect(reducer(void 0, {})).toEqual({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
+      authorizationInProgress: false,
       authorizationInfo: {
         id: 0,
         email: ``,

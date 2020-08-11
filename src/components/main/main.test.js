@@ -27,6 +27,7 @@ const cardFilms = {
   genre: `Drame`,
   year: `2014`,
 };
+const error = ``;
 const showFilms = 2;
 const authorizationStatus = `NO-AUTH`;
 const authorizationInfo = {};
@@ -36,6 +37,7 @@ describe(`Main`, () => {
       films,
       cardFilms,
       availableGenres,
+      error,
     },
     [NameSpace.APP]: {
       currentGenre: ALL_GENRES,

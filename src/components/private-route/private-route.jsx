@@ -7,23 +7,22 @@ import {Pages} from "../../const.js";
 
 const PrivateRoute = (props) => {
   const {render, path, exact, progressAuth, authorizationStatus} = props;
-  console.log(progressAuth)
-  const isAuth = authorizationStatus !== AuthorizationStatus.NO_AUTH
-  return(
+  const isAuth = authorizationStatus !== AuthorizationStatus.NO_AUTH;
+  return (
     <Route
       path={path}
       exact={exact}
-      render={(routeProps) => {
+      render={(routeProps)=> {
         if (isAuth && progressAuth) {
           return render(routeProps);
         } else if (!progressAuth) {
-          return ;
+          return ``;
+        } else if (progressAuth && !isAuth) {
+          return <Redirect to={`${Pages.LOGIN}`} />;
         }
-        // return <Redirect to={`${Pages.LOGIN}`} />;
-      }}
-    />
-  )
-
+        return ``;
+      }}/>
+  );
 };
 
 PrivateRoute.propTypes = {
@@ -31,6 +30,7 @@ PrivateRoute.propTypes = {
   exact: PropTypes.bool.isRequired,
   path: PropTypes.string.isRequired,
   render: PropTypes.func.isRequired,
+  progressAuth: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({

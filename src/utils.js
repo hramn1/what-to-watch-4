@@ -25,15 +25,15 @@ export const getNormalDate = (date) =>{
   return `${monthComment} ${dayComment}, ${yearComment}`;
 };
 export const validateEmail = (evt) => {
-  const emailInput =  evt.target.value
-  if(emailInput === '') {
+  const emailInput = evt.target.value;
+  if (emailInput === ``) {
     evt.target.setCustomValidity(`Email is required`);
-    return  false;
-  } else if(!/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(emailInput)) {
+    return false;
+  } else if (!/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(emailInput)) {
     evt.target.setCustomValidity(`Email not correct`);
-    return  false;
+    return false;
   } else {
     evt.target.setCustomValidity(``);
     return true;
   }
-}
+};

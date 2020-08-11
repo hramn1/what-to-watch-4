@@ -14,6 +14,7 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 const mockStore = configureStore([]);
+const error = ``;
 const films = [
   {
     id: `1`,
@@ -40,6 +41,7 @@ describe(`Main`, () => {
       films,
       cardFilms,
       availableGenres,
+      error,
     },
     [NameSpace.APP]: {
       currentGenre: ALL_GENRES,

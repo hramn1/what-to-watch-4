@@ -11,6 +11,8 @@ const availableGenres = [`crime`, `drama`];
 const authorizationStatus = `NO-AUTH`;
 const authorizationInfo = {};
 const review = [];
+const loadingFilms = true;
+const error = ``;
 const films = [
   {
     id: `1`,
@@ -53,6 +55,8 @@ describe(`App`, () => {
       availableGenres,
       filmsByGenre,
       review,
+      loadingFilms,
+      error
     },
     [NameSpace.APP]: {
       currentGenre: ALL_GENRES,

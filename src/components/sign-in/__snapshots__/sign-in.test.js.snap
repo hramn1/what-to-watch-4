@@ -56,6 +56,7 @@ exports[`SignIn rendering 1`] = `
             className="sign-in__input"
             id="user-email"
             name="user-email"
+            onChange={[Function]}
             placeholder="Email address"
             required={true}
             type="email"

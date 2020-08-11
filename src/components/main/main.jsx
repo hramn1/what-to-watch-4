@@ -35,13 +35,14 @@ const Main = (props) => {
     showedFilms = filmsByGenre.slice(0, showFilms);
     filmOnPage = filmsByGenre;
   }
-  if(error){
+  if (error) {
     return (
-    <React.Fragment>
-      <h1>SERVER ERROR</h1>
-    </React.Fragment>
-    )
+      <React.Fragment>
+        <h1>SERVER ERROR</h1>
+      </React.Fragment>
+    );
   }
+
   const isInMyLyst = cardFilms.isFavorite ?
     <React.Fragment>
       <svg viewBox="0 0 18 14" width="18" height="14">
@@ -166,6 +167,7 @@ Main.propTypes = {
   ]),
   availableGenres: propTypes.array.isRequired,
   currentGenre: propTypes.string.isRequired,
+  error: propTypes.string.isRequired,
   onGenreClick: propTypes.func.isRequired,
   filmsByGenre: propTypes.array.isRequired,
   onFilmCardClick: propTypes.func.isRequired,
@@ -184,6 +186,7 @@ const mapStateToProps = (state) => ({
   authorizationStatus: state.USER.authorizationStatus,
   authorizationInfo: state.USER.authorizationInfo,
   error: state.DATA.error,
+  isLoadingFilm: state.DATA.loadingFilms,
 });
 const mapDispatchToProps = (dispatch) => ({
   onGenreClick(genre, films) {

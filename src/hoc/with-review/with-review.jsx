@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import propTypes from 'prop-types';
-import history from '../../history';
+
 const ReviewLength = {
   MIN: 50,
   MAX: 400,
@@ -16,6 +16,7 @@ const withReview = (Component) => {
         isSubmitDisabled: true,
         ratingFlag: false,
         commentFlag: false,
+        error: ``,
       };
 
       this._handleRatingChange = this._handleRatingChange.bind(this);
@@ -41,7 +42,6 @@ const withReview = (Component) => {
 
     _handleSubmitClick(evt) {
       const {film, postReview} = this.props;
-
       const review = {
         rating: this.state.rating,
         comment: this.state.comment,
@@ -49,7 +49,6 @@ const withReview = (Component) => {
 
       evt.preventDefault();
       postReview(review, film);
-      history.goBack();
     }
 
     render() {
@@ -68,6 +67,7 @@ const withReview = (Component) => {
 
   WithReview.propTypes = {
     film: propTypes.object.isRequired,
+    postReview: propTypes.func.isRequired,
   };
 
   return WithReview;

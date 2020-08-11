@@ -9,13 +9,21 @@ import {AuthorizationStatus} from "../../reducer/user/user";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {Pages} from "../../const";
+import {Operations} from "../../reducer/data/data";
 
 const FILM_NAV_LIST = [`Overview`, `Details`, `Reviews`];
 
 class FilmPage extends PureComponent {
   constructor(props) {
     super(props);
-
+    this._getReviewsAfterRoute = this._getReviewsAfterRoute.bind(this);
+  }
+  _getReviewsAfterRoute() {
+    const {getReviews, cardFilms} = this.props;
+    getReviews(cardFilms);
+  }
+  componentDidMount() {
+    this._getReviewsAfterRoute();
   }
 
   _renderCurrentTab(currentTab) {
@@ -58,7 +66,7 @@ class FilmPage extends PureComponent {
         </svg>
       </React.Fragment>;
     return (<React.Fragment>
-      <section className="movie-card movie-card--full">
+      <section className="movie-card movie-card--full" style={{backgroundColor: cardFilms.bgc}}>
         <div className="movie-card__hero">
           <div className="movie-card__bg">
             <img src={cardFilms.bg} alt={cardFilms.title}/>
@@ -172,6 +180,12 @@ const mapStateToProps = (state) => ({
   authorizationStatus: state.USER.authorizationStatus,
   authorizationInfo: state.USER.authorizationInfo,
   films: state.DATA.films,
+  reviews: state.DATA.review,
+});
+const mapDispatchToProps = (dispatch) => ({
+  getReviews(film) {
+    dispatch(Operations.loadReviews(film.id));
+  },
 });
 FilmPage.propTypes = {
   cardFilms: propTypes.object.isRequired,
@@ -180,8 +194,9 @@ FilmPage.propTypes = {
   activeTab: propTypes.string.isRequired,
   onTabClick: propTypes.func.isRequired,
   handleFilmFavorite: propTypes.func.isRequired,
+  getReviews: propTypes.func.isRequired,
   reviews: propTypes.array.isRequired,
   authorizationStatus: propTypes.string.isRequired,
   authorizationInfo: propTypes.object.isRequired,
 };
-export default connect(mapStateToProps)(FilmPage);
+export default connect(mapStateToProps, mapDispatchToProps)(FilmPage);
